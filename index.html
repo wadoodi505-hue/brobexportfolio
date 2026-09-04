@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BROBEX — Creative Web Developer & UI/UX Experience Designer</title>
+    <meta name="description" content="BROBEX is a senior frontend developer and UI/UX designer crafting high-impact, futuristic, interactive digital experiences.">
+    
+    <!-- Premium Luxury Fonts: Playfair Display & Montserrat -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="theme-dark">
+    <!-- SCROLL PROGRESS INDICATOR -->
+    <div id="scroll-progress" class="scroll-progress-bar" aria-hidden="true"></div>
+<!-- PREMIUM CURSOR EFFECTS -->
+<div id="cursor-glow" class="cursor-glow" aria-hidden="true"></div>
+<div id="particle-container" class="particle-container" aria-hidden="true"></div>
+    <!-- BACKGROUND ATMOSPHERE -->
+    <div class="bg-vignette-overlay" aria-hidden="true"></div>
+    <div class="bg-radial-glow" aria-hidden="true"></div>
+    <div class="cinematic-grain" aria-hidden="true"></div>
+
+    <!-- TOP NAVIGATION -->
+    <header class="top-nav">
+        <a href="index.html" class="brand" aria-label="BROBEX Homepage">
+            <div class="brand-text-wrapper">
+                <span class="logo-text">BROBEX</span>
+                <span class="brand-trust">NAME OF TRUST</span>
+            </div>
+        </a>
+
+        <nav class="top-nav-links desktop-only" aria-label="Primary Navigation">
+            <a href="index.html" class="nav-link active">HOME</a>
+            <a href="about.html" class="nav-link">ABOUT</a>
+            <a href="projects.html" class="nav-link">PROJECTS</a>
+            <a href="services.html" class="nav-link">SERVICES</a>
+            <a href="experience.html" class="nav-link">EXPERIENCE</a>
+            <a href="contact.html" class="nav-link">CONTACT</a>
+        </nav>
+
+        <div class="top-nav-actions">
+            <!-- Circular Logo Cropped via CSS -->
+            <div class="right-logo-container desktop-only">
+                <img src="brobex-logo.png" alt="Brobex Logo" class="right-circular-logo">
+            </div>
+            
+            <a href="contact.html" class="btn-talk desktop-only">
+                <span>LET'S TALK</span>
+                <i class="fas fa-arrow-right"></i>
+            </a>
+            <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Toggle Mobile Menu">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- MOBILE MENU OVERLAY -->
+    <div class="mobile-nav-overlay" id="mobile-nav-overlay">
+        <div class="mobile-nav-header">
+            <div class="brand-text-wrapper">
+                <span class="logo-text">BROBEX</span>
+                <span class="brand-trust">NAME OF TRUST</span>
+            </div>
+            <button class="mobile-close-btn" id="mobile-close-btn" aria-label="Close Mobile Menu"><i class="fas fa-times"></i></button>
+        </div>
+        <nav class="mobile-nav-links">
+            <a href="index.html" class="mobile-link active">HOME</a>
+            <a href="about.html" class="mobile-link">ABOUT</a>
+            <a href="projects.html" class="mobile-link">PROJECTS</a>
+            <a href="services.html" class="mobile-link">SERVICES</a>
+            <a href="experience.html" class="mobile-link">EXPERIENCE</a>
+            <a href="contact.html" class="mobile-link">CONTACT</a>
+        </nav>
+        <div class="mobile-nav-footer">
+            <a href="contact.html" class="btn-primary full-width">START A PROJECT <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </div>
+
+    <!-- LEFT NAVIGATION RAIL -->
+    <aside class="left-rail" aria-label="Rail Navigation">
+        <div class="rail-logo">B/X ARCHITECTURE</div>
+        <nav class="rail-links">
+            <a href="index.html" class="rail-item active" title="Home" aria-label="Home"><i class="fas fa-home"></i></a>
+            <a href="about.html" class="rail-item" title="About" aria-label="About"><i class="fas fa-user-astronaut"></i></a>
+            <a href="projects.html" class="rail-item" title="Projects" aria-label="Projects"><i class="fas fa-folder-open"></i></a>
+            <a href="services.html" class="rail-item" title="Services" aria-label="Services"><i class="fas fa-microchip"></i></a>
+            <a href="experience.html" class="rail-item" title="Experience" aria-label="Experience"><i class="fas fa-project-diagram"></i></a>
+            <a href="contact.html" class="rail-item" title="Contact" aria-label="Contact"><i class="fas fa-envelope"></i></a>
+        </nav>
+        <div class="rail-bottom">
+            <div class="scroll-indicator">
+                <span class="scroll-text">SCROLL DOWN</span>
+                <div class="scroll-line"></div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- RIGHT CONTACT RAIL -->
+    <aside class="right-contact-rail" aria-label="Direct Contact Links">
+        <a href="https://wa.me/923709995042" target="_blank" rel="noopener noreferrer" class="contact-icon" data-tooltip="WhatsApp Direct">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+        <a href="tel:03709995042" class="contact-icon" data-tooltip="Call 03709995042">
+            <i class="fas fa-phone-alt"></i>
+        </a>
+        <a href="mailto:brobex.ffx@gmail.com" class="contact-icon" data-tooltip="Email Me Directly">
+            <i class="fas fa-envelope"></i>
+        </a>
+        <a href="https://www.instagram.com/codewithbrobex/" target="_blank" rel="noopener noreferrer" class="contact-icon" data-tooltip="Instagram Profile">
+            <i class="fab fa-instagram"></i>
+        </a>
+    </aside>
+
+    <!-- MAIN PAGE CONTENT -->
+    <main class="page-content" id="main-content">
+
+        <!-- HERO SECTION -->
+        <section class="hero-section" id="hero">
+            
+            <div class="hud-badge top-badge desktop-only reveal fade-up" data-delay="300">
+                <span class="tech-code">LOC // 31.8° N</span>
+                <span class="tech-val">SYS_ACTIVE</span>
+            </div>
+            <div class="hud-badge bottom-badge desktop-only reveal fade-up" data-delay="400">
+                <span class="tech-code">CORE // VISUAL_ENGINE</span>
+                <span class="tech-val">120 FPS</span>
+            </div>
+
+            <div class="hero-content">
+                <div class="hero-left reveal fade-up">
+                    <h1 class="huge-headline">
+                        ENGINEERING<br>
+                        <span class="highlight-text">DIGITAL</span><br>
+                        DIMENSIONS
+                    </h1>
+                    <p class="hero-intro">
+                        Creative developer bridging high-end visual design, motion aesthetics, and robust frontend architecture into client-ready web experiences.
+                    </p>
+                    <div class="hero-cta-group">
+                        <a href="projects.html" class="btn-primary">
+                            <span>EXPLORE WORK</span>
+                            <i class="fas fa-arrow-right arrow"></i>
+                        </a>
+                        <a href="contact.html" class="btn-secondary">
+                            <span>GET IN TOUCH</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="hero-right reveal slide-left">
+                    
+                    <!-- NEW PREMIUM PROFILE SHOWCASE -->
+                    <div class="profile-showcase" id="profile-showcase">
+                        <div class="profile-glow-ring"></div>
+                        <div class="profile-image-wrap">
+                            <!-- PLACE YOUR OWN PERSONAL PHOTO HERE -->
+                            <img src="your-personal-photo.jpg" alt="BROBEX Profile" class="profile-image">
+                        </div>
+                    </div>
+
+                    <div class="info-panel hud-panel">
+                        <div class="panel-header">
+                            <span class="panel-title">SYSTEM MATRIX</span>
+                            <span class="hud-version">v2.6</span>
+                        </div>
+                        
+                        <h3 class="panel-heading">WHERE INTENTION<br>MEETS CODE</h3>
+                        
+                        <p class="panel-desc">
+                            Designing responsive, high-performance web systems crafted with meticulous UI precision and modern web standards.
+                        </p>
+
+                        <ul class="tech-list">
+                            <li><span>FRONTEND DEVELOPMENT</span> <i class="fas fa-check"></i></li>
+                            <li><span>UI / UX DESIGN SYSTEMS</span> <i class="fas fa-check"></i></li>
+                            <li><span>INTERACTIVE MOTION DEVELOPMENT</span> <i class="fas fa-check"></i></li>
+                            <li><span>CLIENT-READY PRODUCTS</span> <i class="fas fa-check"></i></li>
+                        </ul>
+
+                        <div class="hud-panel-footer">
+                            <span class="status-pulse"></span>
+                            <span class="status-text">AVAILABLE FOR PROJECTS</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-hud reveal fade-up staggered">
+                <div class="hud-stat">
+                    <div class="hud-num-wrap">
+                        <span class="hud-num" data-target="1" data-prefix="0">00</span>
+                    </div>
+                    <span class="hud-label">PROVEN WORK DIRECTION</span>
+                </div>
+                <div class="hud-stat">
+                    <div class="hud-num-wrap">
+                        <span class="hud-num" data-target="3" data-prefix="0" data-suffix="+">00</span>
+                    </div>
+                    <span class="hud-label">CLIENT-READY EXPERIENCES</span>
+                </div>
+                <div class="hud-stat">
+                    <div class="hud-num-wrap">
+                        <span class="hud-num" data-target="100" data-suffix="%">00</span>
+                    </div>
+                    <span class="hud-label">RESPONSIVE ARCHITECTURE</span>
+                </div>
+                <div class="hud-stat">
+                    <div class="hud-num-wrap">
+                        <span class="hud-num text-highlight">24/7</span>
+                    </div>
+                    <span class="hud-label">CREATIVE FOCUS & DRIVE</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- WHO IS BROBEX Preview Section -->
+        <section class="section-padding about-preview-section">
+            <div class="container">
+                <div class="section-header reveal fade-up">
+                    <span class="eyebrow">// 01. IDENTITY & PROFILE</span>
+                    <h2 class="section-title">WHO IS BROBEX?</h2>
+                    <div class="section-line"></div>
+                </div>
+
+                <div class="about-preview-grid">
+                    <div class="about-card hud-panel reveal slide-right">
+                        <div class="card-badge"><i class="fas fa-terminal"></i> PROFILE MATRIX</div>
+                        <h3 class="card-heading">Creative Developer & Digital Architect</h3>
+                        <p class="card-text">
+                            I am <strong>BROBEX</strong> — a frontend developer and UI/UX designer focused on building visually compelling, fast, and intuitive digital interfaces. I blend technical execution with deliberate graphic presentation to craft web environments that feel premium and memorable.
+                        </p>
+                        <ul class="spec-list">
+                            <li><i class="fas fa-chevron-right"></i> Specialized in semantic HTML5, modern CSS3, and vanilla JS</li>
+                            <li><i class="fas fa-chevron-right"></i> Clean component layout without framework clutter</li>
+                            <li><i class="fas fa-chevron-right"></i> Focus on client satisfaction and high usability</li>
+                        </ul>
+                    </div>
+
+                    <div class="about-card hud-panel reveal slide-left">
+                        <div class="card-badge"><i class="fas fa-compass"></i> PHILOSOPHY & GOALS</div>
+                        <h3 class="card-heading">Where Aesthetics Meet Performance</h3>
+                        <p class="card-text">
+                            A great website shouldn't choose between speed and creative flare. My approach enforces clean layout structures, liquid responsiveness across mobile and desktop, and meaningful micro-interactions that elevate brand perception.
+                        </p>
+                        <div class="card-action">
+                            <a href="about.html" class="btn-secondary">
+                                <span>DISCOVER FULL PROFILE</span>
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- WHAT I BUILD Capabilities Section -->
+        <section class="section-padding capabilities-section">
+            <div class="container">
+                <div class="section-header reveal fade-up">
+                    <span class="eyebrow">// 02. CAPABILITIES & SERVICES</span>
+                    <h2 class="section-title">WHAT I BUILD</h2>
+                    <div class="section-line"></div>
+                </div>
+
+                <div class="capabilities-grid">
+                    <div class="interactive-card reveal blur-in" data-delay="100">
+                        <div class="card-icon"><i class="fas fa-code"></i></div>
+                        <h3 class="card-title">Interactive Frontend Systems</h3>
+                        <p class="card-desc">
+                            High-performance web applications engineered with clean Vanilla JavaScript and CSS animations. Built to load fast and react fluidly.
+                        </p>
+                        <div class="card-tech-tags">
+                            <span>HTML5</span> <span>CSS3 Grid/Flex</span> <span>ES6+ JS</span>
+                        </div>
+                    </div>
+
+                    <div class="interactive-card reveal blur-in" data-delay="200">
+                        <div class="card-icon"><i class="fas fa-bezier-curve"></i></div>
+                        <h3 class="card-title">UI/UX & Digital Aesthetics</h3>
+                        <p class="card-desc">
+                            Futuristic HUD designs, crisp visual hierarchies, and dark-mode spatial interfaces that leave a lasting professional impression.
+                        </p>
+                        <div class="card-tech-tags">
+                            <span>UI Systems</span> <span>Design Tokens</span> <span>Wireframing</span>
+                        </div>
+                    </div>
+
+                    <div class="interactive-card reveal blur-in" data-delay="300">
+                        <div class="card-icon"><i class="fas fa-mobile-alt"></i></div>
+                        <h3 class="card-title">Responsive Engineering</h3>
+                        <p class="card-desc">
+                            Flawless experience on every device—from large 4K desktop displays down to small mobile touchscreens without layout shift.
+                        </p>
+                        <div class="card-tech-tags">
+                            <span>Fluid Typography</span> <span>Mobile First</span> <span>Cross-Browser</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="capabilities-footer reveal fade-up">
+                    <a href="services.html" class="btn-primary">
+                        <span>EXPLORE DETAILED SERVICES</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- MY APPROACH Methodology Section -->
+        <section class="section-padding approach-section">
+            <div class="container">
+                <div class="section-header reveal fade-up">
+                    <span class="eyebrow">// 03. METHODOLOGY</span>
+                    <h2 class="section-title">MY APPROACH</h2>
+                    <div class="section-line"></div>
+                </div>
+
+                <div class="approach-pipeline">
+                    <div class="pipeline-step reveal fade-up" data-delay="100">
+                        <div class="step-number">01</div>
+                        <div class="step-content">
+                            <h3 class="step-title">Blueprint & UX Architecture</h3>
+                            <p class="step-desc">Analyzing requirements, defining user flows, and organizing information into clear visual hierarchies before typing code.</p>
+                        </div>
+                    </div>
+
+                    <div class="pipeline-connector"></div>
+
+                    <div class="pipeline-step reveal fade-up" data-delay="200">
+                        <div class="step-number">02</div>
+                        <div class="step-content">
+                            <h3 class="step-title">Creative Visual Direction</h3>
+                            <p class="step-desc">Injecting custom atmosphere, lighting accents, geometric precision, and modern display typography into layout compositions.</p>
+                        </div>
+                    </div>
+
+                    <div class="pipeline-connector"></div>
+
+                    <div class="pipeline-step reveal fade-up" data-delay="300">
+                        <div class="step-number">03</div>
+                        <div class="step-content">
+                            <h3 class="step-title">Clean Engineering & Polish</h3>
+                            <p class="step-desc">Coding structured lightweight solutions, adding smooth scroll reactions, micro-interactions, and optimizing load speed.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="approach-action reveal fade-up">
+                    <a href="experience.html" class="btn-secondary">
+                        <span>VIEW EXPERIENCE & TIMELINE</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- SELECTED WORK Projects Preview Section -->
+        <section class="section-padding projects-preview-section">
+            <div class="container">
+                <div class="section-header reveal fade-up">
+                    <span class="eyebrow">// 04. PORTFOLIO SHOWCASE</span>
+                    <h2 class="section-title">SELECTED WORK</h2>
+                    <div class="section-line"></div>
+                </div>
+
+                <div class="projects-showcase">
+                    <article class="project-card hud-panel reveal fade-up">
+                        <div class="project-content-grid">
+                            <div class="project-info">
+                                <div class="project-meta">
+                                    <span class="proj-num">PROJECT // 01</span>
+                                    <span class="proj-category">WEB SYSTEM</span>
+                                </div>
+                                <h3 class="project-title">Next-Dimension Cyber Platform</h3>
+                                <p class="project-description">
+                                    A futuristic web platform featuring dark HUD glassmorphism, responsive navigation controls, and hardware-accelerated visual feedback.
+                                </p>
+                                <div class="tech-stack">
+                                    <span>HTML5</span> • <span>CSS3 Modern Grid</span> • <span>Vanilla JS</span>
+                                </div>
+                                <div class="project-links">
+                                    <a href="projects.html" class="btn-primary btn-sm">VIEW DETAILS <i class="fas fa-arrow-right"></i></a>
+                                </div>
+                            </div>
+                            <div class="project-visual">
+                                <div class="visual-frame">
+                                    <div class="visual-overlay"></div>
+                                    <div class="visual-placeholder-bg"></div>
+                                    <span class="visual-tag"><i class="fas fa-eye"></i> INTERACTIVE DEMO</span>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="project-card hud-panel reveal fade-up">
+                        <div class="project-content-grid reverse">
+                            <div class="project-info">
+                                <div class="project-meta">
+                                    <span class="proj-num">PROJECT // 02</span>
+                                    <span class="proj-category">UI/UX EXPERIENCE</span>
+                                </div>
+                                <h3 class="project-title">High-Impact Experience Portal</h3>
+                                <p class="project-description">
+                                    An ultra-clean experience showcase built with fluid typography, atmospheric lighting overlays, and interactive card systems.
+                                </p>
+                                <div class="tech-stack">
+                                    <span>Spatial Design</span> • <span>CSS Motion</span> • <span>UX Flow</span>
+                                </div>
+                                <div class="project-links">
+                                    <a href="projects.html" class="btn-primary btn-sm">VIEW DETAILS <i class="fas fa-arrow-right"></i></a>
+                                </div>
+                            </div>
+                            <div class="project-visual">
+                                <div class="visual-frame">
+                                    <div class="visual-overlay"></div>
+                                    <div class="visual-placeholder-bg alt"></div>
+                                    <span class="visual-tag"><i class="fas fa-layer-group"></i> SYSTEM PREVIEW</span>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+
+                <div class="projects-preview-cta reveal fade-up">
+                    <a href="projects.html" class="btn-primary">
+                        <span>EXPLORE ALL PROJECTS</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- CALL TO ACTION SECTION -->
+        <section class="section-padding cta-section">
+            <div class="container">
+                <div class="cta-box hud-panel reveal scale-in">
+                    <span class="eyebrow">// 05. INITIATE CONTACT</span>
+                    <h2 class="cta-title">READY TO BUILD SOMETHING EXTRAORDINARY?</h2>
+                    <p class="cta-desc">
+                        Have a project in mind, need a frontend interface refresh, or want to collaborate on a unique web experience? Let's connect.
+                    </p>
+                    
+                    <div class="cta-buttons">
+                        <a href="contact.html" class="btn-primary btn-lg">
+                            <span>START A CONVERSATION</span>
+                            <i class="fas fa-paper-plane"></i>
+                        </a>
+                        <a href="https://wa.me/923709995042" target="_blank" rel="noopener noreferrer" class="btn-secondary btn-lg">
+                            <i class="fab fa-whatsapp"></i>
+                            <span>WHATSAPP DIRECT</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="futuristic-footer">
+        <div class="footer-container">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <div class="brand-text-wrapper" style="margin-bottom: 0.8rem;">
+                        <span class="logo-text" style="font-size: 1.8rem;">BROBEX</span>
+                        <span class="brand-trust">NAME OF TRUST</span>
+                    </div>
+                    <p class="brand-tagline">BUILDING DIGITAL EXPERIENCES FOR THE NEXT DIMENSION.</p>
+                </div>
+                
+                <div class="footer-nav">
+                    <div class="footer-col">
+                        <span class="col-title">NAVIGATION</span>
+                        <a href="index.html">Home</a>
+                        <a href="about.html">About</a>
+                        <a href="projects.html">Projects</a>
+                    </div>
+                    <div class="footer-col">
+                        <span class="col-title">EXPLORE</span>
+                        <a href="services.html">Services</a>
+                        <a href="experience.html">Experience</a>
+                        <a href="contact.html">Contact</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="sys-status">
+                    <span class="status-dot"></span>
+                    <span class="status-text">SYSTEM STATUS: ALL MODULES ONLINE</span>
+                </div>
+                <div class="copyright">
+                    &copy; 2026 BROBEX. ALL RIGHTS RESERVED.
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Main JavaScript -->
+    <script src="js/main.js" defer></script>
+</body>
+</html>
