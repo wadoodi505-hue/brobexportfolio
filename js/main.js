@@ -2,6 +2,7 @@
  * BROBEX - Core Homepage Script
  * Complete vanilla JavaScript implementation handling scroll progress, 
  * observer-based reveals, stat counters, and micro-interactions.
+ * (Cursor particles removed for a cleaner, professional setup).
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -10,23 +11,46 @@ document.addEventListener('DOMContentLoaded', () => {
     // Respect user reduced-motion setting
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    // Instantly trigger reveals since the artificial loader has been removed
+    // Instantly trigger reveals
     triggerInitialReveals();
 
     /* ==========================================================================
-       1. SCROLL PROGRESS INDICATOR
+       1. SCROLL PROGRESS INDICATOR & SCROLL TO TOP LOGIC
        ========================================================================== */
     const progressBar = document.getElementById('scroll-progress');
+    const scrollBtn = document.getElementById('scrollToTopBtn');
 
-    function updateScrollProgress() {
-        if (!progressBar) return;
+    function handleScrollFeatures() {
         const scrollTop = window.scrollY || document.documentElement.scrollTop;
         const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-        const scrollPercent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
-        progressBar.style.width = `${scrollPercent}%`;
+        
+        // Update Progress Bar
+        if (progressBar) {
+            const scrollPercent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+            progressBar.style.width = `${scrollPercent}%`;
+        }
+
+        // Show/Hide Scroll to Top Button
+        if (scrollBtn) {
+            if (scrollTop > 400) {
+                scrollBtn.classList.add('show');
+            } else {
+                scrollBtn.classList.remove('show');
+            }
+        }
     }
 
-    window.addEventListener('scroll', updateScrollProgress, { passive: true });
+    window.addEventListener('scroll', handleScrollFeatures, { passive: true });
+
+    // Click event for Scroll To Top
+    if (scrollBtn) {
+        scrollBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    }
 
     /* ==========================================================================
        2. MOBILE NAVIGATION MENU
@@ -191,76 +215,4 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     console.log("%c BROBEX ARCHITECTURE ACTIVE ", "background: #E60000; color: #ffffff; font-weight: bold; padding: 4px 8px;");
-});document.addEventListener('DOMContentLoaded', () => {
-    const cursorGlow = document.getElementById('cursor-glow');
-    const particleContainer = document.getElementById('particle-container');
-
-    // Hide effect on mobile devices (touch screens)
-    if (window.matchMedia("(hover: none)").matches) {
-        cursorGlow.style.display = 'none';
-        return;
-    }
-
-    let mouseX = 0, mouseY = 0;
-    let glowX = 0, glowY = 0;
-
-    // Luxury Palette for Particles: Golds and Parrot Greens
-    const colors = ['#D4AF37', '#F7D046', '#7ED321', '#8EF511'];
-
-    // Track mouse movement
-    document.addEventListener('mousemove', (e) => {
-        mouseX = e.clientX;
-        mouseY = e.clientY;
-        createParticle(e.clientX, e.clientY);
-    });
-
-    // 1. BUTTERY SMOOTH GLOW ANIMATION (Lerping)
-    function animateGlow() {
-        // The 0.15 multiplier creates a beautiful, heavy luxury "drag" effect
-        glowX += (mouseX - glowX) * 0.15;
-        glowY += (mouseY - glowY) * 0.15;
-        
-        cursorGlow.style.transform = `translate3d(${glowX}px, ${glowY}px, 0)`;
-        requestAnimationFrame(animateGlow);
-    }
-    animateGlow();
-
-    // 2. PARTICLE GENERATION SYSTEM
-    let lastParticleTime = 0;
-    function createParticle(x, y) {
-        const now = Date.now();
-        // Throttle to prevent lagging the browser (spawns 1 particle every 40ms max)
-        if (now - lastParticleTime < 40) return; 
-        lastParticleTime = now;
-
-        const particle = document.createElement('div');
-        particle.classList.add('cursor-particle');
-        
-        // Randomize size between 2px and 5px
-        const size = Math.random() * 3 + 2; 
-        const color = colors[Math.floor(Math.random() * colors.length)];
-        
-        // Randomize trajectory (scatter X, fall Y)
-        const tx = (Math.random() - 0.5) * 80; // Scatters left/right by 40px
-        const ty = Math.random() * 60 + 20;    // Drifts downward 20px to 80px
-        
-        // Apply inline styles to the specific particle
-        particle.style.width = `${size}px`;
-        particle.style.height = `${size}px`;
-        particle.style.background = color;
-        particle.style.boxShadow = `0 0 ${size * 1.5}px ${color}`; // Give particles a tiny glow
-        particle.style.left = `${x}px`;
-        particle.style.top = `${y}px`;
-        
-        // Inject trajectory variables into the CSS animation
-        particle.style.setProperty('--tx', `${tx}px`);
-        particle.style.setProperty('--ty', `${ty}px`);
-        
-        particleContainer.appendChild(particle);
-        
-        // Clean up DOM: Remove particle after the 1s CSS animation finishes
-        setTimeout(() => {
-            particle.remove();
-        }, 1000);
-    }
 });
