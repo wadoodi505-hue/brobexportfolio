@@ -1,49 +1,522 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About | BROBEX</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Orbitron:wght@400;700;900&family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
+    <title>About | BROBEX Portfolio</title>
+    <meta name="description" content="Discover the professional journey, tech stack, and digital philosophy of BROBEX.">
+    
+    <!-- Premium Luxury Fonts: Playfair Display & Montserrat -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="images/brobex-logo.png" type="image/x-icon">
+    <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Stylesheet -->
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/animations.css">
-    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/about.css">
 </head>
 <body class="theme-dark page-transition">
-    <div class="scanlines"></div>
-    
-    <main class="page-content section-padding">
-        <div class="container animate-on-scroll slide-up">
-            <h1 class="page-title">THE DEVELOPER<br>BEHIND THE INTERFACE</h1>
+    <!-- SCROLL PROGRESS INDICATOR -->
+    <div id="scroll-progress" class="scroll-progress-bar" aria-hidden="true"></div>
+
+    <!-- PURE CSS 8K LUXURY WALLPAPER ATMOSPHERE -->
+    <div class="bg-luxury-wallpaper" aria-hidden="true"></div>
+    <div class="cinematic-grain" aria-hidden="true"></div>
+
+    <!-- TOP NAVIGATION -->
+    <header class="top-nav">
+        <a href="index.html" class="brand" aria-label="BROBEX Homepage">
+            <div class="brand-text-wrapper">
+                <span class="logo-text">BROBEX</span>
+                <span class="brand-trust">NAME OF TRUST</span>
+            </div>
+        </a>
+
+        <nav class="top-nav-links desktop-only" aria-label="Primary Navigation">
+            <a href="index.html" class="nav-link">HOME</a>
+            <a href="about.html" class="nav-link active">ABOUT</a>
+            <a href="services.html" class="nav-link">SERVICES</a>
+            <a href="experience.html" class="nav-link">EXPERIENCE</a>
+            <a href="contact.html" class="nav-link">CONTACT</a>
+        </nav>
+
+        <div class="top-nav-actions">
+            <div class="right-logo-container desktop-only">
+                <img src="https://i.pinimg.com/736x/c3/35/17/c33517c9283f79ae8c50e32b471cea9e.jpg" alt="Brobex Logo" class="right-circular-logo">
+            </div>
             
-            <div class="about-grid">
-                <div class="hud-panel glass-panel">
-                    <h3>ABOUT BROBEX</h3>
-                    <p>BRobex is a frontend-focused web developer creating visually distinctive, responsive, and immersive digital experiences. Bridging the gap between raw code and stunning cinematic design.</p>
-                </div>
-                
-                <div class="hud-panel glass-panel">
-                    <h3>DESIGN PHILOSOPHY</h3>
-                    <p>Minimal but visually rich. Every pixel serves a purpose. Every animation enhances the user journey. The interface is a living ecosystem.</p>
+            <a href="contact.html" class="btn-talk desktop-only">
+                <span>LET'S TALK</span>
+                <i class="fas fa-arrow-right"></i>
+            </a>
+            <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Toggle Mobile Menu">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- MOBILE MENU OVERLAY -->
+    <div class="mobile-nav-overlay" id="mobile-nav-overlay">
+        <div class="mobile-nav-header">
+            <div class="brand-text-wrapper">
+                <span class="logo-text">BROBEX</span>
+                <span class="brand-trust">NAME OF TRUST</span>
+            </div>
+            <img src="https://i.pinimg.com/736x/c3/35/17/c33517c9283f79ae8c50e32b471cea9e.jpg" alt="Brobex Logo" class="mobile-overlay-logo">
+            <button class="mobile-close-btn" id="mobile-close-btn" aria-label="Close Mobile Menu"><i class="fas fa-times"></i></button>
+        </div>
+        <nav class="mobile-nav-links">
+            <a href="index.html" class="mobile-link">HOME</a>
+            <a href="about.html" class="mobile-link active">ABOUT</a>
+            <a href="services.html" class="mobile-link">SERVICES</a>
+            <a href="experience.html" class="mobile-link">EXPERIENCE</a>
+            <a href="contact.html" class="mobile-link">CONTACT</a>
+        </nav>
+        <div class="mobile-nav-footer">
+            <a href="contact.html" class="btn-primary full-width">START A PROJECT <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </div>
+
+    <!-- LEFT NAVIGATION RAIL -->
+    <aside class="left-rail" aria-label="Rail Navigation">
+        <div class="rail-logo">B/X ARCHITECTURE</div>
+        <nav class="rail-links">
+            <a href="index.html" class="rail-item" title="Home"><i class="fas fa-home"></i></a>
+            <a href="about.html" class="rail-item active" title="About"><i class="fas fa-user-astronaut"></i></a>
+            <a href="services.html" class="rail-item" title="Services"><i class="fas fa-microchip"></i></a>
+            <a href="experience.html" class="rail-item" title="Experience"><i class="fas fa-project-diagram"></i></a>
+            <a href="contact.html" class="rail-item" title="Contact"><i class="fas fa-envelope"></i></a>
+        </nav>
+        <div class="rail-bottom">
+            <div class="scroll-indicator">
+                <span class="scroll-text">SCROLL DOWN</span>
+                <div class="scroll-line"></div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- RIGHT CONTACT RAIL (Desktop) -->
+    <aside class="right-contact-rail" aria-label="Direct Contact Links">
+        <a href="https://wa.me/923709995042" target="_blank" rel="noopener noreferrer" class="contact-icon" data-tooltip="WhatsApp Direct">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+        <a href="tel:03709995042" class="contact-icon" data-tooltip="Call 03709995042">
+            <i class="fas fa-phone-alt"></i>
+        </a>
+        <a href="mailto:brobex.ffx@gmail.com" class="contact-icon" data-tooltip="Email Me Directly">
+            <i class="fas fa-envelope"></i>
+        </a>
+        <a href="https://www.instagram.com/codewithbrobex/" target="_blank" rel="noopener noreferrer" class="contact-icon" data-tooltip="Instagram Profile">
+            <i class="fab fa-instagram"></i>
+        </a>
+    </aside>
+
+    <!-- MOBILE FLOATING CONTACT BUTTONS (Left & Right) -->
+    <a href="mailto:brobex.ffx@gmail.com" class="mobile-float-btn float-left" aria-label="Email Me">
+        <i class="fas fa-envelope"></i>
+    </a>
+    <a href="tel:03709995042" class="mobile-float-btn float-right" aria-label="Call Me">
+        <i class="fas fa-phone-alt"></i>
+    </a>
+
+    <!-- SCROLL TO TOP BUTTON -->
+    <button id="scrollToTopBtn" aria-label="Scroll to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- MAIN PAGE CONTENT -->
+    <main class="page-content" id="main-content">
+
+        <!-- 01 — ABOUT HERO SECTION -->
+        <section class="hero-section" id="hero">
+            <div class="hero-content split-hero">
+                <!-- TEXT ON LEFT -->
+                <div class="hero-text-block reveal slide-right">
+                    <span class="eyebrow">// IDENTITY & PROFILE</span>
+                    <h1 class="huge-headline">
+                        THE DEVELOPER<br>
+                        BEHIND <span class="highlight-text">BROBEX</span>
+                    </h1>
+                    <p class="hero-intro">
+                        I’m a professional website developer focused on transforming ideas into modern, responsive, interactive, and visually refined digital experiences. Building clean, high-performance interfaces since October 2025.
+                    </p>
+                    <div class="hero-cta-group">
+                        <a href="#mystory" class="btn-primary">
+                            <span>READ MY STORY</span>
+                            <i class="fas fa-arrow-down arrow"></i>
+                        </a>
+                    </div>
                 </div>
 
-                <div class="hud-panel glass-panel full-width">
-                    <h3>PERSONAL WORKFLOW</h3>
-                    <div class="workflow-steps">
-                        <div class="step"><span>01</span> CONCEIVE</div>
-                        <div class="step"><span>02</span> ARCHITECT</div>
-                        <div class="step"><span>03</span> ENGINEER</div>
-                        <div class="step"><span>04</span> ILLUMINATE</div>
+                <!-- PROFILE ON RIGHT -->
+                <div class="hero-profile-block reveal slide-left" data-delay="200">
+                    <div class="profile-showcase" id="profile-showcase">
+                        <div class="profile-glow-ring"></div>
+                        <div class="profile-image-wrap">
+                            <img src="https://i.pinimg.com/736x/c3/35/17/c33517c9283f79ae8c50e32b471cea9e.jpg" alt="BROBEX Profile" class="profile-image">
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
+
+        <!-- 02 — MY STORY -->
+        <section id="mystory" class="section-padding">
+            <div class="container">
+                <div class="hud-panel full-width reveal fade-up">
+                    <div class="section-header" style="margin-bottom: 2rem;">
+                        <span class="eyebrow">// ORIGIN</span>
+                        <h2 class="section-title" style="font-size: 2.5rem;">MY STORY</h2>
+                    </div>
+                    <div class="story-content">
+                        <p class="card-text" style="font-size: 1.15rem; max-width: 900px;">
+                            My professional journey in website development began in <strong>October 2025</strong>. Since then, I have dedicated myself entirely to the pursuit of modern frontend excellence. I started by mastering the fundamental building blocks of the web—HTML and CSS—focusing heavily on how layout, spacing, and typography combine to create an impactful digital presence.
+                        </p>
+                        <p class="card-text" style="font-size: 1.15rem; max-width: 900px; margin-top: 1.5rem;">
+                            As my skills progressed, I seamlessly transitioned into JavaScript, React, TypeScript, and Tailwind CSS. My core focus has always remained the same: pushing the boundaries of <strong>design quality, responsive behavior, and user interaction</strong>. I don't just write code; I engineer client-ready digital environments that feel deliberate, expensive, and technically sound.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 03 — WHAT I DO -->
+        <section class="section-padding capabilities-section">
+            <div class="container">
+                <div class="section-header reveal fade-up">
+                    <span class="eyebrow">// EXPERTISE</span>
+                    <h2 class="section-title">WHAT I DO</h2>
+                    <div class="section-line"></div>
+                </div>
+
+                <div class="capabilities-grid about-capabilities-grid">
+                    
+                    <div class="interactive-card reveal blur-in" data-delay="100">
+                        <div class="card-icon"><i class="fas fa-layer-group"></i></div>
+                        <h3 class="card-title">Frontend Development</h3>
+                        <p class="card-desc">Building structured, responsive, and interactive frontend experiences using modern web technologies and semantic architecture.</p>
+                        <div class="card-tech-tags"><span>React</span> <span>JavaScript</span> <span>TypeScript</span></div>
+                    </div>
+
+                    <div class="interactive-card reveal blur-in" data-delay="200">
+                        <div class="card-icon"><i class="fas fa-pen-nib"></i></div>
+                        <h3 class="card-title">Modern Web Design</h3>
+                        <p class="card-desc">Creating visually refined interfaces with strong typography, precise spacing, clear hierarchy, and absolute visual consistency.</p>
+                        <div class="card-tech-tags"><span>UI/UX</span> <span>Composition</span> <span>Figma</span></div>
+                    </div>
+
+                    <div class="interactive-card reveal blur-in" data-delay="300">
+                        <div class="card-icon"><i class="fas fa-compress-alt"></i></div>
+                        <h3 class="card-title">Responsive Development</h3>
+                        <p class="card-desc">Engineering liquid layouts that adapt beautifully across massive desktop monitors, tablets, and mobile devices.</p>
+                        <div class="card-tech-tags"><span>Tailwind CSS</span> <span>Media Queries</span></div>
+                    </div>
+
+                    <div class="interactive-card reveal blur-in" data-delay="100">
+                        <div class="card-icon"><i class="fas fa-magic"></i></div>
+                        <h3 class="card-title">Interactive Experiences</h3>
+                        <p class="card-desc">Adding meaningful animations, deliberate hover states, smooth transitions, and engaging micro-interactions.</p>
+                        <div class="card-tech-tags"><span>CSS Animation</span> <span>DOM Manipulation</span></div>
+                    </div>
+
+                    <div class="interactive-card reveal blur-in" data-delay="200">
+                        <div class="card-icon"><i class="fas fa-briefcase"></i></div>
+                        <h3 class="card-title">Business Websites</h3>
+                        <p class="card-desc">Creating highly professional websites designed to present businesses, services, and brands with maximum credibility.</p>
+                        <div class="card-tech-tags"><span>Landing Pages</span> <span>Corporate UI</span></div>
+                    </div>
+
+                    <div class="interactive-card reveal blur-in" data-delay="300">
+                        <div class="card-icon"><i class="fas fa-gem"></i></div>
+                        <h3 class="card-title">Luxury Digital Experiences</h3>
+                        <p class="card-desc">Combining premium visual design, deep cinematic atmospheres, and modern frontend engineering into one product.</p>
+                        <div class="card-tech-tags"><span>Glassmorphism</span> <span>Premium Layouts</span></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 04 — MY TECHNOLOGY STACK -->
+        <section class="section-padding">
+            <div class="container">
+                <div class="section-header reveal fade-up">
+                    <span class="eyebrow">// THE ARSENAL</span>
+                    <h2 class="section-title">TECHNOLOGY STACK</h2>
+                    <div class="section-line"></div>
+                </div>
+                
+                <div class="tech-stack-grid">
+                    <div class="tech-card hud-panel reveal scale-in" data-delay="100">
+                        <i class="fab fa-html5 tech-icon"></i>
+                        <h4 class="tech-name">HTML5</h4>
+                        <span class="tech-desc">Semantic Architecture</span>
+                    </div>
+                    <div class="tech-card hud-panel reveal scale-in" data-delay="200">
+                        <i class="fab fa-css3-alt tech-icon"></i>
+                        <h4 class="tech-name">CSS3</h4>
+                        <span class="tech-desc">Styling & Animation</span>
+                    </div>
+                    <div class="tech-card hud-panel reveal scale-in" data-delay="300">
+                        <i class="fab fa-js tech-icon"></i>
+                        <h4 class="tech-name">JavaScript</h4>
+                        <span class="tech-desc">Logic & Interaction</span>
+                    </div>
+                    <div class="tech-card hud-panel reveal scale-in" data-delay="400">
+                        <i class="fab fa-react tech-icon"></i>
+                        <h4 class="tech-name">React</h4>
+                        <span class="tech-desc">Component UI</span>
+                    </div>
+                    <div class="tech-card hud-panel reveal scale-in" data-delay="500">
+                        <div class="text-icon">TS</div>
+                        <h4 class="tech-name">TypeScript</h4>
+                        <span class="tech-desc">Type-Safe Logic</span>
+                    </div>
+                    <div class="tech-card hud-panel reveal scale-in" data-delay="600">
+                        <div class="text-icon">TW</div>
+                        <h4 class="tech-name">Tailwind CSS</h4>
+                        <span class="tech-desc">Utility Styling</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 05 — HOW I BUILD A WEBSITE -->
+        <section class="section-padding">
+            <div class="container">
+                <div class="section-header reveal fade-up">
+                    <span class="eyebrow">// PROCESS</span>
+                    <h2 class="section-title">HOW I BUILD</h2>
+                    <div class="section-line"></div>
+                </div>
+
+                <div class="process-timeline">
+                    <!-- Step 1 -->
+                    <div class="process-step reveal slide-right" data-delay="100">
+                        <div class="process-num">01</div>
+                        <div class="process-card hud-panel">
+                            <h3 class="step-title">DISCOVERY</h3>
+                            <p class="step-desc">Understand the project, goals, target audience, necessary content, required functionality, and visual direction.</p>
+                        </div>
+                    </div>
+                    <!-- Step 2 -->
+                    <div class="process-step reveal slide-left" data-delay="200">
+                        <div class="process-num">02</div>
+                        <div class="process-card hud-panel">
+                            <h3 class="step-title">STRUCTURE</h3>
+                            <p class="step-desc">Plan the page architecture, information hierarchy, layout sections, navigation logic, and responsive breakpoints.</p>
+                        </div>
+                    </div>
+                    <!-- Step 3 -->
+                    <div class="process-step reveal slide-right" data-delay="300">
+                        <div class="process-num">03</div>
+                        <div class="process-card hud-panel">
+                            <h3 class="step-title">DESIGN</h3>
+                            <p class="step-desc">Create the visual direction using deliberate typography, spacing, premium colors, visual hierarchy, and brand personality.</p>
+                        </div>
+                    </div>
+                    <!-- Step 4 -->
+                    <div class="process-step reveal slide-left" data-delay="400">
+                        <div class="process-num">04</div>
+                        <div class="process-card hud-panel">
+                            <h3 class="step-title">DEVELOPMENT</h3>
+                            <p class="step-desc">Build the frontend using clean HTML, CSS, JavaScript, and modern tools like React, TypeScript, and Tailwind CSS when appropriate.</p>
+                        </div>
+                    </div>
+                    <!-- Step 5 -->
+                    <div class="process-step reveal slide-right" data-delay="500">
+                        <div class="process-num">05</div>
+                        <div class="process-card hud-panel">
+                            <h3 class="step-title">POLISH & RESPONSIVENESS</h3>
+                            <p class="step-desc">Refine animations, check interactions, perfect responsiveness, balance spacing, and ensure flawless cross-device performance.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 06 — MY DESIGN PHILOSOPHY -->
+        <section class="section-padding">
+            <div class="container">
+                <div class="cinematic-quote-box reveal scale-in">
+                    <span class="eyebrow" style="margin-bottom: 2rem;">// DESIGN PHILOSOPHY</span>
+                    <h2 class="quote-text">
+                        DESIGN + FUNCTION + PERFORMANCE + RESPONSIVENESS + EXPERIENCE
+                    </h2>
+                    <p class="quote-subtext">
+                        Visual design should not exist solely for decoration. A truly premium website must communicate clearly, feel luxurious, navigate intuitively, work flawlessly across all devices, load efficiently, feature meaningful interactions, and represent the client's identity with absolute professionalism.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 07 — WHAT MAKES BROBEX DIFFERENT -->
+        <section class="section-padding">
+            <div class="container">
+                <div class="section-header reveal fade-up">
+                    <span class="eyebrow">// PRINCIPLES</span>
+                    <h2 class="section-title">THE BROBEX STANDARD</h2>
+                    <div class="section-line"></div>
+                </div>
+
+                <div class="standard-grid">
+                    <div class="standard-item hud-panel reveal slide-up" data-delay="100">
+                        <h4>VISUAL PRECISION</h4>
+                        <p>Careful attention to typography, spacing, alignment, and composition.</p>
+                    </div>
+                    <div class="standard-item hud-panel reveal slide-up" data-delay="200">
+                        <h4>RESPONSIVE BY DESIGN</h4>
+                        <p>The experience remains strictly polished across all screen sizes.</p>
+                    </div>
+                    <div class="standard-item hud-panel reveal slide-up" data-delay="300">
+                        <h4>INTERACTION WITH PURPOSE</h4>
+                        <p>Animations improve the experience rather than distract from the content.</p>
+                    </div>
+                    <div class="standard-item hud-panel reveal slide-up" data-delay="400">
+                        <h4>CLEAN FRONTEND</h4>
+                        <p>Structured, readable, and maintainable code with strict attention to quality.</p>
+                    </div>
+                    <div class="standard-item hud-panel reveal slide-up" data-delay="500">
+                        <h4>PREMIUM PRESENTATION</h4>
+                        <p>Every detail contributes to a professional and memorable digital environment.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 08 — EXPERIENCE / CURRENT DIRECTION -->
+        <section class="section-padding">
+            <div class="container">
+                <div class="section-header reveal fade-up">
+                    <span class="eyebrow">// EVOLUTION</span>
+                    <h2 class="section-title">CURRENT DIRECTION</h2>
+                    <div class="section-line"></div>
+                </div>
+                
+                <div class="hud-panel full-width reveal fade-up">
+                    <p class="card-text" style="font-size: 1.1rem; margin-bottom: 2.5rem; max-width: 900px;">
+                        Since beginning professional website development in October 2025, BROBEX has been aggressively focused on developing modern frontend skills and engineering increasingly polished digital experiences. 
+                    </p>
+                    
+                    <div class="progression-track">
+                        <div class="track-node">
+                            <span class="node-label">HTML / CSS</span>
+                            <div class="node-dot"></div>
+                        </div>
+                        <div class="track-line"></div>
+                        <div class="track-node">
+                            <span class="node-label">JavaScript</span>
+                            <div class="node-dot"></div>
+                        </div>
+                        <div class="track-line"></div>
+                        <div class="track-node">
+                            <span class="node-label">React</span>
+                            <div class="node-dot"></div>
+                        </div>
+                        <div class="track-line"></div>
+                        <div class="track-node">
+                            <span class="node-label">TypeScript</span>
+                            <div class="node-dot"></div>
+                        </div>
+                        <div class="track-line"></div>
+                        <div class="track-node">
+                            <span class="node-label">Tailwind CSS</span>
+                            <div class="node-dot active-dot"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 09 — PERSONAL DEVELOPER STATS -->
+        <section class="section-padding">
+            <div class="container">
+                <div class="hero-hud reveal fade-up">
+                    <div class="hud-stat">
+                        <span class="hud-num" data-target="2025">0</span>
+                        <span class="hud-label">STARTED DEVELOPMENT</span>
+                    </div>
+                    <div class="hud-stat">
+                        <span class="hud-num" data-target="6">0</span>
+                        <span class="hud-label">CORE TECHNOLOGIES</span>
+                    </div>
+                    <div class="hud-stat">
+                        <span class="hud-num" data-target="100" data-suffix="%">0</span>
+                        <span class="hud-label">RESPONSIVE MINDSET</span>
+                    </div>
+                    <div class="hud-stat">
+                        <span class="hud-num">24<span style="font-size:1.5rem; color:var(--accent-green);">/7</span></span>
+                        <span class="hud-label">CREATIVE DRIVE</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 10 — FINAL CTA -->
+        <section class="section-padding">
+            <div class="container reveal fade-up">
+                <div class="cta-box hud-panel glass-panel">
+                    <span class="eyebrow">// LET'S BUILD</span>
+                    <h2 class="cta-title">HAVE AN IDEA WORTH BUILDING?</h2>
+                    <p class="cta-desc">If you need a professional website, modern frontend interface, responsive business website, or a unique digital experience, let's turn the idea into something real.</p>
+                    <div class="cta-buttons">
+                        <a href="contact.html" class="btn-primary btn-lg">
+                            <span>START A PROJECT</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                        <a href="contact.html" class="btn-secondary btn-lg">
+                            <span>LET'S TALK</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
     </main>
 
+    <!-- FOOTER -->
+    <footer class="futuristic-footer">
+        <div class="footer-container">
+            <div class="footer-top">
+                <div class="brand-text-wrapper" style="margin-bottom: 1.5rem;">
+                    <span class="logo-text">BROBEX</span>
+                    <span class="brand-tagline">ENGINEERING DIGITAL DIMENSIONS</span>
+                </div>
+                
+                <div class="footer-nav">
+                    <div class="footer-col">
+                        <span class="col-title">NAVIGATION</span>
+                        <a href="index.html">Home</a>
+                        <a href="about.html">About</a>
+                        <a href="services.html">Services</a>
+                        <a href="experience.html">Experience</a>
+                        <a href="contact.html">Contact</a>
+                    </div>
+                    <div class="footer-col">
+                        <span class="col-title">SOCIALS</span>
+                        <a href="https://www.instagram.com/codewithbrobex/" target="_blank" rel="noopener noreferrer">Instagram</a>
+                        <a href="https://wa.me/923709995042" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="sys-status">
+                    <div class="status-dot"></div>
+                    <span>SYSTEM ONLINE // READY FOR NEW PROJECTS</span>
+                </div>
+                <div class="copyright">
+                    &copy; 2026 BROBEX. ALL RIGHTS RESERVED.
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- SCRIPTS -->
     <script src="js/main.js"></script>
     <script src="js/navigation.js"></script>
-    <script src="js/animations.js"></script>
+    <script src="js/about.js" defer></script>
 </body>
 </html>
