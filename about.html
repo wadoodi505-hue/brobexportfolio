@@ -10,15 +10,25 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="shortcut icon" href="images/brobex-logo.png" type="image/x-icon">
+    <link rel="icon" href="images/favicon.png" type="image/png">
+    <meta name="theme-color" content="#020804">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="About | BROBEX Portfolio">
+    <meta property="og:description" content="The development journey, frontend capabilities, and design philosophy behind BROBEX.">
+    <meta name="twitter:card" content="summary">
     <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <!-- Stylesheet -->
+
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/responsive.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/about.css">
+<link rel="stylesheet" href="css/aboutresponsive.css">
 </head>
 <body class="theme-dark page-transition">
+    <a class="skip-link" href="#main-content">Skip to content</a>
     <!-- SCROLL PROGRESS INDICATOR -->
     <div id="scroll-progress" class="scroll-progress-bar" aria-hidden="true"></div>
 
@@ -40,32 +50,33 @@
             <a href="about.html" class="nav-link active">ABOUT</a>
             <a href="services.html" class="nav-link">SERVICES</a>
             <a href="experience.html" class="nav-link">EXPERIENCE</a>
+            <a href="projects.html" class="nav-link">PROJECTS</a>
             <a href="contact.html" class="nav-link">CONTACT</a>
         </nav>
 
         <div class="top-nav-actions">
             <div class="right-logo-container desktop-only">
-                <img src="https://i.pinimg.com/736x/c3/35/17/c33517c9283f79ae8c50e32b471cea9e.jpg" alt="Brobex Logo" class="right-circular-logo">
+                <img src="images/brobex-logo.png" alt="BROBEX logo" class="right-circular-logo" width="50" height="50">
             </div>
             
             <a href="contact.html" class="btn-talk desktop-only">
                 <span>LET'S TALK</span>
                 <i class="fas fa-arrow-right"></i>
             </a>
-            <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Toggle Mobile Menu">
+            <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-nav-overlay">
                 <i class="fas fa-bars"></i>
             </button>
         </div>
     </header>
 
     <!-- MOBILE MENU OVERLAY -->
-    <div class="mobile-nav-overlay" id="mobile-nav-overlay">
+    <div class="mobile-nav-overlay" id="mobile-nav-overlay" role="dialog" aria-modal="true" aria-label="Mobile navigation">
         <div class="mobile-nav-header">
             <div class="brand-text-wrapper">
                 <span class="logo-text">BROBEX</span>
                 <span class="brand-trust">NAME OF TRUST</span>
             </div>
-            <img src="https://i.pinimg.com/736x/c3/35/17/c33517c9283f79ae8c50e32b471cea9e.jpg" alt="Brobex Logo" class="mobile-overlay-logo">
+            <img src="images/brobex-logo.png" alt="BROBEX logo" class="mobile-overlay-logo" width="45" height="45">
             <button class="mobile-close-btn" id="mobile-close-btn" aria-label="Close Mobile Menu"><i class="fas fa-times"></i></button>
         </div>
         <nav class="mobile-nav-links">
@@ -73,6 +84,7 @@
             <a href="about.html" class="mobile-link active">ABOUT</a>
             <a href="services.html" class="mobile-link">SERVICES</a>
             <a href="experience.html" class="mobile-link">EXPERIENCE</a>
+            <a href="projects.html" class="mobile-link">PROJECTS</a>
             <a href="contact.html" class="mobile-link">CONTACT</a>
         </nav>
         <div class="mobile-nav-footer">
@@ -82,12 +94,13 @@
 
     <!-- LEFT NAVIGATION RAIL -->
     <aside class="left-rail" aria-label="Rail Navigation">
-        <div class="rail-logo">B/X ARCHITECTURE</div>
+        <div class="rail-logo">BROBEX</div>
         <nav class="rail-links">
             <a href="index.html" class="rail-item" title="Home"><i class="fas fa-home"></i></a>
             <a href="about.html" class="rail-item active" title="About"><i class="fas fa-user-astronaut"></i></a>
             <a href="services.html" class="rail-item" title="Services"><i class="fas fa-microchip"></i></a>
             <a href="experience.html" class="rail-item" title="Experience"><i class="fas fa-project-diagram"></i></a>
+            <a href="projects.html" class="rail-item" title="Projects"><i class="fas fa-grid-2"></i></a>
             <a href="contact.html" class="rail-item" title="Contact"><i class="fas fa-envelope"></i></a>
         </nav>
         <div class="rail-bottom">
@@ -156,7 +169,7 @@
                     <div class="profile-showcase" id="profile-showcase">
                         <div class="profile-glow-ring"></div>
                         <div class="profile-image-wrap">
-                            <img src="https://i.pinimg.com/736x/c3/35/17/c33517c9283f79ae8c50e32b471cea9e.jpg" alt="BROBEX Profile" class="profile-image">
+                            <img src="images/brobex-logo.png" alt="BROBEX logo" class="profile-image" width="400" height="400" fetchpriority="high">
                         </div>
                     </div>
                 </div>
@@ -240,45 +253,44 @@
         </section>
 
         <!-- 04 — MY TECHNOLOGY STACK -->
-        <section class="section-padding">
+        <section class="section-padding" aria-labelledby="stack-title">
             <div class="container">
                 <div class="section-header reveal fade-up">
-                    <span class="eyebrow">// THE ARSENAL</span>
-                    <h2 class="section-title">TECHNOLOGY STACK</h2>
+                    <span class="eyebrow">// TOOLKIT</span>
+                    <h2 class="section-title" id="stack-title">MY TECHNOLOGY STACK</h2>
                     <div class="section-line"></div>
                 </div>
-                
                 <div class="tech-stack-grid">
-                    <div class="tech-card hud-panel reveal scale-in" data-delay="100">
-                        <i class="fab fa-html5 tech-icon"></i>
-                        <h4 class="tech-name">HTML5</h4>
-                        <span class="tech-desc">Semantic Architecture</span>
-                    </div>
-                    <div class="tech-card hud-panel reveal scale-in" data-delay="200">
-                        <i class="fab fa-css3-alt tech-icon"></i>
-                        <h4 class="tech-name">CSS3</h4>
-                        <span class="tech-desc">Styling & Animation</span>
-                    </div>
-                    <div class="tech-card hud-panel reveal scale-in" data-delay="300">
-                        <i class="fab fa-js tech-icon"></i>
-                        <h4 class="tech-name">JavaScript</h4>
-                        <span class="tech-desc">Logic & Interaction</span>
-                    </div>
-                    <div class="tech-card hud-panel reveal scale-in" data-delay="400">
-                        <i class="fab fa-react tech-icon"></i>
-                        <h4 class="tech-name">React</h4>
-                        <span class="tech-desc">Component UI</span>
-                    </div>
-                    <div class="tech-card hud-panel reveal scale-in" data-delay="500">
-                        <div class="text-icon">TS</div>
-                        <h4 class="tech-name">TypeScript</h4>
-                        <span class="tech-desc">Type-Safe Logic</span>
-                    </div>
-                    <div class="tech-card hud-panel reveal scale-in" data-delay="600">
-                        <div class="text-icon">TW</div>
-                        <h4 class="tech-name">Tailwind CSS</h4>
-                        <span class="tech-desc">Utility Styling</span>
-                    </div>
+    <div class="tech-card hud-panel reveal scale-in tech-html" data-delay="100">
+        <i class="fab fa-html5 tech-icon"></i>
+        <h4 class="tech-name">HTML5</h4>
+        <span class="tech-desc">Semantic Architecture</span>
+    </div>
+    <div class="tech-card hud-panel reveal scale-in tech-css" data-delay="200">
+        <i class="fab fa-css3-alt tech-icon"></i>
+        <h4 class="tech-name">CSS3</h4>
+        <span class="tech-desc">Styling & Animation</span>
+    </div>
+    <div class="tech-card hud-panel reveal scale-in tech-js" data-delay="300">
+        <i class="fab fa-js tech-icon"></i>
+        <h4 class="tech-name">JavaScript</h4>
+        <span class="tech-desc">Logic & Interaction</span>
+    </div>
+    <div class="tech-card hud-panel reveal scale-in tech-react" data-delay="400">
+        <i class="fab fa-react tech-icon"></i>
+        <h4 class="tech-name">React</h4>
+        <span class="tech-desc">Component UI</span>
+    </div>
+    <div class="tech-card hud-panel reveal scale-in tech-ts" data-delay="500">
+        <div class="text-icon">TS</div>
+        <h4 class="tech-name">TypeScript</h4>
+        <span class="tech-desc">Type-Safe Logic</span>
+    </div>
+    <div class="tech-card hud-panel reveal scale-in tech-tw" data-delay="600">
+        <div class="text-icon">TW</div>
+        <h4 class="tech-name">Tailwind CSS</h4>
+        <span class="tech-desc">Utility Styling</span>
+    </div>
                 </div>
             </div>
         </section>
@@ -492,6 +504,7 @@
                         <a href="about.html">About</a>
                         <a href="services.html">Services</a>
                         <a href="experience.html">Experience</a>
+                        <a href="projects.html">Projects</a>
                         <a href="contact.html">Contact</a>
                     </div>
                     <div class="footer-col">
@@ -515,8 +528,6 @@
     </footer>
 
     <!-- SCRIPTS -->
-    <script src="js/main.js"></script>
-    <script src="js/navigation.js"></script>
-    <script src="js/about.js" defer></script>
+    <script src="js/site.js" defer></script>
 </body>
 </html>

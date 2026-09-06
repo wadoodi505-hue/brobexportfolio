@@ -1,63 +1,212 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Services | BROBEX</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Orbitron:wght@400;700;900&family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/animations.css">
-    <link rel="stylesheet" href="css/responsive.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Services | BROBEX Frontend Development</title>
+  <meta name="description"
+    content="Explore BROBEX services: frontend development, UI/UX design, responsive web design, performance-focused builds, redesigns, and landing pages.">
+  <meta name="theme-color" content="#020804">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Services | BROBEX">
+  <meta property="og:description" content="Frontend development and digital design services by BROBEX.">
+  <meta name="twitter:card" content="summary">
+  <link rel="icon" href="images/favicon.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@500;600;700;800&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/pages.css">
 </head>
-<body class="theme-dark page-transition">
-    <main class="page-content section-padding">
-        <div class="container">
-            <h1 class="page-title animate-on-scroll slide-up">SYSTEM MODULES</h1>
-            
-            <div class="services-grid">
-                <div class="service-module hud-panel animate-on-scroll scale-in">
-                    <span class="svc-num">01</span>
-                    <h3>FRONTEND DEVELOPMENT</h3>
-                    <p>High-performance interfaces engineered with semantic HTML, modern CSS and JavaScript.</p>
-                    <i class="fas fa-code svc-icon"></i>
-                </div>
-                <div class="service-module hud-panel animate-on-scroll scale-in">
-                    <span class="svc-num">02</span>
-                    <h3>WEBSITE DESIGN</h3>
-                    <p>Visually striking, cinematic web designs tailored to elite technology brands.</p>
-                    <i class="fas fa-paint-brush svc-icon"></i>
-                </div>
-                <div class="service-module hud-panel animate-on-scroll scale-in">
-                    <span class="svc-num">03</span>
-                    <h3>RESPONSIVE DEVELOPMENT</h3>
-                    <p>Flawless scaling and operation across every device, tablet, and mobile interface.</p>
-                    <i class="fas fa-mobile-alt svc-icon"></i>
-                </div>
-                <div class="service-module hud-panel animate-on-scroll scale-in">
-                    <span class="svc-num">04</span>
-                    <h3>INTERACTIVE UI</h3>
-                    <p>Micro-interactions and scroll animations that make your brand feel alive.</p>
-                    <i class="fas fa-mouse-pointer svc-icon"></i>
-                </div>
-                <div class="service-module hud-panel animate-on-scroll scale-in">
-                    <span class="svc-num">05</span>
-                    <h3>LANDING PAGE DEV</h3>
-                    <p>High-converting, optimized single pages designed for maximum impact.</p>
-                    <i class="fas fa-rocket svc-icon"></i>
-                </div>
-                <div class="service-module hud-panel animate-on-scroll scale-in">
-                    <span class="svc-num">06</span>
-                    <h3>WEBSITE REDESIGN</h3>
-                    <p>Transforming outdated websites into futuristic digital powerhouses.</p>
-                    <i class="fas fa-sync-alt svc-icon"></i>
-                </div>
-            </div>
+
+<body class="theme-dark">
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  <div id="scroll-progress" class="scroll-progress-bar" aria-hidden="true"></div>
+  <div class="bg-luxury-wallpaper" aria-hidden="true"></div>
+  <div class="cinematic-grain" aria-hidden="true"></div>
+
+  <header class="top-nav">
+    <a href="index.html" class="brand" aria-label="BROBEX Homepage"><span class="brand-text-wrapper"><span
+          class="logo-text">BROBEX</span><span class="brand-trust">NAME OF TRUST</span></span></a>
+    <nav class="top-nav-links desktop-only" aria-label="Primary Navigation">
+      <a href="index.html" class="nav-link">HOME</a><a href="about.html" class="nav-link">ABOUT</a><a
+        href="services.html" class="nav-link active">SERVICES</a><a href="experience.html"
+        class="nav-link">EXPERIENCE</a><a href="projects.html" class="nav-link">PROJECTS</a><a href="contact.html" class="nav-link">CONTACT</a>
+    </nav>
+    <div class="top-nav-actions">
+      <div class="right-logo-container desktop-only"><img
+          src="images/brobex-logo.png" alt="BROBEX logo"
+          class="right-circular-logo" width="50" height="50"></div>
+      <a href="contact.html" class="btn-talk desktop-only"><span>LET'S TALK</span><i class="fas fa-arrow-right"
+          aria-hidden="true"></i></a>
+      <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Open navigation menu" aria-expanded="false"
+        aria-controls="mobile-nav-overlay"><i class="fas fa-bars" aria-hidden="true"></i></button>
+    </div>
+  </header>
+
+  <div class="mobile-nav-overlay" id="mobile-nav-overlay" role="dialog" aria-modal="true"
+    aria-label="Mobile navigation">
+    <div class="mobile-nav-header">
+      <div class="brand-text-wrapper"><span class="logo-text">BROBEX</span><span class="brand-trust">NAME OF
+          TRUST</span></div><img src="images/brobex-logo.png" alt="BROBEX logo"
+        class="mobile-overlay-logo" width="45" height="45"><button class="mobile-close-btn" id="mobile-close-btn"
+        aria-label="Close navigation menu"><i class="fas fa-times" aria-hidden="true"></i></button>
+    </div>
+      <nav class="mobile-nav-links" aria-label="Mobile navigation"><a href="index.html" class="mobile-link">HOME</a><a
+        href="about.html" class="mobile-link">ABOUT</a><a href="services.html" class="mobile-link active">SERVICES</a><a
+        href="experience.html" class="mobile-link">EXPERIENCE</a><a href="projects.html" class="mobile-link">PROJECTS</a><a href="contact.html" class="mobile-link">CONTACT</a>
+    </nav>
+    <div class="mobile-nav-footer"><a href="contact.html" class="btn-primary full-width">START A PROJECT <i
+          class="fas fa-arrow-right" aria-hidden="true"></i></a></div>
+  </div>
+
+  <aside class="left-rail" aria-label="Rail Navigation">
+    <div class="rail-logo">BROBEX</div>
+    <nav class="rail-links"><a href="index.html" class="rail-item" title="Home" aria-label="Home"><i class="fas fa-home"
+          aria-hidden="true"></i></a><a href="about.html" class="rail-item" title="About" aria-label="About"><i
+          class="fas fa-user-astronaut" aria-hidden="true"></i></a><a href="services.html" class="rail-item active"
+        title="Services" aria-label="Services"><i class="fas fa-microchip" aria-hidden="true"></i></a><a
+        href="experience.html" class="rail-item" title="Experience" aria-label="Experience"><i
+        class="fas fa-project-diagram" aria-hidden="true"></i></a><a href="projects.html" class="rail-item" title="Projects" aria-label="Projects"><i class="fas fa-grid-2" aria-hidden="true"></i></a><a href="contact.html" class="rail-item"
+        title="Contact" aria-label="Contact"><i class="fas fa-envelope" aria-hidden="true"></i></a></nav>
+    <div class="rail-bottom">
+      <div class="scroll-indicator"><span class="scroll-text">SCROLL DOWN</span>
+        <div class="scroll-line"></div>
+      </div>
+    </div>
+  </aside>
+  <aside class="right-contact-rail" aria-label="Direct Contact Links"><a href="https://wa.me/923709995042"
+      target="_blank" rel="noopener noreferrer" class="contact-icon" data-tooltip="WhatsApp Direct"
+      aria-label="WhatsApp"><i class="fab fa-whatsapp" aria-hidden="true"></i></a><a href="tel:03709995042"
+      class="contact-icon" data-tooltip="Call 03709995042" aria-label="Call"><i class="fas fa-phone-alt"
+        aria-hidden="true"></i></a><a href="mailto:brobex.ffx@gmail.com" class="contact-icon"
+      data-tooltip="Email Me Directly" aria-label="Email"><i class="fas fa-envelope" aria-hidden="true"></i></a><a
+      href="https://www.instagram.com/codewithbrobex/" target="_blank" rel="noopener noreferrer" class="contact-icon"
+      data-tooltip="Instagram Profile" aria-label="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+  </aside>
+  <a href="mailto:brobex.ffx@gmail.com" class="mobile-float-btn float-left" aria-label="Email BROBEX"><i
+      class="fas fa-envelope" aria-hidden="true"></i></a><a href="tel:03709995042" class="mobile-float-btn float-right"
+    aria-label="Call BROBEX"><i class="fas fa-phone-alt" aria-hidden="true"></i></a>
+  <button id="scrollToTopBtn" aria-label="Scroll to top"><i class="fas fa-arrow-up" aria-hidden="true"></i></button>
+
+  <main class="page-content" id="main-content">
+    <section class="page-hero">
+      <div class="split-hero">
+        <div class="hero-text-block reveal slide-right">
+          <span class="page-kicker">// CAPABILITIES & SERVICES</span>
+          <h1 class="huge-headline">DIGITAL<br><span class="highlight-text">SYSTEMS</span><br>BUILT TO LAST</h1>
+          <p class="hero-intro">Focused frontend development and interface design for responsive, useful, and visually
+            deliberate digital experiences.</p>
+          <div class="hero-cta-group"><a href="contact.html" class="btn-primary"><span>START A PROJECT</span><i
+                class="fas fa-arrow-right" aria-hidden="true"></i></a><a href="experience.html"
+              class="btn-secondary"><span>SEE MY APPROACH</span></a></div>
         </div>
-    </main>
-    
-    <script src="js/main.js"></script>
-    <script src="js/navigation.js"></script>
-    <script src="js/animations.js"></script>
+        <div class="page-hero-art reveal scale-in" aria-hidden="true"><span class="page-hero-mark">B</span></div>
+      </div>
+    </section>
+
+    <section class="section-padding" aria-labelledby="services-title">
+      <div class="container">
+        <div class="section-header reveal fade-up"><span class="eyebrow">// WHAT I BUILD</span>
+          <h2 class="section-title" id="services-title">SERVICES</h2>
+          <div class="section-line"></div>
+        </div>
+        <div class="service-grid">
+          <article class="interactive-card service-card reveal blur-in" data-delay="100">
+            <div class="card-icon"><i class="fas fa-code" aria-hidden="true"></i></div><span class="card-meta">01 /
+              Engineering</span>
+            <h3 class="card-title">Frontend Development</h3>
+            <p class="card-desc">Semantic, maintainable interfaces built with HTML, CSS, JavaScript, and the modern
+              tools that fit the product.</p>
+            <div class="card-tech-tags"><span>HTML5</span><span>CSS3</span><span>JavaScript</span></div>
+          </article>
+          <article class="interactive-card service-card reveal blur-in" data-delay="150">
+            <div class="card-icon"><i class="fas fa-bezier-curve" aria-hidden="true"></i></div><span
+              class="card-meta">02 / Experience</span>
+            <h3 class="card-title">UI/UX Design</h3>
+            <p class="card-desc">Clear visual hierarchy, deliberate typography, and intuitive interaction patterns that
+              make products easier to understand.</p>
+            <div class="card-tech-tags"><span>UI Systems</span><span>Wireframes</span><span>Figma</span></div>
+          </article>
+          <article class="interactive-card service-card reveal blur-in" data-delay="200">
+            <div class="card-icon"><i class="fas fa-mobile-alt" aria-hidden="true"></i></div><span class="card-meta">03
+              / Adaptation</span>
+            <h3 class="card-title">Responsive Web Design</h3>
+            <p class="card-desc">Fluid layouts that remain polished from small touchscreens to large, high-resolution
+              desktop displays.</p>
+            <div class="card-tech-tags"><span>Mobile First</span><span>Flexbox</span><span>Grid</span></div>
+          </article>
+          <article class="interactive-card service-card reveal blur-in" data-delay="250">
+            <div class="card-icon"><i class="fas fa-gauge-high" aria-hidden="true"></i></div><span class="card-meta">04
+              / Performance</span>
+            <h3 class="card-title">Website Performance</h3>
+            <p class="card-desc">Efficient assets, purposeful JavaScript, and smooth interactions that respect loading
+              time and the user's device.</p>
+            <div class="card-tech-tags"><span>Core Web Vitals</span><span>Efficient CSS</span></div>
+          </article>
+          <article class="interactive-card service-card reveal blur-in" data-delay="300">
+            <div class="card-icon"><i class="fas fa-wand-magic-sparkles" aria-hidden="true"></i></div><span
+              class="card-meta">05 / Refinement</span>
+            <h3 class="card-title">Website Redesign</h3>
+            <p class="card-desc">A focused visual and structural refresh for an existing website, keeping what works and
+              improving clarity, responsiveness, and polish.</p>
+            <div class="card-tech-tags"><span>UX Audit</span><span>Visual Refresh</span></div>
+          </article>
+          <article class="interactive-card service-card reveal blur-in" data-delay="350">
+            <div class="card-icon"><i class="fas fa-bullseye" aria-hidden="true"></i></div><span class="card-meta">06 /
+              Conversion</span>
+            <h3 class="card-title">Landing Pages</h3>
+            <p class="card-desc">Focused pages with a strong content hierarchy, clear calls to action, and a distinctive
+              visual direction.</p>
+            <div class="card-tech-tags"><span>Campaign UI</span><span>Clear CTA</span></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-padding">
+      <div class="container">
+        <div class="cta-box hud-panel reveal scale-in"><span class="eyebrow">// INITIATE CONTACT</span>
+          <h2 class="cta-title">A CLEAR IDEA DESERVES A STRONG INTERFACE.</h2>
+          <p class="cta-desc">Share the direction, the problem, or the rough idea. We can shape the right frontend path
+            from there.</p>
+          <div class="cta-buttons"><a href="contact.html" class="btn-primary btn-lg"><span>LET'S TALK</span><i
+                class="fas fa-paper-plane" aria-hidden="true"></i></a><a href="https://wa.me/923709995042"
+              target="_blank" rel="noopener noreferrer" class="btn-secondary btn-lg"><i class="fab fa-whatsapp"
+                aria-hidden="true"></i><span>WHATSAPP DIRECT</span></a></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="futuristic-footer">
+    <div class="footer-container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="brand-text-wrapper"><span class="logo-text">BROBEX</span><span class="brand-trust">NAME OF
+              TRUST</span></div>
+          <p class="brand-tagline">BUILDING DIGITAL EXPERIENCES FOR THE NEXT DIMENSION.</p>
+        </div>
+        <div class="footer-nav">
+          <div class="footer-col"><span class="col-title">NAVIGATION</span><a href="index.html">Home</a><a
+              href="about.html">About</a><a href="services.html">Services</a><a href="projects.html">Projects</a></div>
+          <div class="footer-col"><span class="col-title">EXPLORE</span><a href="experience.html">Experience</a><a
+              href="contact.html">Contact</a></div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="sys-status"><span class="status-dot"></span><span>SYSTEM STATUS: ALL MODULES ONLINE</span></div>
+        <div class="copyright">&copy; 2026 BROBEX. ALL RIGHTS RESERVED.</div>
+      </div>
+    </div>
+  </footer>
+  <script src="js/site.js" defer></script>
 </body>
+
 </html>

@@ -1,20 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta
-  name="description"
-  content="Brobex Portfolio — frontend developer and UI/UX designer creating modern, responsive and high-performance websites."
-/>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Brobex Portfolio | Frontend Developer & UI/UX Designer</title>
-    <meta name="description" content="BROBEX is a senior frontend developer and UI/UX designer crafting high-impact, futuristic, interactive digital experiences.">
+    <meta name="description" content="BROBEX is a frontend developer and UI/UX designer creating modern, responsive, and high-performance digital experiences.">
+    <meta name="theme-color" content="#020804">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Brobex Portfolio | Frontend Developer & UI/UX Designer">
+    <meta property="og:description" content="Modern, responsive, and high-performance digital experiences by BROBEX.">
+    <meta name="twitter:card" content="summary">
     
     <!-- Premium Luxury Fonts: Playfair Display & Montserrat -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="shortcut icon" href="images/brobex-logo.png" type="image/x-icon">
+    <link rel="icon" href="images/favicon.png" type="image/png">
     <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
@@ -22,6 +23,7 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body class="theme-dark">
+    <a class="skip-link" href="#main-content">Skip to content</a>
     <!-- SCROLL PROGRESS INDICATOR -->
     <div id="scroll-progress" class="scroll-progress-bar" aria-hidden="true"></div>
 
@@ -43,33 +45,34 @@
             <a href="about.html" class="nav-link">ABOUT</a>
             <a href="services.html" class="nav-link">SERVICES</a>
             <a href="experience.html" class="nav-link">EXPERIENCE</a>
+            <a href="projects.html" class="nav-link">PROJECTS</a>
             <a href="contact.html" class="nav-link">CONTACT</a>
         </nav>
 
         <div class="top-nav-actions">
             <div class="right-logo-container desktop-only">
-                <img src="https://i.pinimg.com/736x/c3/35/17/c33517c9283f79ae8c50e32b471cea9e.jpg" alt="Brobex Logo" class="right-circular-logo">
+                <img src="images/brobex-logo.png" alt="BROBEX logo" class="right-circular-logo" width="50" height="50">
             </div>
             
             <a href="contact.html" class="btn-talk desktop-only">
                 <span>LET'S TALK</span>
                 <i class="fas fa-arrow-right"></i>
             </a>
-            <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Toggle Mobile Menu">
+            <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-nav-overlay">
                 <i class="fas fa-bars"></i>
             </button>
         </div>
     </header>
 
     <!-- MOBILE MENU OVERLAY -->
-    <div class="mobile-nav-overlay" id="mobile-nav-overlay">
+    <div class="mobile-nav-overlay" id="mobile-nav-overlay" role="dialog" aria-modal="true" aria-label="Mobile navigation">
         <div class="mobile-nav-header">
             <div class="brand-text-wrapper">
                 <span class="logo-text">BROBEX</span>
                 <span class="brand-trust">NAME OF TRUST</span>
             </div>
             <!-- Added Brobex Logo to Mobile Nav Header -->
-            <img src="https://i.pinimg.com/736x/c3/35/17/c33517c9283f79ae8c50e32b471cea9e.jpg" alt="Brobex Logo" class="mobile-overlay-logo">
+            <img src="images/brobex-logo.png" alt="BROBEX logo" class="mobile-overlay-logo" width="45" height="45">
             <button class="mobile-close-btn" id="mobile-close-btn" aria-label="Close Mobile Menu"><i class="fas fa-times"></i></button>
         </div>
         <nav class="mobile-nav-links">
@@ -77,6 +80,7 @@
             <a href="about.html" class="mobile-link">ABOUT</a>
             <a href="services.html" class="mobile-link">SERVICES</a>
             <a href="experience.html" class="mobile-link">EXPERIENCE</a>
+            <a href="projects.html" class="mobile-link">PROJECTS</a>
             <a href="contact.html" class="mobile-link">CONTACT</a>
         </nav>
         <div class="mobile-nav-footer">
@@ -86,12 +90,13 @@
 
     <!-- LEFT NAVIGATION RAIL -->
     <aside class="left-rail" aria-label="Rail Navigation">
-        <div class="rail-logo">B/X ARCHITECTURE</div>
+        <div class="rail-logo">BROBEX</div>
         <nav class="rail-links">
             <a href="index.html" class="rail-item active" title="Home"><i class="fas fa-home"></i></a>
             <a href="about.html" class="rail-item" title="About"><i class="fas fa-user-astronaut"></i></a>
             <a href="services.html" class="rail-item" title="Services"><i class="fas fa-microchip"></i></a>
             <a href="experience.html" class="rail-item" title="Experience"><i class="fas fa-project-diagram"></i></a>
+            <a href="projects.html" class="rail-item" title="Projects"><i class="fas fa-grid-2"></i></a>
             <a href="contact.html" class="rail-item" title="Contact"><i class="fas fa-envelope"></i></a>
         </nav>
         <div class="rail-bottom">
@@ -167,7 +172,7 @@
                     <div class="profile-showcase" id="profile-showcase">
                         <div class="profile-glow-ring"></div>
                         <div class="profile-image-wrap">
-                            <img src="https://i.pinimg.com/736x/c3/35/17/c33517c9283f79ae8c50e32b471cea9e.jpg" alt="BROBEX Profile" class="profile-image">
+                             <img src="images/brobex-logo.png" alt="BROBEX logo" class="profile-image" width="400" height="400" fetchpriority="high">
                         </div>
                     </div>
                 </div>
@@ -389,6 +394,7 @@
                     <div class="footer-col">
                         <span class="col-title">EXPLORE</span>
                         <a href="experience.html">Experience</a>
+                        <a href="projects.html">Projects</a>
                         <a href="contact.html">Contact</a>
                     </div>
                 </div>
@@ -407,6 +413,6 @@
     </footer>
 
     <!-- Main JavaScript -->
-    <script src="js/main.js" defer></script>
+    <script src="js/site.js" defer></script>
 </body>
 </html>

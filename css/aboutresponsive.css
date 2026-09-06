@@ -1,0 +1,260 @@
+/* ==========================================================================
+   BROBEX ABOUT PAGE - 1000% RESPONSIVE ARCHITECTURE
+   Comprehensive Media Queries for all devices (Large Desktop to Small Mobile)
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   [1] LARGE DESKTOPS & LAPTOPS (Max-width: 1400px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 1400px) {
+    .split-hero {
+        gap: 2rem;
+    }
+    .hero-hud {
+        max-width: 100%;
+        padding: 2rem;
+    }
+    .hud-num {
+        font-size: 2.2rem;
+    }
+}
+
+/* --------------------------------------------------------------------------
+   [2] SMALL DESKTOPS & TABLETS LANDSCAPE (Max-width: 1200px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 1200px) {
+    .huge-headline {
+        font-size: clamp(2.5rem, 6vw, 4.5rem);
+    }
+    .capabilities-grid, 
+    .about-capabilities-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+    }
+    .profile-showcase {
+        width: 350px;
+        height: 350px;
+    }
+    .process-timeline::before {
+        left: 45px;
+    }
+}
+
+/* --------------------------------------------------------------------------
+   [3] TABLETS PORTRAIT & LARGE MOBILE (Max-width: 992px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 992px) {
+    /* Hero Section Stacking */
+    .split-hero {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 3.5rem;
+    }
+    .hero-text-block {
+        align-items: center;
+        text-align: center;
+    }
+    .hero-intro {
+        text-align: center;
+        margin: 1rem auto 2.5rem auto;
+    }
+    .hero-cta-group {
+        justify-content: center;
+    }
+    .hero-profile-block {
+        justify-content: center;
+        grid-row: 1; /* Moves image above text on mobile */
+    }
+    .profile-showcase {
+        width: 300px;
+        height: 300px;
+    }
+    
+    /* Process Timeline Adjustments */
+    .process-step {
+        gap: 2rem;
+    }
+    .process-num {
+        width: 60px;
+        height: 60px;
+        font-size: 2rem;
+    }
+    .process-timeline::before {
+        left: 29px; /* Re-center line under smaller circle */
+    }
+    
+    /* Typography & Spacing */
+    .section-padding {
+        padding-top: 5rem;
+        padding-bottom: 5rem;
+    }
+}
+
+/* --------------------------------------------------------------------------
+   [4] MOBILE DEVICES (Max-width: 768px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 768px) {
+    /* Hero HUD Stats */
+    .hero-hud {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+        margin-top: 3rem;
+        padding: 1.5rem;
+    }
+    .hud-stat {
+        border-right: none;
+        border-bottom: 1px solid rgba(212, 175, 55, 0.15);
+        padding-right: 0;
+        padding-bottom: 1rem;
+        align-items: center;
+        text-align: center;
+    }
+    .hud-stat:nth-last-child(-n+2) {
+        border-bottom: none;
+        padding-bottom: 0;
+    }
+
+    /* Grids to Single/Double Column */
+    .capabilities-grid, 
+    .about-capabilities-grid,
+    .standard-grid {
+        grid-template-columns: 1fr;
+    }
+    .tech-stack-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+
+    /* Process Timeline - Remove Vertical Line for Mobile */
+    .process-timeline {
+        padding-left: 0;
+    }
+    .process-timeline::before {
+        display: none;
+    }
+    .process-step {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 1rem;
+    }
+    .process-num {
+        margin: 0 auto;
+    }
+
+    /* Progression Track - Convert to Vertical */
+    .progression-track {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 2rem;
+        padding-left: 20px;
+    }
+    .track-node {
+        flex-direction: row-reverse;
+        justify-content: flex-end;
+        width: 100%;
+        gap: 20px;
+    }
+    .track-line {
+        width: 2px;
+        height: 100%;
+        min-height: 40px;
+        margin: -15px 0 -15px 8px; /* Position vertically between dots */
+        top: 0;
+        left: 0;
+        position: absolute;
+    }
+    .track-line::after {
+        background: linear-gradient(180deg, transparent, var(--accent-green));
+        top: -100%; 
+        left: 0;
+        width: 100%;
+        transition: top 1.5s ease-in-out;
+    }
+    .progression-track.animate-track .track-line::after {
+        top: 0; 
+        left: 0;
+    }
+}
+
+/* --------------------------------------------------------------------------
+   [5] SMALL MOBILE (Max-width: 480px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 480px) {
+    /* Hero Section Fixes */
+    .huge-headline {
+        font-size: clamp(2rem, 10vw, 2.8rem);
+    }
+    .profile-showcase {
+        width: 240px;
+        height: 240px;
+    }
+    
+    /* Single Column Overrides */
+    .tech-stack-grid {
+        grid-template-columns: 1fr;
+    }
+    .hero-hud {
+        grid-template-columns: 1fr;
+    }
+    .hud-stat:nth-last-child(2) {
+        border-bottom: 1px solid rgba(212, 175, 55, 0.15);
+        padding-bottom: 1rem;
+    }
+
+    /* Reduce Paddings & Sizes to Save Space */
+    .hud-panel,
+    .interactive-card,
+    .process-card,
+    .standard-item {
+        padding: 1.5rem;
+    }
+    .section-title {
+        font-size: 1.8rem;
+    }
+    .cinematic-quote-box {
+        padding: 3rem 1rem;
+    }
+    .quote-text {
+        font-size: 1.3rem;
+    }
+    .tech-icon {
+        font-size: 2.8rem;
+    }
+    .text-icon {
+        font-size: 2rem;
+    }
+    
+    /* CTA Box */
+    .cta-box {
+        padding: 3rem 1.5rem;
+    }
+    .cta-buttons {
+        flex-direction: column;
+        width: 100%;
+    }
+    .cta-buttons a {
+        width: 100%;
+    }
+}
+
+/* --------------------------------------------------------------------------
+   [6] ULTRA-TALL OR VERY SHORT SCREENS (Height Queries)
+   -------------------------------------------------------------------------- */
+@media (max-height: 700px) and (min-width: 992px) {
+    .hero-section {
+        min-height: auto;
+        padding-top: 10rem;
+        padding-bottom: 5rem;
+    }
+}
+
+/* Ensure tilt cards drop their hover 3D effect on touch devices to prevent sticky hover bugs */
+@media (hover: none) {
+    .tech-card, .interactive-card, .hud-panel {
+        transform: none !important;
+    }
+    .tech-card:hover {
+        border-color: rgba(212, 175, 55, 0.25);
+    }
+}

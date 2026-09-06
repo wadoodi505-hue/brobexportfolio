@@ -309,4 +309,29 @@
     .process-card { padding: 1.5rem; }
     .standard-item { padding: 1.5rem; }
     .cinematic-quote-box { padding: 3rem 1rem; }
+}/* --- TECHNOLOGY STACK BRAND COLORS (Hover/Focus only) --- */
+@media (hover: hover) and (pointer: fine) {
+    /* HTML5 Orange */
+    .tech-html:hover { border-color: rgba(227, 79, 38, 0.4); }
+    .tech-html:hover .tech-icon { color: #E34F26; filter: drop-shadow(0 0 12px rgba(227, 79, 38, 0.4)); }
+
+    /* CSS3 Blue */
+    .tech-css:hover { border-color: rgba(38, 77, 228, 0.4); }
+    .tech-css:hover .tech-icon { color: #264DE4; filter: drop-shadow(0 0 12px rgba(38, 77, 228, 0.4)); }
+
+    /* JavaScript Yellow */
+    .tech-js:hover { border-color: rgba(247, 223, 30, 0.4); }
+    .tech-js:hover .tech-icon { color: #F7DF1E; filter: drop-shadow(0 0 12px rgba(247, 223, 30, 0.4)); }
+
+    /* React Cyan */
+    .tech-react:hover { border-color: rgba(97, 218, 251, 0.4); }
+    .tech-react:hover .tech-icon { color: #61DAFB; filter: drop-shadow(0 0 12px rgba(97, 218, 251, 0.4)); }
+
+    /* TypeScript Blue */
+    .tech-ts:hover { border-color: rgba(49, 120, 198, 0.4); }
+    .tech-ts:hover .text-icon { color: #3178C6; text-shadow: 0 0 12px rgba(49, 120, 198, 0.4); }
+
+    /* Tailwind Cyan */
+    .tech-tw:hover { border-color: rgba(6, 182, 212, 0.4); }
+    .tech-tw:hover .text-icon { color: #06B6D4; text-shadow: 0 0 12px rgba(6, 182, 212, 0.4); }
 }

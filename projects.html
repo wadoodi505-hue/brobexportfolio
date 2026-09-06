@@ -1,77 +1,137 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projects | BROBEX</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Orbitron:wght@400;700;900&family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/animations.css">
-    <link rel="stylesheet" href="css/responsive.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Projects | BROBEX Frontend Portfolio</title>
+  <meta name="description" content="Selected frontend websites and responsive digital experiences designed and built by BROBEX.">
+  <meta name="theme-color" content="#020804">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Projects | BROBEX">
+  <meta property="og:description" content="Selected frontend websites and responsive digital experiences by BROBEX.">
+  <meta name="twitter:card" content="summary">
+  <link rel="icon" href="images/favicon.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/pages.css">
+  <link rel="stylesheet" href="project.css">
 </head>
-<body class="theme-dark page-transition">
-    <div class="scanlines"></div>
-    
-    <main class="page-content section-padding">
-        <div class="container">
-            <h1 class="page-title animate-on-scroll slide-up">PROJECT LOGS</h1>
-            
-            <div class="projects-showcase">
-                <div class="project-card hud-panel animate-on-scroll slide-up">
-                    <div class="project-img-wrapper">
-                        <div class="img-placeholder" style="background-image: url('https://images.unsplash.com/photo-1497935586351-b67a49e012bf?auto=format&fit=crop&q=80&w=1000');"></div>
-                        <div class="project-overlay">
-                            <a href="https://coffee-demo-u1xg.vercel.app/" target="_blank" class="btn-primary">VIEW LIVE PROJECT &rarr;</a>
-                        </div>
-                    </div>
-                    <div class="project-meta">
-                        <span class="proj-num">PROJECT 01</span>
-                        <span class="proj-cat">E-COMMERCE / BRANDING</span>
-                    </div>
-                    <h2>COFFEE WEBSITE</h2>
-                    <p>A premium, immersive experience for a modern coffee brand.</p>
-                    <div class="tech-stack">HTML5 / CSS3 / Vanilla JS</div>
-                </div>
+<body class="theme-dark">
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  <div id="scroll-progress" class="scroll-progress-bar" aria-hidden="true"></div>
+  <div class="bg-luxury-wallpaper" aria-hidden="true"></div>
+  <div class="cinematic-grain" aria-hidden="true"></div>
 
-                <div class="project-card hud-panel animate-on-scroll slide-up">
-                    <div class="project-img-wrapper">
-                        <div class="img-placeholder" style="background-image: url('https://images.unsplash.com/photo-1585704032915-c3400ca199e7?auto=format&fit=crop&q=80&w=1000');"></div>
-                        <div class="project-overlay">
-                            <a href="https://brobex-premium-plumbing.vercel.app/" target="_blank" class="btn-primary">VIEW LIVE PROJECT &rarr;</a>
-                        </div>
-                    </div>
-                    <div class="project-meta">
-                        <span class="proj-num">PROJECT 02</span>
-                        <span class="proj-cat">CORPORATE / SERVICES</span>
-                    </div>
-                    <h2>PREMIUM PLUMBING</h2>
-                    <p>Elevating a traditional service industry with cutting-edge web presence.</p>
-                    <div class="tech-stack">Responsive Design / UI/UX</div>
-                </div>
+  <header class="top-nav">
+    <a href="index.html" class="brand" aria-label="BROBEX Homepage">
+      <span class="brand-text-wrapper"><span class="logo-text">BROBEX</span><span class="brand-trust">NAME OF TRUST</span></span>
+    </a>
+    <nav class="top-nav-links desktop-only" aria-label="Primary Navigation">
+      <a href="index.html" class="nav-link">HOME</a>
+      <a href="about.html" class="nav-link">ABOUT</a>
+      <a href="services.html" class="nav-link">SERVICES</a>
+      <a href="experience.html" class="nav-link">EXPERIENCE</a>
+      <a href="projects.html" class="nav-link active">PROJECTS</a>
+      <a href="contact.html" class="nav-link">CONTACT</a>
+    </nav>
+    <div class="top-nav-actions">
+      <div class="right-logo-container desktop-only"><img src="images/brobex-logo.png" alt="BROBEX logo" class="right-circular-logo" width="50" height="50"></div>
+      <a href="contact.html" class="btn-talk desktop-only"><span>LET'S TALK</span><i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+      <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-nav-overlay"><i class="fas fa-bars" aria-hidden="true"></i></button>
+    </div>
+  </header>
 
-                <div class="project-card hud-panel animate-on-scroll slide-up">
-                    <div class="project-img-wrapper">
-                        <div class="img-placeholder" style="background-image: url('https://images.unsplash.com/photo-1552820728-8b83bb6b773f?auto=format&fit=crop&q=80&w=1000');"></div>
-                        <div class="project-overlay">
-                            <a href="https://brpobex-website-only-front-end.vercel.app/" target="_blank" class="btn-primary">VIEW LIVE PROJECT &rarr;</a>
-                        </div>
-                    </div>
-                    <div class="project-meta">
-                        <span class="proj-num">PROJECT 03</span>
-                        <span class="proj-cat">GAMING / ENTERTAINMENT</span>
-                    </div>
-                    <h2>GAMES STORE</h2>
-                    <p>A futuristic digital storefront for the next generation of gamers.</p>
-                    <div class="tech-stack">Frontend / Interactions</div>
-                </div>
-            </div>
+  <div class="mobile-nav-overlay" id="mobile-nav-overlay" role="dialog" aria-modal="true" aria-label="Mobile navigation">
+    <div class="mobile-nav-header">
+      <div class="brand-text-wrapper"><span class="logo-text">BROBEX</span><span class="brand-trust">NAME OF TRUST</span></div>
+      <img src="images/brobex-logo.png" alt="BROBEX logo" class="mobile-overlay-logo" width="45" height="45">
+      <button class="mobile-close-btn" id="mobile-close-btn" aria-label="Close navigation menu"><i class="fas fa-times" aria-hidden="true"></i></button>
+    </div>
+    <nav class="mobile-nav-links" aria-label="Mobile navigation">
+      <a href="index.html" class="mobile-link">HOME</a>
+      <a href="about.html" class="mobile-link">ABOUT</a>
+      <a href="services.html" class="mobile-link">SERVICES</a>
+      <a href="experience.html" class="mobile-link">EXPERIENCE</a>
+      <a href="projects.html" class="mobile-link active">PROJECTS</a>
+      <a href="contact.html" class="mobile-link">CONTACT</a>
+    </nav>
+    <div class="mobile-nav-footer"><a href="contact.html" class="btn-primary full-width">START A PROJECT <i class="fas fa-arrow-right" aria-hidden="true"></i></a></div>
+  </div>
+
+  <aside class="left-rail" aria-label="Rail Navigation">
+    <div class="rail-logo">BROBEX</div>
+    <nav class="rail-links">
+      <a href="index.html" class="rail-item" title="Home" aria-label="Home"><i class="fas fa-home" aria-hidden="true"></i></a>
+      <a href="about.html" class="rail-item" title="About" aria-label="About"><i class="fas fa-user-astronaut" aria-hidden="true"></i></a>
+      <a href="services.html" class="rail-item" title="Services" aria-label="Services"><i class="fas fa-microchip" aria-hidden="true"></i></a>
+      <a href="experience.html" class="rail-item" title="Experience" aria-label="Experience"><i class="fas fa-project-diagram" aria-hidden="true"></i></a>
+      <a href="projects.html" class="rail-item active" title="Projects" aria-label="Projects"><i class="fas fa-grid-2" aria-hidden="true"></i></a>
+      <a href="contact.html" class="rail-item" title="Contact" aria-label="Contact"><i class="fas fa-envelope" aria-hidden="true"></i></a>
+    </nav>
+    <div class="rail-bottom"><div class="scroll-indicator"><span class="scroll-text">SCROLL DOWN</span><div class="scroll-line"></div></div></div>
+  </aside>
+
+  <aside class="right-contact-rail" aria-label="Direct Contact Links">
+    <a href="https://wa.me/923709995042" target="_blank" rel="noopener noreferrer" class="contact-icon" data-tooltip="WhatsApp Direct" aria-label="WhatsApp"><i class="fab fa-whatsapp" aria-hidden="true"></i></a>
+    <a href="tel:03709995042" class="contact-icon" data-tooltip="Call 03709995042" aria-label="Call"><i class="fas fa-phone-alt" aria-hidden="true"></i></a>
+    <a href="mailto:brobex.ffx@gmail.com" class="contact-icon" data-tooltip="Email Me Directly" aria-label="Email"><i class="fas fa-envelope" aria-hidden="true"></i></a>
+    <a href="https://www.instagram.com/codewithbrobex/" target="_blank" rel="noopener noreferrer" class="contact-icon" data-tooltip="Instagram Profile" aria-label="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+  </aside>
+  <a href="mailto:brobex.ffx@gmail.com" class="mobile-float-btn float-left" aria-label="Email BROBEX"><i class="fas fa-envelope" aria-hidden="true"></i></a>
+  <a href="tel:03709995042" class="mobile-float-btn float-right" aria-label="Call BROBEX"><i class="fas fa-phone-alt" aria-hidden="true"></i></a>
+  <button id="scrollToTopBtn" aria-label="Scroll to top"><i class="fas fa-arrow-up" aria-hidden="true"></i></button>
+
+  <main class="page-content" id="main-content">
+    <section class="page-hero projects-hero">
+      <div class="split-hero">
+        <div class="hero-text-block reveal slide-right">
+          <span class="page-kicker">// SELECTED WORK</span>
+          <h1 class="huge-headline">BUILT FOR<br><span class="highlight-text">REAL</span><br>ATTENTION</h1>
+          <p class="hero-intro">A focused selection of frontend projects shaped around strong visual direction, responsive structure, and clear user journeys.</p>
+          <div class="hero-cta-group"><a href="#project-grid" class="btn-primary"><span>VIEW PROJECTS</span><i class="fas fa-arrow-down" aria-hidden="true"></i></a><a href="contact.html" class="btn-secondary"><span>START A BRIEF</span></a></div>
         </div>
-    </main>
+        <div class="page-hero-art reveal scale-in" aria-hidden="true"><span class="page-hero-mark">03</span></div>
+      </div>
+    </section>
 
-    <script src="js/main.js"></script>
-    <script src="js/navigation.js"></script>
-    <script src="js/animations.js"></script>
-    <script src="js/projects.js"></script>
+    <section class="section-padding projects-section" id="project-grid" aria-labelledby="projects-title">
+      <div class="container">
+        <div class="section-header reveal fade-up">
+          <span class="eyebrow">// PROJECT ARCHIVE</span>
+          <h2 class="section-title" id="projects-title">SELECTED PROJECTS</h2>
+          <div class="section-line"></div>
+        </div>
+        <div class="project-grid">
+          <article class="project-card reveal fade-up" data-delay="100">
+            <div class="project-media"><img src="images/bx game website.jpg" alt="Preview of the BX Game Website" loading="lazy"><span class="project-number">01 / 03</span></div>
+            <div class="project-card-body"><span class="card-meta">Frontend Website</span><h3 class="project-title">BX GAME WEBSITE</h3><p class="project-description">A visually engaging gaming frontend focused on immersive presentation, responsive layouts, and an interactive user experience.</p><div class="project-tags"><span>HTML</span><span>CSS</span><span>JavaScript</span></div><a class="btn-secondary project-link" href="https://brpobex-website-only-front-end.vercel.app/" target="_blank" rel="noopener noreferrer">VIEW PROJECT <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i></a></div>
+          </article>
+          <article class="project-card reveal fade-up" data-delay="200">
+            <div class="project-media"><img src="images/coffe webiste.jpg" alt="Preview of the Coffee Website" loading="lazy"><span class="project-number">02 / 03</span></div>
+            <div class="project-card-body"><span class="card-meta">Frontend Website</span><h3 class="project-title">COFFEE WEBSITE</h3><p class="project-description">A product-focused coffee experience combining warm visual presentation, responsive layout, modern UI, and smooth interactions.</p><div class="project-tags"><span>HTML</span><span>CSS</span><span>JavaScript</span></div><a class="btn-secondary project-link" href="https://coffee-demo-u1xg.vercel.app/" target="_blank" rel="noopener noreferrer">VIEW PROJECT <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i></a></div>
+          </article>
+          <article class="project-card reveal fade-up" data-delay="300">
+            <div class="project-media"><img src="images/plumbing website.jpg" alt="Preview of the Premium Plumbing Website" loading="lazy"><span class="project-number">03 / 03</span></div>
+            <div class="project-card-body"><span class="card-meta">Business Website</span><h3 class="project-title">PREMIUM PLUMBING WEBSITE</h3><p class="project-description">A premium service website built around credible business presentation, strong calls to action, and responsive frontend implementation.</p><div class="project-tags"><span>HTML</span><span>CSS</span><span>JavaScript</span></div><a class="btn-secondary project-link" href="https://brobex-premium-plumbing.vercel.app/" target="_blank" rel="noopener noreferrer">VIEW PROJECT <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i></a></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-padding">
+      <div class="container"><div class="cta-box hud-panel reveal scale-in"><span class="eyebrow">// NEXT BUILD</span><h2 class="cta-title">YOUR PROJECT COULD BE NEXT.</h2><p class="cta-desc">Bring the rough idea, the existing interface, or the problem you want to solve. We can shape a clear frontend direction from there.</p><div class="cta-buttons"><a href="contact.html" class="btn-primary btn-lg"><span>START A CONVERSATION</span><i class="fas fa-paper-plane" aria-hidden="true"></i></a></div></div></div>
+    </section>
+  </main>
+
+  <footer class="futuristic-footer">
+    <div class="footer-container"><div class="footer-top"><div class="footer-brand"><div class="brand-text-wrapper"><span class="logo-text">BROBEX</span><span class="brand-trust">NAME OF TRUST</span></div><p class="brand-tagline">BUILDING DIGITAL EXPERIENCES FOR THE NEXT DIMENSION.</p></div><div class="footer-nav"><div class="footer-col"><span class="col-title">NAVIGATION</span><a href="index.html">Home</a><a href="about.html">About</a><a href="services.html">Services</a></div><div class="footer-col"><span class="col-title">EXPLORE</span><a href="experience.html">Experience</a><a href="projects.html">Projects</a><a href="contact.html">Contact</a></div></div></div><div class="footer-bottom"><div class="sys-status"><span class="status-dot"></span><span>SYSTEM STATUS: ALL MODULES ONLINE</span></div><div class="copyright">&copy; 2026 BROBEX. ALL RIGHTS RESERVED.</div></div></div>
+  </footer>
+  <script src="js/site.js" defer></script>
+  <script src="project.js" defer></script>
 </body>
 </html>
