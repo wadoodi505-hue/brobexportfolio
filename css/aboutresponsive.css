@@ -258,3 +258,59 @@
         border-color: rgba(212, 175, 55, 0.25);
     }
 }
+
+/* Final responsive corrections: keep the about hero and progression track
+   in normal flow instead of relying on viewport-sized or absolute layers. */
+@media (max-width: 992px) {
+    .page-content > .hero-section:first-child {
+        min-height: auto;
+        padding-top: 7rem;
+    }
+
+    .page-content > .hero-section:first-child .hero-profile-block {
+        grid-row: auto;
+    }
+}
+
+@media (max-width: 768px) {
+    .progression-track {
+        align-items: flex-start;
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        padding-left: 0;
+    }
+
+    .progression-track .track-node {
+        align-items: center;
+        display: flex;
+        flex-direction: row;
+        gap: 1rem;
+        justify-content: flex-start;
+        width: 100%;
+    }
+
+    .progression-track .track-line {
+        flex: 0 0 2rem;
+        height: 2rem;
+        left: auto;
+        margin: 0 0 0 .5rem;
+        min-height: 0;
+        position: relative;
+        top: auto;
+        width: 2px;
+    }
+
+    .progression-track .track-line::after {
+        height: 100%;
+        left: 0;
+        top: -100%;
+        transition: top 1s ease-in-out;
+        width: 100%;
+    }
+
+    .progression-track.animate-track .track-line::after {
+        left: 0;
+        top: 0;
+    }
+}
