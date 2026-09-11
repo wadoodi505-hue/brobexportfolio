@@ -1,0 +1,227 @@
+/* BROBEX refinement layer
+   Deliberately additive: it keeps the original pages, visual language, and URLs,
+   while consolidating the small interaction and responsive improvements. */
+
+:root {
+    --content-gutter: clamp(1rem, 3vw, 3.25rem);
+    --focus-ring: 0 0 0 4px rgba(126, 211, 33, .2);
+}
+
+body {
+    isolation: isolate;
+}
+
+img {
+    max-width: 100%;
+}
+
+button,
+a,
+input,
+textarea {
+    -webkit-tap-highlight-color: transparent;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+    box-shadow: var(--focus-ring);
+}
+
+.top-nav {
+    padding-inline: var(--content-gutter);
+}
+
+.top-nav.scrolled {
+    box-shadow: 0 14px 35px rgba(0, 0, 0, .24);
+}
+
+.nav-link,
+.rail-item,
+.contact-icon,
+.mobile-menu-btn,
+.mobile-close-btn,
+.btn-primary,
+.btn-secondary,
+.btn-talk {
+    min-height: 44px;
+}
+
+.nav-link,
+.btn-primary,
+.btn-secondary,
+.btn-talk {
+    white-space: nowrap;
+}
+
+.page-content,
+.futuristic-footer {
+    padding-right: var(--content-gutter);
+}
+
+.container,
+.footer-container {
+    padding-inline: var(--content-gutter);
+}
+
+.hero-section,
+.page-hero {
+    padding-inline: var(--content-gutter);
+}
+
+.profile-showcase,
+.page-hero-art,
+.project-card,
+.interactive-card,
+.hud-panel,
+.pipeline-step {
+    transform: translateZ(0);
+}
+
+.project-card {
+    position: relative;
+}
+
+.project-card::before {
+    border-radius: inherit;
+}
+
+.project-card,
+.interactive-card,
+.hud-panel,
+.contact-method,
+.btn-primary,
+.btn-secondary,
+.btn-talk {
+    transition-property: transform, border-color, background-color, box-shadow, color;
+}
+
+.project-card:hover,
+.interactive-card:hover,
+.hud-panel:hover {
+    will-change: transform;
+}
+
+.project-media img {
+    aspect-ratio: 2 / 1;
+}
+
+.form-status:empty {
+    display: none;
+}
+
+.form-status:not(:empty) {
+    display: block;
+    border-left: 2px solid var(--accent-green);
+    padding: .65rem .8rem;
+    background: rgba(126, 211, 33, .06);
+}
+
+.mobile-nav-overlay {
+    overscroll-behavior: contain;
+}
+
+@supports not ((backdrop-filter: blur(1px))) {
+    .top-nav,
+    .mobile-nav-overlay,
+    .hud-panel,
+    .interactive-card,
+    .project-card,
+    .contact-icon {
+        background-color: rgba(5, 18, 8, .98);
+    }
+}
+
+@media (min-width: 993px) and (max-width: 1180px) {
+    .top-nav-links {
+        gap: clamp(.65rem, 1.5vw, 1.25rem);
+    }
+
+    .nav-link {
+        font-size: .7rem;
+    }
+
+    .right-logo-container {
+        margin-right: 0;
+    }
+}
+
+@media (max-width: 992px) {
+    .page-content,
+    .futuristic-footer {
+        padding-right: var(--content-gutter);
+    }
+
+    .hero-section,
+    .page-hero {
+        padding-inline: var(--content-gutter);
+    }
+}
+
+@media (max-width: 600px) {
+    .top-nav {
+        min-height: 72px;
+        height: 72px;
+    }
+
+    .page-content {
+        padding-top: 72px;
+    }
+
+    .page-hero {
+        padding-top: 6.5rem;
+    }
+
+    .hero-section {
+        min-height: auto;
+        padding-top: 6.5rem;
+    }
+
+    .hero-intro {
+        max-width: 38rem;
+    }
+
+    .mobile-nav-links {
+        gap: 1rem;
+    }
+
+    .mobile-link {
+        min-height: 44px;
+        display: inline-flex;
+        align-items: center;
+    }
+
+    .right-contact-rail,
+    .left-rail {
+        display: none;
+    }
+
+    .mobile-float-btn {
+        bottom: calc(env(safe-area-inset-bottom, 0px) + 1rem);
+    }
+
+    #scrollToTopBtn {
+        bottom: calc(env(safe-area-inset-bottom, 0px) + 4.8rem);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .bg-luxury-wallpaper,
+    .cinematic-grain {
+        animation: none !important;
+    }
+
+    .profile-showcase,
+    .profile-glow-ring,
+    .scroll-line {
+        animation: none !important;
+    }
+
+    .project-card:hover,
+    .interactive-card:hover,
+    .hud-panel:hover,
+    .contact-method:hover {
+        transform: none;
+    }
+}

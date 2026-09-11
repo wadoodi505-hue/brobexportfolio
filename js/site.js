@@ -11,6 +11,7 @@
     const progressBar = document.getElementById('scroll-progress');
     const topNav = document.querySelector('.top-nav');
     const focusableSelector = 'a[href], button:not([disabled]), input, textarea, select, [tabindex]:not([tabindex="-1"])';
+    const canHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
     let lastFocusedElement = null;
     let menuOpen = false;
     let scrollTicking = false;
@@ -70,7 +71,11 @@
         first.focus();
       }
     });
-    mobileQuery.addEventListener?.('change', closeMenuOnDesktop);
+    if (mobileQuery.addEventListener) {
+      mobileQuery.addEventListener('change', closeMenuOnDesktop);
+    } else {
+      mobileQuery.addListener?.(closeMenuOnDesktop);
+    }
 
     const updateScrollUI = () => {
       const scrollTop = window.scrollY;
@@ -158,7 +163,7 @@
 
     const profileShowcase = document.getElementById('profile-showcase');
     const profileImage = profileShowcase?.querySelector('.profile-image-wrap');
-    if (profileShowcase && profileImage && !reducedMotion && window.matchMedia('(hover: hover)').matches) {
+    if (profileShowcase && profileImage && !reducedMotion && canHover) {
       let frame;
       profileShowcase.addEventListener('pointermove', (event) => {
         const bounds = profileShowcase.getBoundingClientRect();
@@ -177,7 +182,7 @@
 
     document.querySelectorAll('.project-card').forEach((card) => {
       card.addEventListener('pointermove', (event) => {
-        if (reducedMotion || !window.matchMedia('(hover: hover)').matches) return;
+        if (reducedMotion || !canHover) return;
         const bounds = card.getBoundingClientRect();
         const x = ((event.clientX - bounds.left) / bounds.width) * 100;
         const y = ((event.clientY - bounds.top) / bounds.height) * 100;
@@ -194,10 +199,19 @@
       form.addEventListener('submit', (event) => {
         event.preventDefault();
         const status = form.querySelector('.form-status');
+        const name = form.elements.name?.value.trim();
+        const email = form.elements.email?.value.trim();
+        const message = form.elements.message?.value.trim();
+
+        if (!name || !email || !message) return;
+
         if (status) {
-          status.textContent = 'Your message is ready to send. Please use the email link beside this form.';
+          status.textContent = 'Opening your email app with the brief prepared…';
         }
-        form.reset();
+
+        const subject = encodeURIComponent(`BROBEX project inquiry from ${name}`);
+        const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nProject direction:\n${message}`);
+        window.location.href = `mailto:brobex.ffx@gmail.com?subject=${subject}&body=${body}`;
       });
     });
   };
