@@ -1,0 +1,488 @@
+/*
+ * BROBEX responsive engineering layer
+ * ------------------------------------
+ * This file is intentionally additive. It keeps the existing BROBEX palette,
+ * components, animation language, and page structure while supplying one
+ * predictable set of cross-page layout rules.
+ */
+
+:root {
+    --responsive-gutter: clamp(1rem, 3vw, 3.25rem);
+    --responsive-nav-height: 85px;
+    --responsive-touch-size: 44px;
+}
+
+html {
+    overflow-x: hidden;
+}
+
+body {
+    min-width: 0;
+    overflow-x: hidden;
+}
+
+@supports (overflow: clip) {
+    html,
+    body {
+        overflow-x: clip;
+    }
+}
+
+img,
+svg,
+video,
+canvas {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+button,
+input,
+textarea,
+select {
+    max-width: 100%;
+    font: inherit;
+}
+
+button,
+a {
+    -webkit-tap-highlight-color: transparent;
+}
+
+:where(
+    .split-hero,
+    .container,
+    .footer-container,
+    .top-nav,
+    .top-nav-actions,
+    .hero-text-block,
+    .hero-profile-block,
+    .contact-grid,
+    .service-grid,
+    .experience-grid,
+    .project-grid,
+    .footer-top,
+    .footer-bottom,
+    .footer-nav,
+    .interactive-card,
+    .hud-panel,
+    .pipeline-step,
+    .project-card
+) > * {
+    min-width: 0;
+}
+
+:where(
+    .hero-intro,
+    .card-text,
+    .card-desc,
+    .step-desc,
+    .project-description,
+    .brand-tagline,
+    .footer-col a,
+    .contact-method span,
+    .form-note
+) {
+    overflow-wrap: anywhere;
+}
+
+.top-nav {
+    min-height: var(--responsive-nav-height);
+}
+
+.page-content {
+    padding-right: var(--responsive-gutter);
+}
+
+.futuristic-footer {
+    padding-right: var(--responsive-gutter);
+}
+
+.container,
+.footer-container {
+    padding-inline: var(--responsive-gutter);
+}
+
+.hero-section,
+.page-hero {
+    padding-inline: var(--responsive-gutter);
+}
+
+.hero-profile-block,
+.profile-showcase {
+    min-width: 0;
+}
+
+.profile-showcase {
+    width: min(400px, 100%);
+    height: auto;
+    aspect-ratio: 1;
+}
+
+.profile-glow-ring {
+    max-width: none;
+}
+
+.hero-hud {
+    min-width: 0;
+}
+
+.btn-primary,
+.btn-secondary,
+.btn-talk,
+.mobile-menu-btn,
+.mobile-close-btn,
+.contact-icon,
+.rail-item,
+#scrollToTopBtn {
+    min-width: var(--responsive-touch-size);
+    min-height: var(--responsive-touch-size);
+}
+
+.mobile-nav-overlay {
+    height: 100dvh;
+    max-height: 100dvh;
+    padding: max(1.5rem, env(safe-area-inset-top)) var(--responsive-gutter)
+        max(1.5rem, env(safe-area-inset-bottom));
+    overflow-y: auto;
+    overscroll-behavior: contain;
+}
+
+.mobile-nav-header,
+.mobile-nav-links,
+.mobile-nav-footer {
+    flex-shrink: 0;
+}
+
+.mobile-nav-links {
+    overflow-y: auto;
+    padding-block: 1rem;
+}
+
+.mobile-link {
+    overflow-wrap: anywhere;
+}
+
+.page-hero-art {
+    width: min(100%, 360px);
+    margin-inline: auto;
+}
+
+.page-hero-mark {
+    max-width: 100%;
+    overflow-wrap: anywhere;
+    text-align: center;
+}
+
+/* Compact desktop/tablet widths: preserve the full navigation without
+   allowing decorative actions to squeeze the links. */
+@media (min-width: 993px) and (max-width: 1160px) {
+    .top-nav {
+        padding-inline: 1.25rem;
+    }
+
+    .top-nav-links {
+        gap: clamp(.6rem, 1.25vw, 1rem);
+    }
+
+    .nav-link {
+        font-size: .7rem;
+        letter-spacing: .06em;
+    }
+
+    .right-logo-container {
+        margin-right: 0;
+    }
+}
+
+@media (max-width: 992px) {
+    :root {
+        --responsive-nav-height: 80px;
+    }
+
+    .page-content {
+        margin-left: 0;
+        padding-left: var(--responsive-gutter);
+        padding-right: var(--responsive-gutter);
+    }
+
+    .futuristic-footer {
+        margin-left: 0;
+        padding-left: var(--responsive-gutter);
+        padding-right: var(--responsive-gutter);
+    }
+
+    .split-hero,
+    .page-hero .split-hero {
+        grid-template-columns: minmax(0, 1fr);
+        gap: clamp(2rem, 6vw, 3.5rem);
+    }
+
+    .hero-text-block {
+        align-items: center;
+        text-align: center;
+    }
+
+    .hero-intro {
+        margin-inline: auto;
+        text-align: center;
+    }
+
+    .hero-cta-group {
+        justify-content: center;
+    }
+
+    .hero-profile-block {
+        justify-content: center;
+    }
+
+    .hero-section {
+        min-height: auto;
+        padding-top: clamp(7rem, 13vw, 10rem);
+    }
+
+    .page-hero {
+        min-height: auto;
+        padding-top: clamp(7rem, 13vw, 9rem);
+    }
+
+    .capabilities-grid,
+    .service-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .right-contact-rail,
+    .left-rail {
+        display: none;
+    }
+
+    .top-nav {
+        left: 0;
+    }
+
+    .desktop-only {
+        display: none !important;
+    }
+
+    .mobile-menu-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .mobile-float-btn {
+        display: flex;
+    }
+}
+
+@media (max-width: 768px) {
+    :root {
+        --responsive-nav-height: 72px;
+    }
+
+    .top-nav {
+        height: var(--responsive-nav-height);
+        min-height: var(--responsive-nav-height);
+        padding-inline: var(--responsive-gutter);
+    }
+
+    .page-content {
+        padding-left: var(--responsive-gutter);
+        padding-right: var(--responsive-gutter);
+    }
+
+    .futuristic-footer {
+        padding-left: var(--responsive-gutter);
+        padding-right: var(--responsive-gutter);
+    }
+
+    .hero-section,
+    .page-hero {
+        padding-left: var(--responsive-gutter);
+        padding-right: var(--responsive-gutter);
+    }
+
+    .hero-hud {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: clamp(1rem, 4vw, 1.5rem);
+        padding: clamp(1.25rem, 4vw, 1.75rem);
+    }
+
+    .hud-stat {
+        min-width: 0;
+    }
+
+    .capabilities-grid,
+    .service-grid,
+    .experience-grid,
+    .about-preview-grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .approach-pipeline {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 1rem;
+    }
+
+    .pipeline-connector {
+        display: block;
+        width: 2px;
+        height: 2rem;
+        margin-inline: auto;
+        background: linear-gradient(180deg, var(--accent-gold), var(--accent-green));
+    }
+
+    .footer-top,
+    .footer-bottom {
+        align-items: flex-start;
+    }
+
+    .footer-nav {
+        gap: 2.5rem;
+    }
+
+    .cta-box {
+        padding: clamp(2.5rem, 8vw, 4rem) var(--responsive-gutter);
+    }
+
+    .cta-buttons,
+    .hero-cta-group {
+        width: 100%;
+    }
+
+    .cta-buttons > a,
+    .hero-cta-group > a {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .container,
+    .footer-container {
+        padding-inline: 0;
+    }
+
+    .hero-section,
+    .page-hero {
+        padding-inline: 1rem;
+    }
+
+    .page-content,
+    .futuristic-footer {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    .profile-showcase {
+        width: min(250px, 78vw);
+    }
+
+    .hero-hud {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .hud-stat {
+        border-right: 0;
+        border-bottom: 1px solid rgba(212, 175, 55, .15);
+        padding: 0 0 1rem;
+    }
+
+    .hud-stat:last-child {
+        border-bottom: 0;
+        padding-bottom: 0;
+    }
+
+    .huge-headline {
+        font-size: clamp(1.8rem, 10vw, 2.8rem);
+    }
+
+    .section-title {
+        font-size: clamp(1.8rem, 8vw, 2.4rem);
+    }
+
+    .btn-primary,
+    .btn-secondary,
+    .btn-lg {
+        padding-inline: clamp(1rem, 5vw, 1.5rem);
+        white-space: normal;
+        text-align: center;
+    }
+
+    .hero-cta-group,
+    .cta-buttons {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .hero-cta-group > a,
+    .cta-buttons > a {
+        width: 100%;
+    }
+
+    .mobile-nav-overlay {
+        padding-inline: 1rem;
+    }
+
+    .mobile-link {
+        font-size: clamp(1.35rem, 7vw, 1.75rem);
+    }
+
+    .mobile-float-btn {
+        bottom: calc(env(safe-area-inset-bottom, 0px) + 1rem);
+    }
+
+    #scrollToTopBtn {
+        bottom: calc(env(safe-area-inset-bottom, 0px) + 4.75rem);
+    }
+}
+
+@media (max-width: 360px) {
+    .top-nav {
+        padding-inline: .75rem;
+    }
+
+    .brand-logo {
+        width: 52px;
+        height: 52px;
+    }
+
+    .hero-section,
+    .page-hero {
+        padding-inline: .75rem;
+    }
+
+    .page-content,
+    .futuristic-footer {
+        padding-left: .75rem;
+        padding-right: .75rem;
+    }
+}
+
+@media (orientation: landscape) and (max-height: 600px) {
+    .hero-section,
+    .page-hero {
+        min-height: auto;
+        padding-top: calc(var(--responsive-nav-height) + 2rem);
+        padding-bottom: 3rem;
+    }
+
+    .profile-showcase {
+        width: min(240px, 42vh);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .profile-showcase,
+    .profile-glow-ring,
+    .page-hero-art::before,
+    .scroll-line {
+        animation: none !important;
+    }
+
+    .reveal {
+        opacity: 1;
+        filter: none;
+        transform: none;
+    }
+}
