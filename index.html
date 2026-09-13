@@ -20,6 +20,29 @@
     <meta property="og:description" content="Modern, responsive, and high-performance digital experiences by BROBEX.">
     <link rel="canonical" href="https://brobexportfolio.vercel.app/">
     <meta name="twitter:card" content="summary">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Person",
+          "@id": "https://brobexportfolio.vercel.app/#person",
+          "name": "BROBEX",
+          "url": "https://brobexportfolio.vercel.app/",
+          "jobTitle": "Frontend Developer & UI/UX Designer",
+          "sameAs": ["https://www.instagram.com/codewithbrobex/"]
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://brobexportfolio.vercel.app/#website",
+          "url": "https://brobexportfolio.vercel.app/",
+          "name": "BROBEX Portfolio",
+          "description": "Modern, responsive, and high-performance digital experiences by BROBEX.",
+          "publisher": {"@id": "https://brobexportfolio.vercel.app/#person"}
+        }
+      ]
+    }
+    </script>
     <!-- Premium Luxury Fonts: Playfair Display & Montserrat -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -34,6 +57,7 @@
     <link rel="stylesheet" href="responsive/responsive.css">
     <link rel="stylesheet" href="css/desktop-enhancements.css">
     <link rel="stylesheet" href="css/theme.css">
+    <link rel="stylesheet" href="css/premium.css">
 </head>
 <body class="theme-dark">
     <a class="skip-link" href="#main-content">Skip to content</a>
@@ -424,5 +448,6 @@
     <script src="responsive/responsive.js" defer></script>
     <script src="js/desktop-enhancements.js" defer></script>
     <script src="js/theme.js" defer></script>
+    <script src="js/premium.js" defer></script>
 </body>
 </html>

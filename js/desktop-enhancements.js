@@ -18,6 +18,14 @@
 
     const removeEnhancements = () => {
         document.body.classList.remove('desktop-motion-enabled');
+        if (pointerListenerAttached) {
+            document.removeEventListener('pointermove', scheduleGlow);
+            pointerListenerAttached = false;
+        }
+        if (pointerFrame) {
+            window.cancelAnimationFrame(pointerFrame);
+            pointerFrame = 0;
+        }
         glow?.remove();
         glow = null;
         document.querySelectorAll('.desktop-tilt').forEach((card) => {
@@ -37,6 +45,7 @@
     };
 
     const scheduleGlow = (event) => {
+        if (!isEnabled()) return;
         pointerPosition = { x: event.clientX, y: event.clientY };
         if (!pointerFrame) pointerFrame = window.requestAnimationFrame(updateGlow);
     };
