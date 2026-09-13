@@ -6,6 +6,15 @@
     <title>Brobex Portfolio | Frontend Developer & UI/UX Designer</title>
     <meta name="description" content="BROBEX is a frontend developer and UI/UX designer creating modern, responsive, and high-performance digital experiences.">
     <meta name="theme-color" content="#020804">
+    <script>
+        (() => {
+            try {
+                const saved = localStorage.getItem('brobex-theme');
+                const theme = saved || (matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+                document.documentElement.dataset.theme = theme;
+            } catch {}
+        })();
+    </script>
     <meta property="og:type" content="website">
     <meta property="og:title" content="Brobex Portfolio | Frontend Developer & UI/UX Designer">
     <meta property="og:description" content="Modern, responsive, and high-performance digital experiences by BROBEX.">
@@ -24,6 +33,7 @@
     <link rel="stylesheet" href="css/enhancements.css">
     <link rel="stylesheet" href="responsive/responsive.css">
     <link rel="stylesheet" href="css/desktop-enhancements.css">
+    <link rel="stylesheet" href="css/theme.css">
 </head>
 <body class="theme-dark">
     <a class="skip-link" href="#main-content">Skip to content</a>
@@ -53,6 +63,9 @@
             <div class="right-logo-container desktop-only">
                  <img src="images/brobex-logo.webp" alt="BROBEX logo" class="right-circular-logo" width="50" height="50">
             </div>
+            <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch to light theme" aria-pressed="false">
+                <i class="fas fa-sun" aria-hidden="true"></i><span class="theme-toggle-label">LIGHT</span>
+            </button>
             
             <a href="contact.html" class="btn-talk desktop-only">
                 <span>LET'S TALK</span>
@@ -410,5 +423,6 @@
     <script src="js/site.js" defer></script>
     <script src="responsive/responsive.js" defer></script>
     <script src="js/desktop-enhancements.js" defer></script>
+    <script src="js/theme.js" defer></script>
 </body>
 </html>

@@ -104,7 +104,10 @@
     const currentPage = window.location.pathname.split('/').pop() || 'index.html';
     document.querySelectorAll('.nav-link, .rail-item, .mobile-link').forEach((link) => {
       const href = link.getAttribute('href');
-      link.classList.toggle('active', href === currentPage || (currentPage === '' && href === 'index.html'));
+      const isCurrent = href === currentPage || (currentPage === '' && href === 'index.html');
+      link.classList.toggle('active', isCurrent);
+      if (isCurrent) link.setAttribute('aria-current', 'page');
+      else link.removeAttribute('aria-current');
     });
 
     const revealItems = document.querySelectorAll('.reveal');
@@ -180,20 +183,21 @@
       });
     }
 
-    document.querySelectorAll('.project-card').forEach((card) => {
-      card.addEventListener('pointermove', (event) => {
-        if (reducedMotion || !canHover) return;
-        const bounds = card.getBoundingClientRect();
-        const x = ((event.clientX - bounds.left) / bounds.width) * 100;
-        const y = ((event.clientY - bounds.top) / bounds.height) * 100;
-        card.style.setProperty('--pointer-x', `${x}%`);
-        card.style.setProperty('--pointer-y', `${y}%`);
+    if (canHover && !reducedMotion) {
+      document.querySelectorAll('.project-card').forEach((card) => {
+        card.addEventListener('pointermove', (event) => {
+          const bounds = card.getBoundingClientRect();
+          const x = ((event.clientX - bounds.left) / bounds.width) * 100;
+          const y = ((event.clientY - bounds.top) / bounds.height) * 100;
+          card.style.setProperty('--pointer-x', `${x}%`);
+          card.style.setProperty('--pointer-y', `${y}%`);
+        });
+        card.addEventListener('pointerleave', () => {
+          card.style.removeProperty('--pointer-x');
+          card.style.removeProperty('--pointer-y');
+        });
       });
-      card.addEventListener('pointerleave', () => {
-        card.style.removeProperty('--pointer-x');
-        card.style.removeProperty('--pointer-y');
-      });
-    });
+    }
 
     document.querySelectorAll('[data-contact-form]').forEach((form) => {
       form.addEventListener('submit', (event) => {

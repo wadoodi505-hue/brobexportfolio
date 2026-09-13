@@ -9,6 +9,11 @@ The additive desktop motion layer lives in `css/desktop-enhancements.css` and
 `prefers-reduced-motion`. Touch layouts continue to use the existing
 responsive rules without the pointer glow or card tilt.
 
+The shared theme layer lives in `css/theme.css` and `js/theme.js`. Dark is the
+default BROBEX direction; the light theme is a separate ivory/charcoal
+interface, persists with `localStorage`, follows the system preference on first
+visit, and is available from the shared top navigation on every page.
+
 ## Run locally
 
 From this directory, serve the files with any static web server. For example:
