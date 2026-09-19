@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,8 +9,10 @@
     <!-- Primary SEO Meta Tags -->
     <title>Brobex | Freelance Front-End Web Developer & Programmer</title>
     <meta name="title" content="Brobex | Freelance Front-End Web Developer & Programmer">
-    <meta name="description" content="I am Brobex, a freelance web developer specializing in custom front-end development, luxury web templates, bug fixing, and interactive 3D web applications. Welcome to Brobex Code.">
-    <meta name="keywords" content="brobex, brobex code, brobex website developer, freelance web developer, front-end programmer, HTML, CSS, JavaScript, React developer, Tailwind CSS, 3D web components, Three.js">
+    <meta name="description"
+        content="I am Brobex, a freelance web developer specializing in custom front-end development, luxury web templates, bug fixing, and interactive 3D web applications. Welcome to Brobex Code.">
+    <meta name="keywords"
+        content="brobex, brobex code, brobex website developer, freelance web developer, front-end programmer, HTML, CSS, JavaScript, React developer, Tailwind CSS, 3D web components, Three.js">
     <meta name="author" content="Brobex">
     <meta name="robots" content="index, follow">
     <meta name="theme-color" content="#020804">
@@ -21,7 +24,7 @@
                 const saved = localStorage.getItem('brobex-theme');
                 const theme = saved || (matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
                 document.documentElement.dataset.theme = theme;
-            } catch {}
+            } catch { }
         })();
     </script>
 
@@ -29,7 +32,8 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.yourdomain.com/">
     <meta property="og:title" content="Brobex Code | Professional Website Developer">
-    <meta property="og:description" content="Explore the portfolio of Brobex, a specialized coder crafting luxury web interfaces and custom 3D web applications.">
+    <meta property="og:description"
+        content="Explore the portfolio of Brobex, a specialized coder crafting luxury web interfaces and custom 3D web applications.">
     <meta property="og:image" content="images/brobex-logo.webp">
 
     <link rel="canonical" href="https://brobexportfolio.vercel.app/">
@@ -38,7 +42,8 @@
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://www.yourdomain.com/">
     <meta property="twitter:title" content="Brobex Code | Professional Website Developer">
-    <meta property="twitter:description" content="Explore the portfolio of Brobex, a specialized coder crafting luxury web interfaces and custom 3D web applications.">
+    <meta property="twitter:description"
+        content="Explore the portfolio of Brobex, a specialized coder crafting luxury web interfaces and custom 3D web applications.">
     <meta property="twitter:image" content="images/brobex-logo.webp">
 
     <!-- JSON-LD Schema Markup for Google Search Authority -->
@@ -72,16 +77,22 @@
     </script>
 
     <!-- Premium Luxury Fonts: Playfair Display & Montserrat -->
+    <link rel="apple-touch-icon" sizes="180x180" href="./images/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon-16x16.png">
+    <link rel="manifest" href="./images/site.webmanifest">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@500;600;700;800&display=swap" rel="stylesheet">
-    
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@500;600;700;800&display=swap"
+        rel="stylesheet">
+
     <!-- Standard Favicon -->
-    <link rel="icon" type="image/png" href="images/brobex-logo.png">
     
+
     <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+
     <!-- Existing CSS Architecture -->
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/enhancements.css">
@@ -89,7 +100,9 @@
     <link rel="stylesheet" href="css/desktop-enhancements.css">
     <link rel="stylesheet" href="css/theme.css">
     <link rel="stylesheet" href="css/premium.css">
+
 </head>
+
 <body class="theme-dark">
     <a class="skip-link" href="#main-content">Skip to content</a>
     <!-- SCROLL PROGRESS INDICATOR -->
@@ -116,29 +129,33 @@
 
         <div class="top-nav-actions">
             <div class="right-logo-container desktop-only">
-                 <img src="images/brobex-logo.webp" alt="BROBEX logo" class="right-circular-logo" width="50" height="50">
+                <img src="images/brobex-logo.webp" alt="BROBEX logo" class="right-circular-logo" width="50" height="50">
             </div>
-            <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch to light theme" aria-pressed="false">
+            <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch to light theme"
+                aria-pressed="false">
                 <i class="fas fa-sun" aria-hidden="true"></i><span class="theme-toggle-label">LIGHT</span>
             </button>
-            
+
             <a href="contact.html" class="btn-talk desktop-only">
                 <span>LET'S TALK</span>
                 <i class="fas fa-arrow-right"></i>
             </a>
-            <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-nav-overlay">
+            <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Open navigation menu" aria-expanded="false"
+                aria-controls="mobile-nav-overlay">
                 <i class="fas fa-bars"></i>
             </button>
         </div>
     </header>
 
     <!-- MOBILE MENU OVERLAY -->
-    <div class="mobile-nav-overlay" id="mobile-nav-overlay" role="dialog" aria-modal="true" aria-label="Mobile navigation">
+    <div class="mobile-nav-overlay" id="mobile-nav-overlay" role="dialog" aria-modal="true"
+        aria-label="Mobile navigation">
         <div class="mobile-nav-header">
-             <img src="images/brobex-logo.webp" alt="BROBEX" class="brand-logo" width="64" height="64">
+            <img src="images/brobex-logo.webp" alt="BROBEX" class="brand-logo" width="64" height="64">
             <!-- Added Brobex Logo to Mobile Nav Header -->
-             <img src="images/brobex-logo.webp" alt="BROBEX logo" class="mobile-overlay-logo" width="45" height="45">
-            <button class="mobile-close-btn" id="mobile-close-btn" aria-label="Close Mobile Menu"><i class="fas fa-times"></i></button>
+            <img src="images/brobex-logo.webp" alt="BROBEX logo" class="mobile-overlay-logo" width="45" height="45">
+            <button class="mobile-close-btn" id="mobile-close-btn" aria-label="Close Mobile Menu"><i
+                    class="fas fa-times"></i></button>
         </div>
         <nav class="mobile-nav-links">
             <a href="index.html" class="mobile-link active">HOME</a>
@@ -155,14 +172,20 @@
 
     <!-- LEFT NAVIGATION RAIL -->
     <aside class="left-rail" aria-label="Rail Navigation">
-         <img src="images/brobex-logo.webp" alt="BROBEX" class="rail-logo" width="44" height="44">
+        <img src="images/brobex-logo.webp" alt="BROBEX" class="rail-logo" width="44" height="44">
         <nav class="rail-links">
-             <a href="index.html" class="rail-item active" title="Home" aria-label="Home"><i class="fas fa-home" aria-hidden="true"></i></a>
-             <a href="about.html" class="rail-item" title="About" aria-label="About"><i class="fas fa-user-astronaut" aria-hidden="true"></i></a>
-             <a href="services.html" class="rail-item" title="Services" aria-label="Services"><i class="fas fa-microchip" aria-hidden="true"></i></a>
-             <a href="experience.html" class="rail-item" title="Experience" aria-label="Experience"><i class="fas fa-project-diagram" aria-hidden="true"></i></a>
-             <a href="projects.html" class="rail-item" title="Projects" aria-label="Projects"><i class="fas fa-table-cells" aria-hidden="true"></i></a>
-             <a href="contact.html" class="rail-item" title="Contact" aria-label="Contact"><i class="fas fa-envelope" aria-hidden="true"></i></a>
+            <a href="index.html" class="rail-item active" title="Home" aria-label="Home"><i class="fas fa-home"
+                    aria-hidden="true"></i></a>
+            <a href="about.html" class="rail-item" title="About" aria-label="About"><i class="fas fa-user-astronaut"
+                    aria-hidden="true"></i></a>
+            <a href="services.html" class="rail-item" title="Services" aria-label="Services"><i class="fas fa-microchip"
+                    aria-hidden="true"></i></a>
+            <a href="experience.html" class="rail-item" title="Experience" aria-label="Experience"><i
+                    class="fas fa-project-diagram" aria-hidden="true"></i></a>
+            <a href="projects.html" class="rail-item" title="Projects" aria-label="Projects"><i
+                    class="fas fa-table-cells" aria-hidden="true"></i></a>
+            <a href="contact.html" class="rail-item" title="Contact" aria-label="Contact"><i class="fas fa-envelope"
+                    aria-hidden="true"></i></a>
         </nav>
         <div class="rail-bottom">
             <div class="scroll-indicator">
@@ -174,7 +197,8 @@
 
     <!-- RIGHT CONTACT RAIL (Desktop) -->
     <aside class="right-contact-rail" aria-label="Direct Contact Links">
-        <a href="https://wa.me/923709995042" target="_blank" rel="noopener noreferrer" class="contact-icon" data-tooltip="WhatsApp Direct">
+        <a href="https://wa.me/923709995042" target="_blank" rel="noopener noreferrer" class="contact-icon"
+            data-tooltip="WhatsApp Direct">
             <i class="fab fa-whatsapp"></i>
         </a>
         <a href="tel:03709995042" class="contact-icon" data-tooltip="Call 03709995042">
@@ -183,7 +207,8 @@
         <a href="mailto:brobex.ffx@gmail.com" class="contact-icon" data-tooltip="Email Me Directly">
             <i class="fas fa-envelope"></i>
         </a>
-        <a href="https://www.instagram.com/codewithbrobex/" target="_blank" rel="noopener noreferrer" class="contact-icon" data-tooltip="Instagram Profile">
+        <a href="https://www.instagram.com/codewithbrobex/" target="_blank" rel="noopener noreferrer"
+            class="contact-icon" data-tooltip="Instagram Profile">
             <i class="fab fa-instagram"></i>
         </a>
     </aside>
@@ -206,8 +231,8 @@
 
         <!-- HERO SECTION (Split Layout) -->
         <section class="hero-section" id="hero">
-            
-            
+
+
 
             <!-- Changed to split-hero layout -->
             <div class="hero-content split-hero">
@@ -219,7 +244,8 @@
                         DIMENSIONS
                     </h1>
                     <p class="hero-intro">
-                        Creative developer bridging high-end visual design, motion aesthetics, and robust frontend architecture into client-ready web experiences.
+                        Creative developer bridging high-end visual design, motion aesthetics, and robust frontend
+                        architecture into client-ready web experiences.
                     </p>
                     <div class="hero-cta-group">
                         <a href="services.html" class="btn-primary">
@@ -237,7 +263,8 @@
                     <div class="profile-showcase" id="profile-showcase">
                         <div class="profile-glow-ring"></div>
                         <div class="profile-image-wrap">
-                             <img src="images/brobex-logo.webp" alt="BROBEX logo" class="profile-image" width="400" height="400" fetchpriority="high">
+                            <img src="images/brobex-logo.webp" alt="BROBEX logo" class="profile-image" width="400"
+                                height="400" fetchpriority="high">
                         </div>
                     </div>
                 </div>
@@ -285,7 +312,10 @@
                         <div class="card-badge"><i class="fas fa-terminal"></i> PROFILE MATRIX</div>
                         <h3 class="card-heading">Creative Developer & Digital Architect</h3>
                         <p class="card-text">
-                            I am <strong>BROBEX</strong> — a frontend developer and UI/UX designer focused on building visually compelling, fast, and intuitive digital interfaces. I blend technical execution with deliberate graphic presentation to craft web environments that feel premium and memorable.
+                            I am <strong>BROBEX</strong> — a frontend developer and UI/UX designer focused on building
+                            visually compelling, fast, and intuitive digital interfaces. I blend technical execution
+                            with deliberate graphic presentation to craft web environments that feel premium and
+                            memorable.
                         </p>
                     </div>
 
@@ -293,7 +323,9 @@
                         <div class="card-badge"><i class="fas fa-compass"></i> PHILOSOPHY & GOALS</div>
                         <h3 class="card-heading">Where Aesthetics Meet Performance</h3>
                         <p class="card-text">
-                            A great website shouldn't choose between speed and creative flare. My approach enforces clean layout structures, liquid responsiveness across mobile and desktop, and meaningful micro-interactions that elevate brand perception.
+                            A great website shouldn't choose between speed and creative flare. My approach enforces
+                            clean layout structures, liquid responsiveness across mobile and desktop, and meaningful
+                            micro-interactions that elevate brand perception.
                         </p>
                         <div class="card-action">
                             <a href="about.html" class="btn-secondary">
@@ -316,16 +348,20 @@
                 </div>
 
                 <div class="capabilities-grid">
-                    
+
                     <!-- CAPABILITY 1 -->
                     <div class="interactive-card reveal blur-in" data-delay="100">
                         <div class="card-icon"><i class="fas fa-code"></i></div>
                         <h3 class="card-title">Interactive Frontend Systems</h3>
                         <p class="card-desc">
-                            Specialized in semantic HTML5, modern CSS3, and vanilla JS. Clean component layout without framework clutter. Focus on client satisfaction and high usability. High-performance web applications engineered with clean Vanilla JavaScript and CSS animations. Built to load fast and react fluidly.
+                            Specialized in semantic HTML5, modern CSS3, and vanilla JS. Clean component layout without
+                            framework clutter. Focus on client satisfaction and high usability. High-performance web
+                            applications engineered with clean Vanilla JavaScript and CSS animations. Built to load fast
+                            and react fluidly.
                         </p>
                         <div class="card-tech-tags">
-                            <span>HTML5</span> <span>CSS3 Grid/Flex</span> <span>JavaScript (ES6+)</span> <span>React.js</span> <span>TypeScript</span> <span>Tailwind CSS</span>
+                            <span>HTML5</span> <span>CSS3 Grid/Flex</span> <span>JavaScript (ES6+)</span>
+                            <span>React.js</span> <span>TypeScript</span> <span>Tailwind CSS</span>
                         </div>
                     </div>
 
@@ -334,7 +370,8 @@
                         <div class="card-icon"><i class="fas fa-bezier-curve"></i></div>
                         <h3 class="card-title">UI/UX & Digital Aesthetics</h3>
                         <p class="card-desc">
-                            Futuristic HUD designs, crisp visual hierarchies, and dark-mode spatial interfaces that leave a lasting professional impression.
+                            Futuristic HUD designs, crisp visual hierarchies, and dark-mode spatial interfaces that
+                            leave a lasting professional impression.
                         </p>
                         <div class="card-tech-tags">
                             <span>UI Systems</span> <span>Design Tokens</span> <span>Wireframing</span>
@@ -346,7 +383,8 @@
                         <div class="card-icon"><i class="fas fa-mobile-alt"></i></div>
                         <h3 class="card-title">Responsive Engineering</h3>
                         <p class="card-desc">
-                            Flawless experience on every device—from large 4K desktop displays down to small mobile touchscreens without layout shift.
+                            Flawless experience on every device—from large 4K desktop displays down to small mobile
+                            touchscreens without layout shift.
                         </p>
                         <div class="card-tech-tags">
                             <span>Fluid Typography</span> <span>Mobile First</span> <span>Cross-Browser</span>
@@ -377,7 +415,8 @@
                         <div class="step-number">01</div>
                         <div class="step-content">
                             <h3 class="step-title">Blueprint & UX Architecture</h3>
-                            <p class="step-desc">Analyzing requirements, defining user flows, and organizing information into clear visual hierarchies before typing code.</p>
+                            <p class="step-desc">Analyzing requirements, defining user flows, and organizing information
+                                into clear visual hierarchies before typing code.</p>
                         </div>
                     </div>
 
@@ -387,7 +426,8 @@
                         <div class="step-number">02</div>
                         <div class="step-content">
                             <h3 class="step-title">Creative Visual Direction</h3>
-                            <p class="step-desc">Injecting custom atmosphere, lighting accents, geometric precision, and modern display typography into layout compositions.</p>
+                            <p class="step-desc">Injecting custom atmosphere, lighting accents, geometric precision, and
+                                modern display typography into layout compositions.</p>
                         </div>
                     </div>
 
@@ -397,7 +437,8 @@
                         <div class="step-number">03</div>
                         <div class="step-content">
                             <h3 class="step-title">Clean Engineering & Polish</h3>
-                            <p class="step-desc">Coding structured lightweight solutions, adding smooth scroll reactions, micro-interactions, and optimizing load speed.</p>
+                            <p class="step-desc">Coding structured lightweight solutions, adding smooth scroll
+                                reactions, micro-interactions, and optimizing load speed.</p>
                         </div>
                     </div>
                 </div>
@@ -418,15 +459,17 @@
                     <span class="eyebrow">// INITIATE CONTACT</span>
                     <h2 class="cta-title">READY TO BUILD SOMETHING EXTRAORDINARY?</h2>
                     <p class="cta-desc">
-                        Have a project in mind, need a frontend interface refresh, or want to collaborate on a unique web experience? Let's connect.
+                        Have a project in mind, need a frontend interface refresh, or want to collaborate on a unique
+                        web experience? Let's connect.
                     </p>
-                    
+
                     <div class="cta-buttons">
                         <a href="contact.html" class="btn-primary btn-lg">
                             <span>START A CONVERSATION</span>
                             <i class="fas fa-paper-plane"></i>
                         </a>
-                        <a href="https://wa.me/923709995042" target="_blank" rel="noopener noreferrer" class="btn-secondary btn-lg">
+                        <a href="https://wa.me/923709995042" target="_blank" rel="noopener noreferrer"
+                            class="btn-secondary btn-lg">
                             <i class="fab fa-whatsapp"></i>
                             <span>WHATSAPP DIRECT</span>
                         </a>
@@ -442,10 +485,10 @@
         <div class="footer-container">
             <div class="footer-top">
                 <div class="footer-brand">
-                     <img src="images/brobex-logo.webp" alt="BROBEX" class="footer-logo" width="96" height="96">
+                    <img src="images/brobex-logo.webp" alt="BROBEX" class="footer-logo" width="96" height="96">
                     <p class="brand-tagline">BUILDING DIGITAL EXPERIENCES FOR THE NEXT DIMENSION.</p>
                 </div>
-                
+
                 <div class="footer-nav">
                     <div class="footer-col">
                         <span class="col-title">NAVIGATION</span>
@@ -481,4 +524,5 @@
     <script src="js/theme.js" defer></script>
     <script src="js/premium.js" defer></script>
 </body>
+
 </html>
