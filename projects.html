@@ -4,31 +4,36 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Projects | BROBEX Frontend Portfolio</title>
-  <meta name="description" content="Selected frontend websites and responsive digital experiences designed and built by BROBEX.">
+  <meta name="description" content="Explore six selected BROBEX frontend websites, business experiences, and browser games.">
   <meta name="theme-color" content="#020804">
   <script>
     (() => {
       try {
         const saved = localStorage.getItem('brobex-theme');
-        const theme = saved || (matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
-        document.documentElement.dataset.theme = theme;
+        document.documentElement.dataset.theme = saved || (matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
       } catch {}
     })();
   </script>
   <meta property="og:type" content="website">
   <meta property="og:title" content="Projects | BROBEX">
-  <meta property="og:description" content="Selected frontend websites and responsive digital experiences by BROBEX.">
+  <meta property="og:description" content="Six selected frontend websites, business experiences, and browser games by BROBEX.">
+  <meta property="og:url" content="https://brobexportfolio.vercel.app/projects.html">
+  <meta property="og:image" content="https://brobexportfolio.vercel.app/images/brobex-logo.png">
+  <meta name="twitter:card" content="summary_large_image">
   <link rel="canonical" href="https://brobexportfolio.vercel.app/projects.html">
-  <meta name="twitter:card" content="summary">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "ItemList",
     "name": "Selected BROBEX projects",
+    "numberOfItems": 6,
     "itemListElement": [
       {"@type": "ListItem", "position": 1, "name": "BX Game Website", "url": "https://brpobex-website-only-front-end.vercel.app/"},
       {"@type": "ListItem", "position": 2, "name": "Coffee Website", "url": "https://coffee-demo-u1xg.vercel.app/"},
-      {"@type": "ListItem", "position": 3, "name": "Premium Plumbing Website", "url": "https://brobex-premium-plumbing.vercel.app/"}
+      {"@type": "ListItem", "position": 3, "name": "Premium Plumbing Website", "url": "https://brobex-premium-plumbing.vercel.app/"},
+      {"@type": "ListItem", "position": 4, "name": "Three Men Mirror", "url": "https://the-men-mirrors-brobex.vercel.app/"},
+      {"@type": "ListItem", "position": 5, "name": "Stack Tower", "url": "https://brobex-store-stack-tower.vercel.app/"},
+      {"@type": "ListItem", "position": 6, "name": "Tic Tac Toe", "url": "https://tic-tak-toe-game-brobex.vercel.app/"}
     ]
   }
   </script>
@@ -63,29 +68,29 @@
       <a href="about.html" class="nav-link">ABOUT</a>
       <a href="services.html" class="nav-link">SERVICES</a>
       <a href="experience.html" class="nav-link">EXPERIENCE</a>
-      <a href="projects.html" class="nav-link active">PROJECTS</a>
+      <a href="projects.html" class="nav-link active" aria-current="page">PROJECTS</a>
       <a href="contact.html" class="nav-link">CONTACT</a>
     </nav>
     <div class="top-nav-actions">
       <div class="right-logo-container desktop-only"><img src="images/brobex-logo.png" alt="BROBEX logo" class="right-circular-logo" width="50" height="50"></div>
       <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch to light theme" aria-pressed="false"><i class="fas fa-sun" aria-hidden="true"></i><span class="theme-toggle-label">LIGHT</span></button>
       <a href="contact.html" class="btn-talk desktop-only"><span>LET'S TALK</span><i class="fas fa-arrow-right" aria-hidden="true"></i></a>
-      <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-nav-overlay"><i class="fas fa-bars" aria-hidden="true"></i></button>
+      <button class="mobile-menu-btn" id="mobile-menu-btn" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-nav-overlay"><i class="fas fa-bars" aria-hidden="true"></i></button>
     </div>
   </header>
 
-  <div class="mobile-nav-overlay" id="mobile-nav-overlay" role="dialog" aria-modal="true" aria-label="Mobile navigation">
+  <div class="mobile-nav-overlay" id="mobile-nav-overlay" role="dialog" aria-modal="true" aria-hidden="true" aria-label="Mobile navigation">
     <div class="mobile-nav-header">
       <img src="images/brobex-logo.png" alt="BROBEX" class="brand-logo" width="64" height="64">
       <img src="images/brobex-logo.png" alt="BROBEX logo" class="mobile-overlay-logo" width="45" height="45">
-      <button class="mobile-close-btn" id="mobile-close-btn" aria-label="Close navigation menu"><i class="fas fa-times" aria-hidden="true"></i></button>
+      <button class="mobile-close-btn" id="mobile-close-btn" type="button" aria-label="Close navigation menu"><i class="fas fa-times" aria-hidden="true"></i></button>
     </div>
     <nav class="mobile-nav-links" aria-label="Mobile navigation">
       <a href="index.html" class="mobile-link">HOME</a>
       <a href="about.html" class="mobile-link">ABOUT</a>
       <a href="services.html" class="mobile-link">SERVICES</a>
       <a href="experience.html" class="mobile-link">EXPERIENCE</a>
-      <a href="projects.html" class="mobile-link active">PROJECTS</a>
+      <a href="projects.html" class="mobile-link active" aria-current="page">PROJECTS</a>
       <a href="contact.html" class="mobile-link">CONTACT</a>
     </nav>
     <div class="mobile-nav-footer"><a href="contact.html" class="btn-primary full-width">START A PROJECT <i class="fas fa-arrow-right" aria-hidden="true"></i></a></div>
@@ -98,7 +103,7 @@
       <a href="about.html" class="rail-item" title="About" aria-label="About"><i class="fas fa-user-astronaut" aria-hidden="true"></i></a>
       <a href="services.html" class="rail-item" title="Services" aria-label="Services"><i class="fas fa-microchip" aria-hidden="true"></i></a>
       <a href="experience.html" class="rail-item" title="Experience" aria-label="Experience"><i class="fas fa-project-diagram" aria-hidden="true"></i></a>
-      <a href="projects.html" class="rail-item active" title="Projects" aria-label="Projects"><i class="fas fa-table-cells" aria-hidden="true"></i></a>
+      <a href="projects.html" class="rail-item active" title="Projects" aria-label="Projects" aria-current="page"><i class="fas fa-table-cells" aria-hidden="true"></i></a>
       <a href="contact.html" class="rail-item" title="Contact" aria-label="Contact"><i class="fas fa-envelope" aria-hidden="true"></i></a>
     </nav>
     <div class="rail-bottom"><div class="scroll-indicator"><span class="scroll-text">SCROLL DOWN</span><div class="scroll-line"></div></div></div>
@@ -112,24 +117,24 @@
   </aside>
   <a href="mailto:brobex.ffx@gmail.com" class="mobile-float-btn float-left" aria-label="Email BROBEX"><i class="fas fa-envelope" aria-hidden="true"></i></a>
   <a href="tel:03709995042" class="mobile-float-btn float-right" aria-label="Call BROBEX"><i class="fas fa-phone-alt" aria-hidden="true"></i></a>
-  <button id="scrollToTopBtn" aria-label="Scroll to top"><i class="fas fa-arrow-up" aria-hidden="true"></i></button>
+  <button id="scrollToTopBtn" type="button" aria-label="Scroll to top"><i class="fas fa-arrow-up" aria-hidden="true"></i></button>
 
   <main class="page-content" id="main-content">
     <section class="page-hero projects-hero">
       <div class="split-hero">
         <div class="hero-text-block reveal slide-right">
-          <span class="page-kicker">// SELECTED WORK</span>
+          <span class="page-kicker">// SELECTED WORK / 2026</span>
           <h1 class="huge-headline">BUILT FOR<br><span class="highlight-text">REAL</span><br>ATTENTION</h1>
-          <p class="hero-intro">A focused selection of frontend projects shaped around strong visual direction, responsive structure, and clear user journeys.</p>
+          <p class="hero-intro">Six focused builds shaped around visual direction, responsive structure, and the small details that make a digital experience feel intentional.</p>
           <div class="hero-cta-group"><a href="#project-grid" class="btn-primary"><span>VIEW PROJECTS</span><i class="fas fa-arrow-down" aria-hidden="true"></i></a><a href="contact.html" class="btn-secondary"><span>START A BRIEF</span></a></div>
         </div>
         <div class="page-hero-art page-profile-art reveal scale-in">
           <div class="profile-showcase" id="profile-showcase">
             <div class="profile-glow-ring"></div>
-            <div class="profile-image-wrap">
-              <img src="images/brobex-logo.webp" alt="BROBEX logo" class="profile-image" width="400" height="400" fetchpriority="high">
-            </div>
-          
+            <div class="profile-image-wrap"><img src="images/brobex-logo.webp" alt="BROBEX logo" class="profile-image" width="400" height="400" fetchpriority="high"></div>
+            <div class="archive-signal" aria-label="Six projects in the archive"><span class="status-dot"></span><span>ARCHIVE ONLINE</span><strong>06 <small>/ 06</small></strong></div>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -140,20 +145,47 @@
           <h2 class="section-title" id="projects-title">SELECTED PROJECTS</h2>
           <div class="section-line"></div>
         </div>
+
+        <div class="archive-toolbar reveal fade-up" data-delay="100">
+          <div class="filter-row" role="group" aria-label="Filter projects">
+            <button class="filter-chip is-active" type="button" data-project-filter="all" aria-pressed="true">ALL <span>06</span></button>
+            <button class="filter-chip" type="button" data-project-filter="websites" aria-pressed="false">WEBSITES <span>02</span></button>
+            <button class="filter-chip" type="button" data-project-filter="games" aria-pressed="false">GAMES <span>03</span></button>
+            <button class="filter-chip" type="button" data-project-filter="business" aria-pressed="false">BUSINESS <span>01</span></button>
+            <button class="filter-chip" type="button" data-project-filter="experimental" aria-pressed="false">EXPERIMENTAL <span>00</span></button>
+          </div>
+          <label class="project-search-wrap"><span class="sr-only">Search projects</span><i class="fas fa-magnifying-glass" aria-hidden="true"></i><input class="project-search" id="project-search" type="search" placeholder="Search the archive…" autocomplete="off"></label>
+          <p class="project-result-count" role="status" aria-live="polite">6 projects shown</p>
+        </div>
+
+        <div class="featured-project reveal fade-up" data-delay="150" data-category="games" data-title="Stack Tower">
+          <div class="featured-media"><img src="images/stack tower game.png" alt="Preview of the Stack Tower browser game" width="957" height="840" loading="eager"><span class="featured-index">05 / 06</span><span class="featured-status"><span class="status-dot"></span> LIVE BUILD</span></div>
+          <div class="featured-copy"><span class="card-meta">Featured / Interactive Game</span><h3>STACK TOWER</h3><p>A browser-based stacking game with responsive interaction, clear feedback, and a focused frontend play loop.</p><div class="project-tags"><span>HTML</span><span>CSS</span><span>JavaScript</span></div><a class="btn-primary project-link" href="https://brobex-store-stack-tower.vercel.app/" target="_blank" rel="noopener noreferrer" aria-label="View the Stack Tower live project">VIEW LIVE PROJECT <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i></a></div>
+        </div>
+
         <div class="project-grid">
-          <article class="project-card reveal fade-up" data-delay="100">
-            <div class="project-media"><img src="images/bx game website.jpg" alt="Preview of the BX Game Website" loading="lazy"><span class="project-number">01 / 03</span></div>
-            <div class="project-card-body"><span class="card-meta">Frontend Website</span><h3 class="project-title">BX GAME WEBSITE</h3><p class="project-description">A visually engaging gaming frontend focused on immersive presentation, responsive layouts, and an interactive user experience.</p><div class="project-tags"><span>HTML</span><span>CSS</span><span>JavaScript</span></div><a class="btn-secondary project-link" href="https://brpobex-website-only-front-end.vercel.app/" target="_blank" rel="noopener noreferrer">VIEW PROJECT <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i></a></div>
+          <article class="project-card reveal fade-up" data-delay="200" data-category="websites" data-title="BX Game Website">
+            <div class="project-media"><img src="images/bx game website.jpg" alt="Preview of the BX Game Website" width="1024" height="506" loading="lazy"><span class="project-number">01 / 06</span></div>
+            <div class="project-card-body"><span class="card-meta">Frontend Website</span><h3 class="project-title">BX GAME WEBSITE</h3><p class="project-description">A visually engaging gaming frontend focused on immersive presentation, responsive layouts, and an interactive user experience.</p><div class="project-tags"><span>HTML</span><span>CSS</span><span>JavaScript</span></div><a class="btn-secondary project-link" href="https://brpobex-website-only-front-end.vercel.app/" target="_blank" rel="noopener noreferrer" aria-label="View the BX Game Website live project">VIEW LIVE PROJECT <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i></a></div>
           </article>
-          <article class="project-card reveal fade-up" data-delay="200">
-            <div class="project-media"><img src="images/coffe webiste.jpg" alt="Preview of the Coffee Website" loading="lazy"><span class="project-number">02 / 03</span></div>
-            <div class="project-card-body"><span class="card-meta">Frontend Website</span><h3 class="project-title">COFFEE WEBSITE</h3><p class="project-description">A product-focused coffee experience combining warm visual presentation, responsive layout, modern UI, and smooth interactions.</p><div class="project-tags"><span>HTML</span><span>CSS</span><span>JavaScript</span></div><a class="btn-secondary project-link" href="https://coffee-demo-u1xg.vercel.app/" target="_blank" rel="noopener noreferrer">VIEW PROJECT <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i></a></div>
+          <article class="project-card reveal fade-up" data-delay="250" data-category="websites" data-title="Coffee Website">
+            <div class="project-media"><img src="images/coffe webiste.jpg" alt="Preview of the Coffee Website" width="1024" height="506" loading="lazy"><span class="project-number">02 / 06</span></div>
+            <div class="project-card-body"><span class="card-meta">Frontend Website</span><h3 class="project-title">COFFEE WEBSITE</h3><p class="project-description">A product-focused coffee experience combining warm visual presentation, responsive layout, modern UI, and smooth interactions.</p><div class="project-tags"><span>HTML</span><span>CSS</span><span>JavaScript</span></div><a class="btn-secondary project-link" href="https://coffee-demo-u1xg.vercel.app/" target="_blank" rel="noopener noreferrer" aria-label="View the Coffee Website live project">VIEW LIVE PROJECT <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i></a></div>
           </article>
-          <article class="project-card reveal fade-up" data-delay="300">
-            <div class="project-media"><img src="images/plumbing website.jpg" alt="Preview of the Premium Plumbing Website" loading="lazy"><span class="project-number">03 / 03</span></div>
-            <div class="project-card-body"><span class="card-meta">Business Website</span><h3 class="project-title">PREMIUM PLUMBING WEBSITE</h3><p class="project-description">A premium service website built around credible business presentation, strong calls to action, and responsive frontend implementation.</p><div class="project-tags"><span>HTML</span><span>CSS</span><span>JavaScript</span></div><a class="btn-secondary project-link" href="https://brobex-premium-plumbing.vercel.app/" target="_blank" rel="noopener noreferrer">VIEW PROJECT <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i></a></div>
+          <article class="project-card reveal fade-up" data-delay="300" data-category="business" data-title="Premium Plumbing Website">
+            <div class="project-media"><img src="images/plumbing website.jpg" alt="Preview of the Premium Plumbing Website" width="1024" height="507" loading="lazy"><span class="project-number">03 / 06</span></div>
+            <div class="project-card-body"><span class="card-meta">Business Website</span><h3 class="project-title">PREMIUM PLUMBING WEBSITE</h3><p class="project-description">A premium service website built around credible business presentation, strong calls to action, and responsive frontend implementation.</p><div class="project-tags"><span>HTML</span><span>CSS</span><span>JavaScript</span></div><a class="btn-secondary project-link" href="https://brobex-premium-plumbing.vercel.app/" target="_blank" rel="noopener noreferrer" aria-label="View the Premium Plumbing Website live project">VIEW LIVE PROJECT <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i></a></div>
+          </article>
+          <article class="project-card reveal fade-up" data-delay="350" data-category="games" data-title="Three Men Mirror">
+            <div class="project-media"><img src="images/tree men game .png" alt="Preview of the Three Men Mirror browser game" width="1291" height="886" loading="lazy"><span class="project-number">04 / 06</span></div>
+            <div class="project-card-body"><span class="card-meta">Interactive Game</span><h3 class="project-title">THREE MEN MIRROR</h3><p class="project-description">An interactive browser game focused on visual interaction, gameplay feedback, and a playful frontend experience.</p><div class="project-tags"><span>HTML</span><span>CSS</span><span>JavaScript</span></div><a class="btn-secondary project-link" href="https://the-men-mirrors-brobex.vercel.app/" target="_blank" rel="noopener noreferrer" aria-label="View the Three Men Mirror live project">VIEW LIVE PROJECT <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i></a></div>
+          </article>
+          <article class="project-card reveal fade-up" data-delay="450" data-category="games" data-title="Tic Tac Toe">
+            <div class="project-media"><img src="images/cross game .png" alt="Preview of the Tic Tac Toe browser game" width="768" height="892" loading="lazy"><span class="project-number">06 / 06</span></div>
+            <div class="project-card-body"><span class="card-meta">Interactive Game</span><h3 class="project-title">TIC TAC TOE</h3><p class="project-description">A browser-based Tic Tac Toe experience with interactive gameplay, responsive implementation, and a clear game interface.</p><div class="project-tags"><span>HTML</span><span>CSS</span><span>JavaScript</span></div><a class="btn-secondary project-link" href="https://tic-tak-toe-game-brobex.vercel.app/" target="_blank" rel="noopener noreferrer" aria-label="View the Tic Tac Toe live project">VIEW LIVE PROJECT <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i></a></div>
           </article>
         </div>
+        <p class="project-empty" hidden>No projects match that search yet. Try another term or reset the filter.</p>
       </div>
     </section>
 

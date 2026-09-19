@@ -7,6 +7,8 @@
 
 @media (min-width: 993px) and (hover: hover) and (pointer: fine) {
     .desktop-cursor-glow {
+        --glow-x: 0px;
+        --glow-y: 0px;
         position: fixed;
         z-index: 2;
         width: 24rem;
@@ -20,9 +22,9 @@
             rgba(212, 175, 55, .055) 28%,
             rgba(2, 8, 4, 0) 68%
         );
-        transform: translate3d(-50%, -50%, 0);
+        transform: translate3d(calc(var(--glow-x) - 50%), calc(var(--glow-y) - 50%), 0);
         transition: opacity .7s ease;
-        will-change: left, top, opacity;
+        will-change: transform, opacity;
     }
 
     body.desktop-motion-enabled .desktop-cursor-glow {

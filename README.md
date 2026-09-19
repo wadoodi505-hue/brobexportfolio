@@ -1,7 +1,8 @@
 # BROBEX portfolio
 
 This is the enhanced static portfolio for BROBEX. It keeps the original six-page
-structure, project URLs, contact links, branding, and image assets.
+structure, project URLs, contact links, branding, and image assets. It is
+dependency-free and can be served directly from this folder.
 
 ## What was improved
 
@@ -9,12 +10,17 @@ structure, project URLs, contact links, branding, and image assets.
   theme switching, and view settings.
 - Added persistent performance and reduced-motion controls. Performance mode
   removes decorative grain, pointer glow, blur, and continuous ambient effects.
-- Added real project search and project-type filtering on `projects.html`.
-- Added structured data for the portfolio, selected work, and service offering.
-- Removed unused legacy CSS/JavaScript files and kept pointer work scoped to
-  fine-pointer desktop layouts.
+- Reworked the project archive with a featured Stack Tower entry, six accurate
+  project records, category filters, live search, project numbering, technology
+  tags, and accessible result announcements.
+- Added structured data for all six projects and refreshed page-level social
+  metadata, canonical URLs, image dimensions, and external-link labeling.
+- Kept the existing layered CSS/JavaScript architecture and scoped pointer
+  work to fine-pointer desktop layouts instead of adding a framework.
 - Touch layouts disable backdrop blur, decorative loops, and expensive reveal
   blur effects while preserving content and navigation.
+- Added low-cost pointer glow positioning through transforms, `overflow-x: clip`
+  protection, and stronger reduced-motion behavior.
 
 The additive desktop motion layer lives in `css/desktop-enhancements.css` and
 `js/desktop-enhancements.js`. It is limited to fine-pointer viewports at
@@ -29,7 +35,8 @@ visit, and is available from the shared top navigation on every page.
 
 The progressive enhancement layer lives in `css/premium.css` and
 `js/premium.js`. It is dependency-free and does not run a continuous
-animation loop.
+animation loop. The project archive behavior is progressive: the six entries
+remain present in the HTML and the controls enhance them when JavaScript runs.
 
 ## Run locally
 

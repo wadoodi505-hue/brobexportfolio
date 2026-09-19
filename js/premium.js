@@ -245,41 +245,42 @@
         const grid = document.querySelector('.project-grid');
         if (!grid) return;
         const cards = [...grid.querySelectorAll('.project-card')];
-        const tools = document.createElement('div');
-        tools.className = 'project-tools';
-        tools.setAttribute('aria-label', 'Project archive filters');
-        tools.innerHTML = `
-            <label class="sr-only" for="project-search">Search projects</label>
-            <input class="project-search" id="project-search" type="search" placeholder="Search projects…" autocomplete="off">
-            <label class="sr-only" for="project-filter">Filter project type</label>
-            <select class="project-filter" id="project-filter"><option value="all">All project types</option></select>
-            <span class="project-result-count" role="status" aria-live="polite"></span>`;
-        grid.before(tools);
-        const select = tools.querySelector('.project-filter');
-        const search = tools.querySelector('.project-search');
-        const result = tools.querySelector('.project-result-count');
-        const empty = document.createElement('p');
-        empty.className = 'project-empty';
-        empty.textContent = 'No projects match that search yet.';
-        grid.appendChild(empty);
-        const types = [...new Set(cards.map((card) => card.querySelector('.card-meta')?.textContent.trim()).filter(Boolean))];
-        types.forEach((type) => select.insertAdjacentHTML('beforeend', `<option value="${type}">${type}</option>`));
+        const featured = document.querySelector('.featured-project');
+        const entries = featured ? [...cards, featured] : cards;
+        const search = document.querySelector('#project-search');
+        const result = document.querySelector('.project-result-count');
+        const empty = document.querySelector('.project-empty');
+        const filterButtons = [...document.querySelectorAll('[data-project-filter]')];
+        if (!search || !result || !empty || !filterButtons.length) return;
+        let activeFilter = 'all';
+
         const update = () => {
             const query = search.value.trim().toLowerCase();
-            const type = select.value;
+            const type = activeFilter;
             let visible = 0;
-            cards.forEach((card) => {
-                const cardType = card.querySelector('.card-meta')?.textContent.trim() || '';
-                const haystack = card.textContent.toLowerCase();
+            entries.forEach((card) => {
+                const cardType = card.dataset.category || '';
+                const haystack = `${card.dataset.title || ''} ${card.textContent}`.toLowerCase();
                 const matches = (!query || haystack.includes(query)) && (type === 'all' || cardType === type);
                 card.classList.toggle('is-filtered-out', !matches);
                 if (matches) visible += 1;
             });
-            empty.classList.toggle('is-visible', visible === 0);
+            empty.hidden = visible !== 0;
             result.textContent = `${visible} ${visible === 1 ? 'project' : 'projects'} shown`;
         };
+
+        filterButtons.forEach((button) => {
+            button.addEventListener('click', () => {
+                activeFilter = button.dataset.projectFilter || 'all';
+                filterButtons.forEach((item) => {
+                    const isActive = item === button;
+                    item.classList.toggle('is-active', isActive);
+                    item.setAttribute('aria-pressed', String(isActive));
+                });
+                update();
+            });
+        });
         search.addEventListener('input', update);
-        select.addEventListener('change', update);
         update();
     };
 

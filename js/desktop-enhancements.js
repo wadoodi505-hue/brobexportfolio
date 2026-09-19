@@ -40,8 +40,8 @@
     const updateGlow = () => {
         pointerFrame = 0;
         if (!glow || !isEnabled()) return;
-        glow.style.left = `${pointerPosition.x}px`;
-        glow.style.top = `${pointerPosition.y}px`;
+        glow.style.setProperty('--glow-x', `${pointerPosition.x}px`);
+        glow.style.setProperty('--glow-y', `${pointerPosition.y}px`);
     };
 
     const scheduleGlow = (event) => {
