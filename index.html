@@ -3,112 +3,244 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <!-- Primary SEO Meta Tags -->
-    <title>Brobex | Freelance Front-End Web Developer & Programmer</title>
-    <meta name="title" content="Brobex | Freelance Front-End Web Developer & Programmer">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- =========================================
+         PRIMARY SEO
+    ========================================== -->
+
+    <title>Brobex | Brobex Code | Brobex portfolio — Freelance Web Developer & Programmer</title>
+
     <meta name="description"
-        content="I am Brobex, a freelance web developer specializing in custom front-end development, luxury web templates, bug fixing, and interactive 3D web applications. Welcome to Brobex Code.">
-    <meta name="keywords"
-        content="brobex, brobex code, brobex website developer, freelance web developer, front-end programmer, HTML, CSS, JavaScript, React developer, Tailwind CSS, 3D web components, Three.js">
+        content="Brobex Code is the official portfolio of Brobex, a freelance web developer specializing in modern front-end development, responsive websites, UI/UX, JavaScript, and interactive web experiences.">
+
     <meta name="author" content="Brobex">
-    <meta name="robots" content="index, follow">
+
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+
+    <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+
     <meta name="theme-color" content="#020804">
 
-    <!-- Theme Initialization Script -->
-    <script>
-        (() => {
-            try {
-                const saved = localStorage.getItem('brobex-theme');
-                const theme = saved || (matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
-                document.documentElement.dataset.theme = theme;
-            } catch { }
-        })();
-    </script>
+    <meta name="application-name" content="Brobex">
 
-    <!-- Open Graph / Facebook / LinkedIn -->
-    <meta property="og:type" content="website">
-    <meta property="og:site_name" content="Brobex" />
-    <meta property="og:url" content="https://brobexportfolio.vercel.app/">
-    <meta property="og:title" content="Brobex Code | Professional Website Developer
-    Brobex | Brobex code | brobex website developer | brobex ">
-    <meta property="og:description"
-        content="Explore the portfolio of Brobex, a specialized coder crafting luxury web interfaces and custom 3D web applications.">
-    <meta property="og:image" content="https://brobexportfolio.vercel.app/images/brobex-logo.webp">
+    <!--
+        Do NOT stuff hundreds of keywords here.
+        Google does not use the keywords meta tag for ranking.
+        Your important branded terms should naturally appear
+        in the visible page content, title, description and headings.
+    -->
+
+
+    <!-- =========================================
+         CANONICAL URL
+    ========================================== -->
 
     <link rel="canonical" href="https://brobexportfolio.vercel.app/">
 
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://brobexportfolio.vercel.app/">
-    <meta property="twitter:title" content="Brobex Code | Professional Website Developer">
-    <meta property="twitter:description"
-        content="Explore the portfolio of Brobex, a specialized coder crafting luxury web interfaces and custom 3D web applications.">
-    <meta property="twitter:image" content="https://brobexportfolio.vercel.app/images/brobex-logo.webp">
 
-    <!-- JSON-LD Schema Markup for Google Search Authority -->
+    <!-- =========================================
+         FAVICON
+    ========================================== -->
+
+    <link rel="icon" type="image/png" href="/images/favicon.png">
+
+    <link rel="apple-touch-icon" href="/images/favicon.png">
+
+
+    <!-- =========================================
+         THEME INITIALIZATION
+    ========================================== -->
+
+    <script>
+        (() => {
+            try {
+                const savedTheme = localStorage.getItem("brobex-theme");
+
+                const theme =
+                    savedTheme ||
+                    (
+                        window.matchMedia &&
+                            window.matchMedia("(prefers-color-scheme: light)").matches
+                            ? "light"
+                            : "dark"
+                    );
+
+                document.documentElement.dataset.theme = theme;
+            } catch (error) {
+                document.documentElement.dataset.theme = "dark";
+            }
+        })();
+    </script>
+
+
+    <!-- =========================================
+         OPEN GRAPH
+    ========================================== -->
+
+    <meta property="og:type" content="website">
+
+    <meta property="og:site_name" content="Brobex">
+
+    <meta property="og:url" content="https://brobexportfolio.vercel.app/">
+
+    <meta property="og:title" content="Brobex | Brobex Code — Freelance Web Developer">
+
+    <meta property="og:description"
+        content="Official Brobex Code portfolio featuring modern web development, responsive websites, front-end engineering, UI/UX, JavaScript and interactive web experiences.">
+
+    <meta property="og:image" content="https://brobexportfolio.vercel.app/images/brobex-logo.webp">
+
+    <meta property="og:image:alt" content="Brobex Code — Freelance Web Developer">
+
+    <meta property="og:locale" content="en_US">
+
+
+    <!-- =========================================
+         TWITTER / X
+    ========================================== -->
+
+    <meta name="twitter:card" content="summary_large_image">
+
+    <meta name="twitter:title" content="Brobex | Brobex Code — Freelance Web Developer">
+
+    <meta name="twitter:description"
+        content="Official Brobex Code portfolio featuring modern front-end development, responsive websites, UI/UX and interactive web experiences.">
+
+    <meta name="twitter:image" content="https://brobexportfolio.vercel.app/images/brobex-logo.webp">
+
+    <meta name="twitter:image:alt" content="Brobex Code — Freelance Web Developer">
+
+
+    <!-- =========================================
+         PERFORMANCE / RESOURCE HINTS
+    ========================================== -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+
+    <!-- =========================================
+         PERSON / BRAND / WEBSITE STRUCTURED DATA
+    ========================================== -->
+
     <script type="application/ld+json">
     {
-      "@context": "https://schema.org/",
-      "@type": "Person",
-      "name": "Brobex",
-      "url": "https://brobexportfolio.vercel.app/",
-      "image": "https://brobexportfolio.vercel.app/images/brobex-logo.webp",
-      "jobTitle": "Freelance Web Developer",
-      "worksFor": {
-        "@type": "Organization",
-        "name": "Brobex Code"
-      },
-      "description": "Freelance frontend developer building responsive websites, interfaces, and interactive browser experiences.",
-      "sameAs": [
-        "https://www.instagram.com/codewithbrobex/"
-      ],
-      "knowsAbout": [
-        "Frontend Development",
-        "Responsive Web Design",
-        "UI/UX Design",
-        "JavaScript",
-        "HTML",
-        "CSS"
-      ]
+        "@context": "https://schema.org",
+        "@graph": [
+
+            {
+                "@type": "Person",
+                "@id": "https://brobexportfolio.vercel.app/#person",
+                "name": "Brobex",
+                "url": "https://brobexportfolio.vercel.app/",
+                "image": "https://brobexportfolio.vercel.app/images/brobex-logo.webp",
+                "jobTitle": "Freelance Web Developer",
+                "description": "Brobex is a freelance web developer specializing in modern front-end development, responsive websites, UI/UX, JavaScript and interactive web experiences.",
+                "worksFor": {
+                    "@id": "https://brobexportfolio.vercel.app/#organization"
+                },
+                "knowsAbout": [
+                    "Web Development",
+                    "Front-End Development",
+                    "Responsive Web Design",
+                    "UI/UX Design",
+                    "HTML",
+                    "CSS",
+                    "JavaScript",
+                    "React",
+                    "Tailwind CSS",
+                    "Three.js",
+                    "Interactive Web Development"
+                ],
+                "sameAs": [
+                    "https://www.instagram.com/codewithbrobex/"
+                ]
+            },
+
+            {
+                "@type": "Organization",
+                "@id": "https://brobexportfolio.vercel.app/#organization",
+                "name": "Brobex Code",
+                "alternateName": [
+                    "Brobex",
+                    "Brobex Code"
+                ],
+                "url": "https://brobexportfolio.vercel.app/",
+                "logo": {
+                    "@type": "ImageObject",
+                    "url": "https://brobexportfolio.vercel.app/images/brobex-logo.webp"
+                },
+                "description": "Brobex Code is the web development brand and portfolio of Brobex, specializing in modern front-end development, responsive websites and interactive web experiences.",
+                "sameAs": [
+                    "https://www.instagram.com/codewithbrobex/"
+                ]
+            },
+
+            {
+                "@type": "WebSite",
+                "@id": "https://brobexportfolio.vercel.app/#website",
+                "name": "Brobex",
+                "alternateName": "Brobex Code",
+                "url": "https://brobexportfolio.vercel.app/",
+                "description": "Official Brobex Code portfolio and website of freelance web developer Brobex.",
+                "publisher": {
+                    "@id": "https://brobexportfolio.vercel.app/#person"
+                },
+                "inLanguage": "en"
+            },
+
+            {
+                "@type": "WebPage",
+                "@id": "https://brobexportfolio.vercel.app/#webpage",
+                "url": "https://brobexportfolio.vercel.app/",
+                "name": "Brobex | Brobex Code — Freelance Web Developer",
+                "description": "Official Brobex Code portfolio featuring modern web development, responsive websites, UI/UX and interactive web experiences.",
+                "isPartOf": {
+                    "@id": "https://brobexportfolio.vercel.app/#website"
+                },
+                "about": {
+                    "@id": "https://brobexportfolio.vercel.app/#person"
+                },
+                "inLanguage": "en"
+            }
+
+        ]
     }
     </script>
-    
-    <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  "name": "Brobex",
-  "url": "https://brobexportfolio.vercel.app/"
-}
-</script>
 
-    <!-- Premium Luxury Fonts: Playfair Display & Montserrat -->
-    <link rel="apple-touch-icon" sizes="180x180" href="./images/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon-16x16.png">
-    <link rel="manifest" href="./images/site.webmanifest">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@500;600;700;800&display=swap"
-        rel="stylesheet">
+</head>
+```
 
-    <!-- Standard Favicon -->
-    
 
-    <!-- Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<!-- Premium Luxury Fonts: Playfair Display & Montserrat -->
+<link rel="apple-touch-icon" sizes="180x180" href="./images/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="./images/favicon-16x16.png">
+<link rel="manifest" href="./images/site.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@500;600;700;800&display=swap"
+    rel="stylesheet">
 
-    <!-- Existing CSS Architecture -->
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/enhancements.css">
-    <link rel="stylesheet" href="responsive/responsive.css">
-    <link rel="stylesheet" href="css/desktop-enhancements.css">
-    <link rel="stylesheet" href="css/theme.css">
-    <link rel="stylesheet" href="css/premium.css">
+<!-- Standard Favicon -->
+
+
+<!-- Icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<!-- Existing CSS Architecture -->
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/enhancements.css">
+<link rel="stylesheet" href="responsive/responsive.css">
+<link rel="stylesheet" href="css/desktop-enhancements.css">
+<link rel="stylesheet" href="css/theme.css">
+<link rel="stylesheet" href="css/premium.css">
 
 </head>
 
