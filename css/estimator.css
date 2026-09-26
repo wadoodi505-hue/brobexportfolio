@@ -1,0 +1,555 @@
+/* ==========================================================================
+   BROBEX WEBSITE ESTIMATOR & PROJECT BRIEF BUILDER
+   ========================================================================== */
+
+.brobex-estimator {
+    margin-top: 2rem;
+    position: relative;
+    font-family: var(--font-body);
+}
+
+/* --- Progress Indicator --- */
+.estimator-progress {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 3.5rem;
+    position: relative;
+    max-width: 800px;
+}
+
+.progress-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-tech);
+    font-weight: 700;
+    color: var(--text-dim);
+    font-size: 1.2rem;
+    z-index: 2;
+    transition: var(--transition-smooth);
+}
+
+.progress-step.active, 
+.progress-step.completed {
+    color: var(--accent-gold);
+}
+
+.progress-step.active {
+    text-shadow: 0 0 15px var(--accent-glow);
+}
+
+.progress-step.completed {
+    color: var(--accent-green);
+}
+
+.step-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+}
+
+.progress-line {
+    flex-grow: 1;
+    height: 2px;
+    background: rgba(212, 175, 55, 0.15);
+    margin: -20px 15px 0 15px;
+    transition: var(--transition-smooth);
+}
+
+.progress-step.completed + .progress-line {
+    background: linear-gradient(90deg, var(--accent-green), rgba(126, 211, 33, 0.3));
+}
+
+/* --- Layout --- */
+.estimator-layout {
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    gap: 3rem;
+    align-items: start;
+}
+
+.estimator-step {
+    display: none;
+    animation: fadeIn 0.4s ease forwards;
+}
+
+.estimator-step.active {
+    display: block;
+}
+
+.step-heading {
+    font-size: 1.6rem;
+    margin-bottom: 2rem;
+    color: var(--text-main);
+}
+
+/* --- Step 1: Website Cards --- */
+.estimator-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.2rem;
+    margin-bottom: 2.5rem;
+}
+
+.type-card-label {
+    cursor: pointer;
+    display: block;
+}
+
+.type-card {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(212, 175, 55, 0.15);
+    border-radius: 10px;
+    padding: 1.8rem 1.2rem;
+    text-align: center;
+    transition: var(--transition-smooth);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.type-card:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(212, 175, 55, 0.4);
+    transform: translateY(-4px);
+}
+
+.type-card i {
+    font-size: 2rem;
+    color: var(--accent-gold);
+    margin-bottom: 1rem;
+    transition: var(--transition-smooth);
+}
+
+.type-card-title {
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    color: var(--text-main);
+    margin-bottom: 0.5rem;
+}
+
+.type-card-desc {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+}
+
+/* Active State for Cards */
+input[type="radio"]:checked + .type-card {
+    border-color: var(--accent-green);
+    background: rgba(126, 211, 33, 0.05);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5), inset 0 0 20px var(--accent-green-glow);
+    transform: translateY(-4px);
+}
+
+input[type="radio"]:checked + .type-card i {
+    color: var(--accent-green);
+    transform: scale(1.1);
+}
+
+input[type="radio"]:focus-visible + .type-card {
+    outline: 2px solid var(--accent-green-bright);
+    outline-offset: 4px;
+}
+
+/* --- Step 2: Requirements --- */
+.requirement-group {
+    margin-bottom: 2.5rem;
+    background: rgba(0,0,0,0.2);
+    border: 1px solid rgba(255,255,255,0.05);
+    padding: 1.8rem;
+    border-radius: 10px;
+}
+
+.req-title {
+    font-family: var(--font-tech);
+    font-size: 0.85rem;
+    letter-spacing: 0.1em;
+    color: var(--accent-gold);
+    margin-bottom: 1.2rem;
+    text-transform: uppercase;
+}
+
+.radio-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+}
+
+.radio-chip {
+    cursor: pointer;
+}
+
+.radio-chip span {
+    display: inline-block;
+    padding: 0.6rem 1.2rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    border-radius: 6px;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    transition: var(--transition-smooth);
+}
+
+.radio-chip:hover span {
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--text-main);
+}
+
+.radio-chip input:checked + span {
+    background: rgba(126, 211, 33, 0.1);
+    border-color: var(--accent-green);
+    color: var(--accent-green-bright);
+    box-shadow: 0 0 15px var(--accent-green-glow);
+}
+
+.radio-chip input:focus-visible + span {
+    outline: 2px solid var(--accent-green-bright);
+    outline-offset: 2px;
+}
+
+/* Checkbox Grid for Features */
+.checkbox-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 0.8rem;
+}
+
+.feature-check {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 0.8rem 1rem;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 6px;
+    transition: var(--transition-smooth);
+}
+
+.feature-check:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(212, 175, 55, 0.3);
+}
+
+.feature-check input[type="checkbox"] {
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border: 1px solid var(--accent-gold);
+    border-radius: 4px;
+    background: transparent;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.2s ease;
+}
+
+.feature-check input[type="checkbox"]:checked {
+    background: var(--accent-green);
+    border-color: var(--accent-green);
+}
+
+.feature-check input[type="checkbox"]:checked::after {
+    content: '\f00c';
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    font-size: 10px;
+    color: #000;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.feature-check span {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    user-select: none;
+}
+
+.feature-check input[type="checkbox"]:checked ~ span {
+    color: var(--text-main);
+}
+
+/* --- Step 3: Estimate Reveal --- */
+.estimate-reveal-container {
+    text-align: center;
+    padding: 4rem 2rem;
+    background: rgba(0,0,0,0.3);
+    border: 1px dashed rgba(212, 175, 55, 0.3);
+    border-radius: 12px;
+    margin-bottom: 2.5rem;
+}
+
+.price-range-display {
+    font-family: var(--font-heading);
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    font-weight: 800;
+    margin: 1.5rem 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.price-val {
+    color: var(--accent-green);
+    text-shadow: 0 0 25px var(--accent-green-glow);
+}
+
+.price-sep {
+    color: var(--text-muted);
+    font-weight: 300;
+}
+
+.estimate-disclaimer {
+    font-size: 0.85rem;
+    color: var(--text-dim);
+    max-width: 500px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+.estimate-disclaimer i {
+    color: var(--accent-gold);
+    margin-right: 5px;
+}
+
+/* --- Step 4: Brief Form --- */
+.brief-form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-top: 2rem;
+    margin-bottom: 2.5rem;
+}
+
+.brief-form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.brief-form-group.full-span {
+    grid-column: 1 / -1;
+}
+
+.brief-form-group label {
+    font-family: var(--font-tech);
+    font-size: 0.75rem;
+    color: var(--accent-gold);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.brief-form-group input, 
+.brief-form-group textarea {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    border-radius: 6px;
+    padding: 1rem;
+    color: var(--text-main);
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    transition: var(--transition-smooth);
+}
+
+.brief-form-group input:focus, 
+.brief-form-group textarea:focus {
+    outline: none;
+    border-color: var(--accent-green);
+    box-shadow: 0 0 10px var(--accent-green-glow);
+    background: rgba(0,0,0,0.5);
+}
+
+/* --- Actions & Buttons --- */
+.estimator-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 2rem;
+}
+
+.estimator-actions.split {
+    justify-content: space-between;
+}
+
+.column-actions {
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.validation-message {
+    color: #ff4d4d;
+    font-size: 0.85rem;
+    margin-top: 1rem;
+    text-align: right;
+    min-height: 20px;
+}
+
+.reset-container {
+    text-align: center;
+    margin-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding-top: 1.5rem;
+}
+
+.btn-reset {
+    background: none;
+    border: none;
+    color: var(--text-dim);
+    font-family: var(--font-tech);
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.btn-reset:hover {
+    color: var(--text-main);
+}
+
+/* --- Summary Sidebar --- */
+.estimator-sidebar {
+    position: sticky;
+    top: 120px;
+}
+
+.summary-panel {
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    border-radius: 12px;
+    padding: 2rem 1.5rem;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+}
+
+.summary-title {
+    font-family: var(--font-tech);
+    font-size: 0.85rem;
+    color: var(--accent-gold);
+    letter-spacing: 0.15em;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.summary-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    min-height: 150px;
+}
+
+.summary-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    animation: fadeIn 0.3s ease forwards;
+}
+
+.summary-item-label {
+    font-size: 0.7rem;
+    color: var(--text-dim);
+    text-transform: uppercase;
+}
+
+.summary-item-value {
+    font-size: 0.9rem;
+    color: var(--text-main);
+    font-weight: 500;
+}
+
+.empty-state {
+    color: var(--text-dim);
+    font-style: italic;
+    font-size: 0.9rem;
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.summary-total {
+    background: rgba(126, 211, 33, 0.05);
+    border: 1px solid rgba(126, 211, 33, 0.2);
+    border-radius: 8px;
+    padding: 1.2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    transition: opacity 0.3s ease;
+}
+
+.summary-total.updating {
+    opacity: 0.5;
+}
+
+.total-label {
+    font-family: var(--font-tech);
+    font-size: 0.7rem;
+    color: var(--accent-green);
+    letter-spacing: 0.1em;
+}
+
+.total-value {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-main);
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 1024px) {
+    .estimator-layout {
+        grid-template-columns: 1fr;
+    }
+    
+    .estimator-sidebar {
+        position: static;
+        margin-top: 2rem;
+        order: -1; /* Puts summary at the top on mobile so they see updates */
+    }
+
+    .summary-list {
+        min-height: auto;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .estimator-progress {
+        display: none; /* Hide complex progress on small mobile, rely on layout */
+    }
+
+    .brief-form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .summary-list {
+        grid-template-columns: 1fr;
+    }
+    
+    .price-range-display {
+        flex-direction: column;
+        gap: 0.2rem;
+    }
+    
+    .price-sep { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .estimator-step,
+    .summary-item {
+        animation: none;
+    }
+    .type-card,
+    .radio-chip span {
+        transition: none;
+    }
+}

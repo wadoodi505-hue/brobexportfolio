@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Brobex | Digital Architect & Frontend Developer</title>
-    <meta name="description" content="Discover the methodology, history, and technical arsenal behind Brobex.">
+    <meta name="description" content="Discover the methodology, history, and technical arsenal behind Brobex. Custom website development and premium frontend engineering.">
     <meta name="theme-color" content="#020804">
     <script>
         (() => {
@@ -32,13 +32,15 @@
     <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- Stylesheet -->
+    <!-- Stylesheets -->
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/enhancements.css">
     <link rel="stylesheet" href="responsive/responsive.css">
     <link rel="stylesheet" href="css/desktop-enhancements.css">
     <link rel="stylesheet" href="css/theme.css">
     <link rel="stylesheet" href="css/premium.css">
+    <!-- Estimator Feature Styles -->
+    <link rel="stylesheet" href="css/estimator.css">
 </head>
 <body class="theme-dark">
     <a class="skip-link" href="#main-content">Skip to content</a>
@@ -214,7 +216,6 @@
                     <div class="section-line"></div>
                 </div>
 
-                <!-- Utilizing the interactive-card styling for the tech stack -->
                 <div class="capabilities-grid progression-track">
                     
                     <div class="interactive-card reveal blur-in" data-delay="100">
@@ -249,6 +250,210 @@
                         </p>
                     </div>
 
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================================= -->
+        <!-- NEW FEATURE: BROBEX WEBSITE ESTIMATOR & BRIEF BUILDER     -->
+        <!-- ========================================================= -->
+        <section class="section-padding" id="project-estimator">
+            <div class="container">
+                <div class="hud-panel reveal fade-up">
+                    <div class="section-header">
+                        <span class="eyebrow">// PROJECT ARCHITECTURE</span>
+                        <h2 class="section-title">PLAN YOUR BROBEX WEBSITE</h2>
+                        <p class="card-text" style="font-size: 1.15rem; max-width: 800px; margin-top: 1rem;">
+                            Tell BROBEX what you want to build. Configure your project, explore the estimated investment, and generate a ready-to-send project brief.
+                        </p>
+                        <div class="section-line" style="margin-top: 1.5rem;"></div>
+                    </div>
+
+                    <div class="brobex-estimator" id="brobexEstimator">
+                        
+                        <!-- Progress Indicator -->
+                        <div class="estimator-progress" aria-hidden="true">
+                            <div class="progress-step active" data-step="1">01<span class="step-label">WEBSITE</span></div>
+                            <div class="progress-line"></div>
+                            <div class="progress-step" data-step="2">02<span class="step-label">REQUIREMENTS</span></div>
+                            <div class="progress-line"></div>
+                            <div class="progress-step" data-step="3">03<span class="step-label">ESTIMATE</span></div>
+                            <div class="progress-line"></div>
+                            <div class="progress-step" data-step="4">04<span class="step-label">BRIEF</span></div>
+                        </div>
+
+                        <div class="estimator-layout">
+                            <!-- Left Column: Interactive Steps -->
+                            <div class="estimator-content">
+                                
+                                <!-- STEP 1: WEBSITE TYPE -->
+                                <div class="estimator-step active" id="step-1">
+                                    <h3 class="step-heading">What type of website are you looking to build?</h3>
+                                    <div class="estimator-grid" id="websiteTypeGrid">
+                                        <!-- Handled via accessible radio inputs masked as cards -->
+                                    </div>
+                                    <div class="estimator-actions">
+                                        <button class="btn-primary btn-next" type="button" disabled><span>CONTINUE</span> <i class="fas fa-arrow-right"></i></button>
+                                    </div>
+                                    <p class="validation-message" id="step1-error" aria-live="polite"></p>
+                                </div>
+
+                                <!-- STEP 2: PROJECT REQUIREMENTS -->
+                                <div class="estimator-step" id="step-2">
+                                    <h3 class="step-heading">Configure your project requirements</h3>
+                                    
+                                    <div class="requirement-group">
+                                        <h4 class="req-title">Number of Pages</h4>
+                                        <div class="radio-chips" id="req-pages">
+                                            <label class="radio-chip"><input type="radio" name="pages" value="1-3" class="sr-only"><span>1–3</span></label>
+                                            <label class="radio-chip"><input type="radio" name="pages" value="4-6" class="sr-only"><span>4–6</span></label>
+                                            <label class="radio-chip"><input type="radio" name="pages" value="7-10" class="sr-only"><span>7–10</span></label>
+                                            <label class="radio-chip"><input type="radio" name="pages" value="10+" class="sr-only"><span>10+</span></label>
+                                        </div>
+                                    </div>
+
+                                    <div class="requirement-group">
+                                        <h4 class="req-title">Design Level</h4>
+                                        <div class="radio-chips" id="req-design">
+                                            <label class="radio-chip"><input type="radio" name="design" value="Clean & Professional" class="sr-only"><span>Clean & Professional</span></label>
+                                            <label class="radio-chip"><input type="radio" name="design" value="Premium" class="sr-only"><span>Premium</span></label>
+                                            <label class="radio-chip"><input type="radio" name="design" value="Luxury / High-End" class="sr-only"><span>Luxury / High-End</span></label>
+                                            <label class="radio-chip"><input type="radio" name="design" value="Fully Custom" class="sr-only"><span>Fully Custom</span></label>
+                                        </div>
+                                    </div>
+
+                                    <div class="requirement-group">
+                                        <h4 class="req-title">Responsive Design</h4>
+                                        <div class="radio-chips" id="req-responsive">
+                                            <label class="radio-chip"><input type="radio" name="responsive" value="Desktop + Mobile" class="sr-only"><span>Desktop + Mobile</span></label>
+                                            <label class="radio-chip"><input type="radio" name="responsive" value="Desktop + Tablet + Mobile" class="sr-only"><span>Desktop + Tablet + Mobile</span></label>
+                                        </div>
+                                    </div>
+
+                                    <div class="requirement-group">
+                                        <h4 class="req-title">Features & Integrations (Select multiple)</h4>
+                                        <div class="checkbox-grid" id="req-features">
+                                            <!-- Injected by JS -->
+                                        </div>
+                                    </div>
+
+                                    <div class="requirement-group">
+                                        <h4 class="req-title">Do you already have a design?</h4>
+                                        <div class="radio-chips" id="req-designStatus">
+                                            <label class="radio-chip"><input type="radio" name="designStatus" value="Yes, I have a design" class="sr-only"><span>Yes, I have a design</span></label>
+                                            <label class="radio-chip"><input type="radio" name="designStatus" value="I have inspiration/references" class="sr-only"><span>I have inspiration/references</span></label>
+                                            <label class="radio-chip"><input type="radio" name="designStatus" value="No, create the design for me" class="sr-only"><span>No, create the design for me</span></label>
+                                        </div>
+                                    </div>
+
+                                    <div class="requirement-group">
+                                        <h4 class="req-title">Content (Text & Images)</h4>
+                                        <div class="radio-chips" id="req-content">
+                                            <label class="radio-chip"><input type="radio" name="content" value="I have all content" class="sr-only"><span>I have all content</span></label>
+                                            <label class="radio-chip"><input type="radio" name="content" value="I have some content" class="sr-only"><span>I have some content</span></label>
+                                            <label class="radio-chip"><input type="radio" name="content" value="I need help with content" class="sr-only"><span>I need help with content</span></label>
+                                        </div>
+                                    </div>
+
+                                    <div class="requirement-group">
+                                        <h4 class="req-title">Timeline</h4>
+                                        <div class="radio-chips" id="req-timeline">
+                                            <label class="radio-chip"><input type="radio" name="timeline" value="Flexible" class="sr-only"><span>Flexible</span></label>
+                                            <label class="radio-chip"><input type="radio" name="timeline" value="1–2 weeks" class="sr-only"><span>1–2 weeks</span></label>
+                                            <label class="radio-chip"><input type="radio" name="timeline" value="2–4 weeks" class="sr-only"><span>2–4 weeks</span></label>
+                                            <label class="radio-chip"><input type="radio" name="timeline" value="1–2 months" class="sr-only"><span>1–2 months</span></label>
+                                            <label class="radio-chip"><input type="radio" name="timeline" value="Discuss with BROBEX" class="sr-only"><span>Discuss with BROBEX</span></label>
+                                        </div>
+                                    </div>
+
+                                    <div class="estimator-actions split">
+                                        <button class="btn-secondary btn-back" type="button"><i class="fas fa-arrow-left"></i> <span>BACK</span></button>
+                                        <button class="btn-primary btn-next" type="button"><span>CALCULATE ESTIMATE</span> <i class="fas fa-arrow-right"></i></button>
+                                    </div>
+                                    <p class="validation-message" id="step2-error" aria-live="polite"></p>
+                                </div>
+
+                                <!-- STEP 3: ESTIMATE -->
+                                <div class="estimator-step" id="step-3">
+                                    <div class="estimate-reveal-container">
+                                        <span class="eyebrow">// ANALYSIS COMPLETE</span>
+                                        <h3 class="step-heading">Estimated Project Investment</h3>
+                                        <div class="price-range-display" id="finalPriceDisplay">
+                                            <span class="price-val">$0</span>
+                                            <span class="price-sep">–</span>
+                                            <span class="price-val">$0</span>
+                                        </div>
+                                        <p class="estimate-disclaimer">
+                                            <i class="fas fa-info-circle"></i> Final pricing depends on the confirmed scope, functionality, content, integrations, and project requirements.
+                                        </p>
+                                    </div>
+                                    
+                                    <div class="estimator-actions split">
+                                        <button class="btn-secondary btn-back" type="button"><i class="fas fa-arrow-left"></i> <span>EDIT REQUIREMENTS</span></button>
+                                        <button class="btn-primary btn-next" type="button"><span>BUILD PROJECT BRIEF</span> <i class="fas fa-arrow-right"></i></button>
+                                    </div>
+                                </div>
+
+                                <!-- STEP 4: PROJECT BRIEF -->
+                                <div class="estimator-step" id="step-4">
+                                    <h3 class="step-heading">Your Project Brief</h3>
+                                    <p class="card-desc">Review your configured requirements and add your contact details to open a direct channel with BROBEX.</p>
+                                    
+                                    <div class="brief-form-grid">
+                                        <div class="brief-form-group">
+                                            <label for="briefName">Full Name</label>
+                                            <input type="text" id="briefName" placeholder="John Doe">
+                                        </div>
+                                        <div class="brief-form-group">
+                                            <label for="briefEmail">Email Address</label>
+                                            <input type="email" id="briefEmail" placeholder="john@example.com">
+                                        </div>
+                                        <div class="brief-form-group">
+                                            <label for="briefBusiness">Business / Brand Name</label>
+                                            <input type="text" id="briefBusiness" placeholder="Your Brand Ltd.">
+                                        </div>
+                                        <div class="brief-form-group">
+                                            <label for="briefPhone">Phone / WhatsApp</label>
+                                            <input type="tel" id="briefPhone" placeholder="+1 234 567 8900">
+                                        </div>
+                                        <div class="brief-form-group full-span">
+                                            <label for="briefNotes">Optional Project Notes</label>
+                                            <textarea id="briefNotes" rows="3" placeholder="Any specific details, links, or questions..."></textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class="estimator-actions column-actions">
+                                        <a href="#" class="btn-primary full-width" id="btnEmailBrief">
+                                            <i class="fas fa-envelope"></i> <span>EMAIL MY PROJECT BRIEF</span>
+                                        </a>
+                                        <a href="#" target="_blank" rel="noopener noreferrer" class="btn-secondary full-width" id="btnWhatsappBrief">
+                                            <i class="fab fa-whatsapp"></i> <span>DISCUSS ON WHATSAPP</span>
+                                        </a>
+                                    </div>
+                                    <div class="reset-container">
+                                        <button class="btn-reset" type="button" id="btnResetEstimator">
+                                            <i class="fas fa-redo"></i> RESET PROJECT
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Right Column: Sticky Summary Panel -->
+                            <div class="estimator-sidebar">
+                                <div class="summary-panel">
+                                    <h4 class="summary-title">LIVE SUMMARY</h4>
+                                    <div class="summary-list" id="summaryList">
+                                        <div class="summary-item empty-state">Select a website type to begin your estimate.</div>
+                                    </div>
+                                    <div class="summary-total">
+                                        <span class="total-label">ESTIMATED RANGE</span>
+                                        <span class="total-value" id="summaryPrice">$0 – $0</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
             </div>
         </section>
@@ -299,5 +504,7 @@
     <script src="js/desktop-enhancements.js" defer></script>
     <script src="js/theme.js" defer></script>
     <script src="js/premium.js" defer></script>
+    <!-- Estimator Engine -->
+    <script src="js/estimator.js" defer></script>
 </body>
 </html>
