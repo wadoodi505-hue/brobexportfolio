@@ -1,6 +1,7 @@
 /**
  * BROBEX Website Estimator & Project Brief Builder
  * Isolated logic to maintain site integrity.
+ * Updated: Includes 30% Professional Discount Formatting
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -72,6 +73,8 @@ document.addEventListener('DOMContentLoaded', () => {
         designStatus: null,
         contentStatus: null,
         timeline: null,
+        originalMin: 0,
+        originalMax: 0,
         estimatedMin: 0,
         estimatedMax: 0
     };
@@ -181,7 +184,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // =========================================================================
-    // CALCULATION LOGIC
+    // CALCULATION LOGIC (WITH 30% DISCOUNT)
     // =========================================================================
 
     function calculateEstimate() {
@@ -216,8 +219,13 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        state.estimatedMin = min;
-        state.estimatedMax = max;
+        // Save original prices before discounting
+        state.originalMin = min;
+        state.originalMax = max;
+
+        // Apply 30% Professional Discount
+        state.estimatedMin = Math.round(min * 0.70);
+        state.estimatedMax = Math.round(max * 0.70);
     }
 
     // =========================================================================
@@ -257,14 +265,16 @@ document.addEventListener('DOMContentLoaded', () => {
         parentTotal.classList.add('updating');
         
         setTimeout(() => {
+            const formattedOrigMin = state.originalMin.toLocaleString('en-US');
+            const formattedOrigMax = state.originalMax.toLocaleString('en-US');
             const formattedMin = state.estimatedMin.toLocaleString('en-US');
             const formattedMax = state.estimatedMax.toLocaleString('en-US');
             
-            // If completely custom/high end, format with a +
-            if(state.design === 'Fully Custom' && state.estimatedMax > 4000) {
-                 summaryPrice.textContent = `$${formattedMin} – $${formattedMax}+`;
+            // Format HTML to display the crossed-out original price and the discounted price
+            if(state.design === 'Fully Custom' && state.originalMax > 4000) {
+                 summaryPrice.innerHTML = `<s style="font-size:0.8em; opacity:0.6;">$${formattedOrigMin} – $${formattedOrigMax}+</s><br><span style="color:#28a745;">$${formattedMin} – $${formattedMax}+ <small>(30% OFF)</small></span>`;
             } else {
-                 summaryPrice.textContent = `$${formattedMin} – $${formattedMax}`;
+                 summaryPrice.innerHTML = `<s style="font-size:0.8em; opacity:0.6;">$${formattedOrigMin} – $${formattedOrigMax}</s><br><span style="color:#28a745;">$${formattedMin} – $${formattedMax} <small>(30% OFF)</small></span>`;
             }
             
             parentTotal.classList.remove('updating');
@@ -273,21 +283,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function updateFinalEstimateDisplay() {
         if(!finalPriceDisplay) return;
+        const formattedOrigMin = state.originalMin.toLocaleString('en-US');
+        const formattedOrigMax = state.originalMax.toLocaleString('en-US');
         const formattedMin = state.estimatedMin.toLocaleString('en-US');
         const formattedMax = state.estimatedMax.toLocaleString('en-US');
         
-        let priceString = `
-            <span class="price-val">$${formattedMin}</span>
-            <span class="price-sep">–</span>
-            <span class="price-val">$${formattedMax}</span>
+        let customPlus = (state.design === 'Fully Custom' && state.originalMax > 4000) ? '+' : '';
+
+        // Professional layout showing the discount
+        const priceString = `
+            <div style="font-size: 0.5em; text-decoration: line-through; color: #888; margin-bottom: -10px;">
+                Original: $${formattedOrigMin} – $${formattedOrigMax}${customPlus}
+            </div>
+            <span class="price-val" style="color: #28a745;">$${formattedMin}</span>
+            <span class="price-sep" style="color: #28a745;">–</span>
+            <span class="price-val" style="color: #28a745;">$${formattedMax}${customPlus}</span>
+            <div style="display: inline-block; background: #28a745; color: white; padding: 4px 10px; border-radius: 5px; font-size: 0.35em; vertical-align: middle; margin-left: 15px; font-weight: bold; letter-spacing: 1px;">
+                30% DISCOUNT APPLIED
+            </div>
         `;
-        if(state.design === 'Fully Custom' && state.estimatedMax > 4000) {
-             priceString = `
-                <span class="price-val">$${formattedMin}</span>
-                <span class="price-sep">–</span>
-                <span class="price-val">$${formattedMax}+</span>
-            `;
-        }
+        
         finalPriceDisplay.innerHTML = priceString;
     }
 
@@ -375,6 +390,8 @@ document.addEventListener('DOMContentLoaded', () => {
             designStatus: null,
             contentStatus: null,
             timeline: null,
+            originalMin: 0,
+            originalMax: 0,
             estimatedMin: 0,
             estimatedMax: 0
         };
@@ -399,9 +416,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const clientPhone = briefPhone.value.trim() || '[Not provided]';
         const notes = briefNotes.value.trim() || 'No additional notes.';
 
-        const priceStr = (state.design === 'Fully Custom' && state.estimatedMax > 4000) 
-            ? `$${state.estimatedMin.toLocaleString()} – $${state.estimatedMax.toLocaleString()}+`
-            : `$${state.estimatedMin.toLocaleString()} – $${state.estimatedMax.toLocaleString()}`;
+        const customPlus = (state.design === 'Fully Custom' && state.originalMax > 4000) ? '+' : '';
+        const originalPriceStr = `$${state.originalMin.toLocaleString()} – $${state.originalMax.toLocaleString()}${customPlus}`;
+        const discountedPriceStr = `$${state.estimatedMin.toLocaleString()} – $${state.estimatedMax.toLocaleString()}${customPlus}`;
 
         const briefBody = `Hello BROBEX,
 
@@ -430,7 +447,8 @@ Timeline: ${state.timeline}
 
 ESTIMATED PROJECT INVESTMENT
 --------------------------------------------------
-${priceStr}
+Original Estimate: ${originalPriceStr}
+30% Discounted Rate: ${discountedPriceStr}
 
 ADDITIONAL PROJECT NOTES
 --------------------------------------------------
