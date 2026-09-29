@@ -1,18 +1,13 @@
 /**
  * BROBEX Website Estimator & Project Brief Builder
- * Isolated logic to maintain site integrity.
- * Updated: Includes 30% Professional Discount Formatting
+ * Scoped, resilient estimator logic. Keeps the existing pricing model and
+ * 30% discount while improving accessibility, state handling and responsive UX.
  */
 
 document.addEventListener('DOMContentLoaded', () => {
-    
     const estimatorContainer = document.getElementById('brobexEstimator');
-    if (!estimatorContainer) return; // Exit if not on the correct page
+    if (!estimatorContainer) return;
 
-    // =========================================================================
-    // CONFIGURATION & PRICING RANGES
-    // =========================================================================
-    
     const CONFIG = {
         websiteTypes: [
             { id: 'business', icon: 'fa-building', title: 'Business / Company', desc: 'Professional corporate presence', basePrice: [300, 600] },
@@ -59,328 +54,35 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    // =========================================================================
-    // STATE MANAGEMENT
-    // =========================================================================
+    const STEP_LABELS = ['WEBSITE TYPE', 'REQUIREMENTS', 'ESTIMATE', 'PROJECT BRIEF'];
 
-    let state = {
-        step: 1,
-        type: null,
-        pages: null,
-        design: null,
-        responsive: null,
-        features: [],
-        designStatus: null,
-        contentStatus: null,
-        timeline: null,
-        originalMin: 0,
-        originalMax: 0,
-        estimatedMin: 0,
-        estimatedMax: 0
-    };
-
-    // =========================================================================
-    // DOM ELEMENTS
-    // =========================================================================
+    let state = createInitialState();
+    let priceUpdateTimer = null;
 
     const typeGrid = document.getElementById('websiteTypeGrid');
     const featuresGrid = document.getElementById('req-features');
     const summaryList = document.getElementById('summaryList');
     const summaryPrice = document.getElementById('summaryPrice');
     const finalPriceDisplay = document.getElementById('finalPriceDisplay');
-    
-    // Navigation Arrays
-    const steps = document.querySelectorAll('.estimator-step');
-    const progressSteps = document.querySelectorAll('.progress-step');
-    const nextBtns = document.querySelectorAll('.btn-next');
-    const backBtns = document.querySelectorAll('.btn-back');
+    const mobileProgressCount = document.getElementById('mobileProgressCount');
+    const mobileProgressLabel = document.getElementById('mobileProgressLabel');
+    const step1Error = document.getElementById('step1-error');
+    const step2Error = document.getElementById('step2-error');
+    const resetButton = document.getElementById('btnResetEstimator');
 
-    // Inputs
+    const steps = Array.from(estimatorContainer.querySelectorAll('.estimator-step'));
+    const progressSteps = Array.from(estimatorContainer.querySelectorAll('.progress-step'));
+    const nextBtns = Array.from(estimatorContainer.querySelectorAll('.btn-next'));
+    const backBtns = Array.from(estimatorContainer.querySelectorAll('.btn-back'));
+
     const briefName = document.getElementById('briefName');
     const briefEmail = document.getElementById('briefEmail');
     const briefBusiness = document.getElementById('briefBusiness');
     const briefPhone = document.getElementById('briefPhone');
     const briefNotes = document.getElementById('briefNotes');
 
-    // =========================================================================
-    // INITIALIZATION & RENDER
-    // =========================================================================
-
-    function init() {
-        renderWebsiteTypes();
-        renderFeatures();
-        attachEventListeners();
-        updateUI();
-    }
-
-    function renderWebsiteTypes() {
-        typeGrid.innerHTML = CONFIG.websiteTypes.map(type => `
-            <label class="type-card-label">
-                <input type="radio" name="websiteType" value="${type.id}" class="sr-only">
-                <div class="type-card">
-                    <i class="fas ${type.icon}"></i>
-                    <h4 class="type-card-title">${type.title}</h4>
-                    <p class="type-card-desc">${type.desc}</p>
-                </div>
-            </label>
-        `).join('');
-    }
-
-    function renderFeatures() {
-        featuresGrid.innerHTML = CONFIG.featuresList.map(feature => `
-            <label class="feature-check">
-                <input type="checkbox" name="features" value="${feature.label}">
-                <span>${feature.label}</span>
-            </label>
-        `).join('');
-    }
-
-    // =========================================================================
-    // EVENT LISTENERS
-    // =========================================================================
-
-    function attachEventListeners() {
-        // Step Navigation
-        nextBtns.forEach(btn => btn.addEventListener('click', handleNext));
-        backBtns.forEach(btn => btn.addEventListener('click', handleBack));
-        
-        // Reset
-        document.getElementById('btnResetEstimator').addEventListener('click', resetEstimator);
-
-        // Listen for all input changes inside the estimator
-        estimatorContainer.addEventListener('change', (e) => {
-            if(e.target.name === 'websiteType') {
-                const selected = CONFIG.websiteTypes.find(t => t.id === e.target.value);
-                state.type = selected ? selected.title : null;
-                // Enable step 1 next button
-                document.querySelector('#step-1 .btn-next').disabled = false;
-                document.getElementById('step1-error').textContent = '';
-            }
-            if(e.target.name === 'pages') state.pages = e.target.value;
-            if(e.target.name === 'design') state.design = e.target.value;
-            if(e.target.name === 'responsive') state.responsive = e.target.value;
-            if(e.target.name === 'designStatus') state.designStatus = e.target.value;
-            if(e.target.name === 'content') state.contentStatus = e.target.value;
-            if(e.target.name === 'timeline') state.timeline = e.target.value;
-            
-            if(e.target.name === 'features') {
-                const checkedBoxes = Array.from(document.querySelectorAll('input[name="features"]:checked')).map(cb => cb.value);
-                state.features = checkedBoxes;
-            }
-
-            calculateEstimate();
-            updateSummaryPanel();
-        });
-
-        // Brief generation
-        document.getElementById('btnEmailBrief').addEventListener('click', (e) => {
-            e.preventDefault();
-            generateBrief('email');
-        });
-        document.getElementById('btnWhatsappBrief').addEventListener('click', (e) => {
-            e.preventDefault();
-            generateBrief('whatsapp');
-        });
-    }
-
-    // =========================================================================
-    // CALCULATION LOGIC (WITH 30% DISCOUNT)
-    // =========================================================================
-
-    function calculateEstimate() {
-        let min = 0;
-        let max = 0;
-
-        // Base price from type
-        const typeConfig = CONFIG.websiteTypes.find(t => t.title === state.type);
-        if (typeConfig) {
-            min += typeConfig.basePrice[0];
-            max += typeConfig.basePrice[1];
-        }
-
-        // Add Pages multiplier
-        if (state.pages && CONFIG.multipliers.pages[state.pages]) {
-            min += CONFIG.multipliers.pages[state.pages][0];
-            max += CONFIG.multipliers.pages[state.pages][1];
-        }
-
-        // Add Design multiplier
-        if (state.design && CONFIG.multipliers.design[state.design]) {
-            min += CONFIG.multipliers.design[state.design][0];
-            max += CONFIG.multipliers.design[state.design][1];
-        }
-
-        // Add Features
-        state.features.forEach(featLabel => {
-            const featConfig = CONFIG.featuresList.find(f => f.label === featLabel);
-            if (featConfig) {
-                min += featConfig.price[0];
-                max += featConfig.price[1];
-            }
-        });
-
-        // Save original prices before discounting
-        state.originalMin = min;
-        state.originalMax = max;
-
-        // Apply 30% Professional Discount
-        state.estimatedMin = Math.round(min * 0.70);
-        state.estimatedMax = Math.round(max * 0.70);
-    }
-
-    // =========================================================================
-    // UI UPDATES
-    // =========================================================================
-
-    function updateSummaryPanel() {
-        if (!state.type) {
-            summaryList.innerHTML = `<div class="summary-item empty-state">Select a website type to begin your estimate.</div>`;
-            return;
-        }
-
-        let html = '';
-        const addSummaryItem = (label, value) => {
-            if (value && value.length > 0) {
-                const displayVal = Array.isArray(value) ? value.join(', ') : value;
-                html += `
-                    <div class="summary-item">
-                        <span class="summary-item-label">${label}</span>
-                        <span class="summary-item-value">${displayVal}</span>
-                    </div>
-                `;
-            }
-        };
-
-        addSummaryItem('Project Type', state.type);
-        addSummaryItem('Pages', state.pages);
-        addSummaryItem('Design', state.design);
-        addSummaryItem('Responsive', state.responsive);
-        addSummaryItem('Features', state.features);
-        addSummaryItem('Timeline', state.timeline);
-
-        summaryList.innerHTML = html;
-
-        // Subtle animation for price update
-        const parentTotal = summaryPrice.parentElement;
-        parentTotal.classList.add('updating');
-        
-        setTimeout(() => {
-            const formattedOrigMin = state.originalMin.toLocaleString('en-US');
-            const formattedOrigMax = state.originalMax.toLocaleString('en-US');
-            const formattedMin = state.estimatedMin.toLocaleString('en-US');
-            const formattedMax = state.estimatedMax.toLocaleString('en-US');
-            
-            // Format HTML to display the crossed-out original price and the discounted price
-            if(state.design === 'Fully Custom' && state.originalMax > 4000) {
-                 summaryPrice.innerHTML = `<s style="font-size:0.8em; opacity:0.6;">$${formattedOrigMin} – $${formattedOrigMax}+</s><br><span style="color:#28a745;">$${formattedMin} – $${formattedMax}+ <small>(30% OFF)</small></span>`;
-            } else {
-                 summaryPrice.innerHTML = `<s style="font-size:0.8em; opacity:0.6;">$${formattedOrigMin} – $${formattedOrigMax}</s><br><span style="color:#28a745;">$${formattedMin} – $${formattedMax} <small>(30% OFF)</small></span>`;
-            }
-            
-            parentTotal.classList.remove('updating');
-        }, 150);
-    }
-
-    function updateFinalEstimateDisplay() {
-        if(!finalPriceDisplay) return;
-        const formattedOrigMin = state.originalMin.toLocaleString('en-US');
-        const formattedOrigMax = state.originalMax.toLocaleString('en-US');
-        const formattedMin = state.estimatedMin.toLocaleString('en-US');
-        const formattedMax = state.estimatedMax.toLocaleString('en-US');
-        
-        let customPlus = (state.design === 'Fully Custom' && state.originalMax > 4000) ? '+' : '';
-
-        // Professional layout showing the discount
-        const priceString = `
-            <div style="font-size: 0.5em; text-decoration: line-through; color: #888; margin-bottom: -10px;">
-                Original: $${formattedOrigMin} – $${formattedOrigMax}${customPlus}
-            </div>
-            <span class="price-val" style="color: #28a745;">$${formattedMin}</span>
-            <span class="price-sep" style="color: #28a745;">–</span>
-            <span class="price-val" style="color: #28a745;">$${formattedMax}${customPlus}</span>
-            <div style="display: inline-block; background: #28a745; color: white; padding: 4px 10px; border-radius: 5px; font-size: 0.35em; vertical-align: middle; margin-left: 15px; font-weight: bold; letter-spacing: 1px;">
-                30% DISCOUNT APPLIED
-            </div>
-        `;
-        
-        finalPriceDisplay.innerHTML = priceString;
-    }
-
-    // =========================================================================
-    // NAVIGATION LOGIC
-    // =========================================================================
-
-    function handleNext() {
-        // Validation Step 1
-        if (state.step === 1 && !state.type) {
-            document.getElementById('step1-error').textContent = 'Please select a website type to continue.';
-            return;
-        }
-
-        // Validation Step 2
-        if (state.step === 2) {
-            if (!state.pages || !state.design || !state.responsive || !state.timeline) {
-                document.getElementById('step2-error').textContent = 'Please complete the core requirements (Pages, Design, Responsive, Timeline) before estimating.';
-                return;
-            }
-            document.getElementById('step2-error').textContent = '';
-            updateFinalEstimateDisplay();
-        }
-
-        if (state.step < 4) {
-            state.step++;
-            updateUI();
-            scrollToEstimator();
-        }
-    }
-
-    function handleBack() {
-        if (state.step > 1) {
-            state.step--;
-            updateUI();
-            scrollToEstimator();
-        }
-    }
-
-    function updateUI() {
-        // Update Steps
-        steps.forEach((el, index) => {
-            if (index + 1 === state.step) {
-                el.classList.add('active');
-            } else {
-                el.classList.remove('active');
-            }
-        });
-
-        // Update Progress Indicator
-        progressSteps.forEach((el, index) => {
-            const stepNum = index + 1;
-            el.classList.remove('active', 'completed');
-            if (stepNum === state.step) {
-                el.classList.add('active');
-            } else if (stepNum < state.step) {
-                el.classList.add('completed');
-            }
-        });
-    }
-
-    function scrollToEstimator() {
-        const yOffset = -100; 
-        const element = document.getElementById('project-estimator');
-        const y = element.getBoundingClientRect().top + window.scrollY + yOffset;
-        window.scrollTo({top: y, behavior: 'smooth'});
-    }
-
-    function resetEstimator() {
-        // Reset Form Inputs
-        const formInputs = estimatorContainer.querySelectorAll('input[type="radio"], input[type="checkbox"], input[type="text"], input[type="email"], input[type="tel"], textarea');
-        formInputs.forEach(input => {
-            if (input.type === 'radio' || input.type === 'checkbox') input.checked = false;
-            else input.value = '';
-        });
-
-        // Reset State
-        state = {
+    function createInitialState() {
+        return {
             step: 1,
             type: null,
             pages: null,
@@ -395,30 +97,366 @@ document.addEventListener('DOMContentLoaded', () => {
             estimatedMin: 0,
             estimatedMax: 0
         };
+    }
 
-        document.querySelector('#step-1 .btn-next').disabled = true;
-        document.getElementById('step1-error').textContent = '';
-        document.getElementById('step2-error').textContent = '';
-
+    function init() {
+        renderWebsiteTypes();
+        renderFeatures();
+        attachEventListeners();
+        calculateEstimate();
         updateSummaryPanel();
+        updateFinalEstimateDisplay();
+        updateUI();
+    }
+
+    function renderWebsiteTypes() {
+        if (!typeGrid) return;
+        typeGrid.innerHTML = CONFIG.websiteTypes.map(type => `
+            <label class="type-card-label">
+                <input type="radio" name="websiteType" value="${type.id}" class="sr-only">
+                <div class="type-card">
+                    <i class="fas ${type.icon}" aria-hidden="true"></i>
+                    <h4 class="type-card-title">${type.title}</h4>
+                    <p class="type-card-desc">${type.desc}</p>
+                </div>
+            </label>
+        `).join('');
+    }
+
+    function renderFeatures() {
+        if (!featuresGrid) return;
+        featuresGrid.innerHTML = CONFIG.featuresList.map(feature => `
+            <label class="feature-check">
+                <input type="checkbox" name="features" value="${feature.label}">
+                <span>${feature.label}</span>
+            </label>
+        `).join('');
+    }
+
+    function attachEventListeners() {
+        nextBtns.forEach(button => button.addEventListener('click', handleNext));
+        backBtns.forEach(button => button.addEventListener('click', handleBack));
+        resetButton?.addEventListener('click', resetEstimator);
+
+        estimatorContainer.addEventListener('change', handleInputChange);
+
+        document.getElementById('btnEmailBrief')?.addEventListener('click', event => {
+            event.preventDefault();
+            generateBrief('email');
+        });
+
+        document.getElementById('btnWhatsappBrief')?.addEventListener('click', event => {
+            event.preventDefault();
+            generateBrief('whatsapp');
+        });
+    }
+
+    function handleInputChange(event) {
+        const target = event.target;
+        if (!(target instanceof HTMLInputElement)) return;
+
+        switch (target.name) {
+            case 'websiteType': {
+                const selected = CONFIG.websiteTypes.find(type => type.id === target.value);
+                state.type = selected ? selected.title : null;
+                const stepOneNext = document.querySelector('#step-1 .btn-next');
+                if (stepOneNext) stepOneNext.disabled = !state.type;
+                clearValidation(step1Error);
+                break;
+            }
+            case 'pages':
+                state.pages = target.value;
+                clearValidation(step2Error);
+                break;
+            case 'design':
+                state.design = target.value;
+                clearValidation(step2Error);
+                break;
+            case 'responsive':
+                state.responsive = target.value;
+                clearValidation(step2Error);
+                break;
+            case 'designStatus':
+                state.designStatus = target.value;
+                break;
+            case 'content':
+                state.contentStatus = target.value;
+                break;
+            case 'timeline':
+                state.timeline = target.value;
+                clearValidation(step2Error);
+                break;
+            case 'features':
+                state.features = Array.from(estimatorContainer.querySelectorAll('input[name="features"]:checked'))
+                    .map(input => input.value);
+                break;
+            default:
+                return;
+        }
+
+        calculateEstimate();
+        updateSummaryPanel();
+    }
+
+    function calculateEstimate() {
+        let min = 0;
+        let max = 0;
+
+        const typeConfig = CONFIG.websiteTypes.find(type => type.title === state.type);
+        if (typeConfig) {
+            min += typeConfig.basePrice[0];
+            max += typeConfig.basePrice[1];
+        }
+
+        if (state.pages && CONFIG.multipliers.pages[state.pages]) {
+            min += CONFIG.multipliers.pages[state.pages][0];
+            max += CONFIG.multipliers.pages[state.pages][1];
+        }
+
+        if (state.design && CONFIG.multipliers.design[state.design]) {
+            min += CONFIG.multipliers.design[state.design][0];
+            max += CONFIG.multipliers.design[state.design][1];
+        }
+
+        state.features.forEach(featureLabel => {
+            const feature = CONFIG.featuresList.find(item => item.label === featureLabel);
+            if (feature) {
+                min += feature.price[0];
+                max += feature.price[1];
+            }
+        });
+
+        state.originalMin = min;
+        state.originalMax = max;
+
+        // Preserve the existing 30% professional discount logic.
+        state.estimatedMin = Math.round(min * 0.70);
+        state.estimatedMax = Math.round(max * 0.70);
+    }
+
+    function updateSummaryPanel() {
+        if (!summaryList || !summaryPrice) return;
+
+        if (!state.type) {
+            summaryList.innerHTML = '<div class="summary-item empty-state">Select a website type to begin your estimate.</div>';
+            updateSummaryPrice();
+            return;
+        }
+
+        const items = [
+            ['Project Type', state.type],
+            ['Pages', state.pages],
+            ['Design', state.design],
+            ['Responsive', state.responsive],
+            ['Features', state.features.length ? state.features.join(', ') : 'None selected'],
+            ['Design Status', state.designStatus],
+            ['Content', state.contentStatus],
+            ['Timeline', state.timeline]
+        ];
+
+        summaryList.innerHTML = items
+            .filter(([, value]) => value)
+            .map(([label, value]) => `
+                <div class="summary-item">
+                    <span class="summary-item-label">${label}</span>
+                    <span class="summary-item-value">${value}</span>
+                </div>
+            `)
+            .join('');
+
+        updateSummaryPrice();
+    }
+
+    function updateSummaryPrice() {
+        if (!summaryPrice) return;
+
+        const parentTotal = summaryPrice.closest('.summary-total');
+        if (parentTotal) parentTotal.classList.add('updating');
+
+        window.clearTimeout(priceUpdateTimer);
+        priceUpdateTimer = window.setTimeout(() => {
+            const original = formatRange(state.originalMin, state.originalMax, shouldShowPlus());
+            const discounted = formatRange(state.estimatedMin, state.estimatedMax, shouldShowPlus());
+
+            if (!state.type) {
+                summaryPrice.textContent = '$0 – $0';
+            } else {
+                summaryPrice.innerHTML = `
+                    <span class="summary-original">${original}</span>
+                    <span class="summary-discounted">${discounted}</span>
+                    <span class="summary-discount-note">30% OFF</span>
+                `;
+            }
+
+            parentTotal?.classList.remove('updating');
+        }, 120);
+    }
+
+    function updateFinalEstimateDisplay() {
+        if (!finalPriceDisplay) return;
+
+        const original = formatRange(state.originalMin, state.originalMax, shouldShowPlus());
+        const discounted = formatRange(state.estimatedMin, state.estimatedMax, shouldShowPlus());
+
+        if (!state.type) {
+            finalPriceDisplay.innerHTML = '<span class="price-val">$0</span><span class="price-sep">–</span><span class="price-val">$0</span>';
+            return;
+        }
+
+        finalPriceDisplay.innerHTML = `
+            <div class="estimate-price-stack">
+                <span class="estimate-original">Original: ${original}</span>
+                <div class="estimate-discounted-range" aria-label="30 percent discounted estimate">
+                    <span class="price-val">$${state.estimatedMin.toLocaleString('en-US')}</span>
+                    <span class="price-sep">–</span>
+                    <span class="price-val">$${state.estimatedMax.toLocaleString('en-US')}${shouldShowPlus() ? '+' : ''}</span>
+                </div>
+                <span class="estimate-discount-badge">30% discount applied</span>
+            </div>
+        `;
+    }
+
+    function formatRange(min, max, plus = false) {
+        return `$${min.toLocaleString('en-US')} – $${max.toLocaleString('en-US')}${plus ? '+' : ''}`;
+    }
+
+    function shouldShowPlus() {
+        return state.design === 'Fully Custom' && state.originalMax > 4000;
+    }
+
+    function handleNext() {
+        if (state.step === 1 && !state.type) {
+            showValidation(step1Error, 'Please select a website type to continue.');
+            focusFirstInput('#step-1 input[name="websiteType"]');
+            return;
+        }
+
+        if (state.step === 2 && !validateRequirements()) return;
+
+        if (state.step >= 4) return;
+
+        if (state.step === 2) {
+            calculateEstimate();
+            updateFinalEstimateDisplay();
+        }
+
+        state.step += 1;
         updateUI();
         scrollToEstimator();
     }
 
-    // =========================================================================
-    // BRIEF GENERATOR
-    // =========================================================================
+    function validateRequirements() {
+        const missing = [
+            { value: state.pages, selector: 'input[name="pages"]' },
+            { value: state.design, selector: 'input[name="design"]' },
+            { value: state.responsive, selector: 'input[name="responsive"]' },
+            { value: state.timeline, selector: 'input[name="timeline"]' }
+        ].find(item => !item.value);
+
+        if (!missing) {
+            clearValidation(step2Error);
+            return true;
+        }
+
+        showValidation(step2Error, 'Please complete Pages, Design, Responsive, and Timeline before estimating.');
+        focusFirstInput(`#step-2 ${missing.selector}`);
+        return false;
+    }
+
+    function showValidation(element, message) {
+        if (!element) return;
+        element.textContent = message;
+    }
+
+    function clearValidation(element) {
+        if (element) element.textContent = '';
+    }
+
+    function focusFirstInput(selector) {
+        const input = estimatorContainer.querySelector(selector);
+        if (!input) return;
+        window.requestAnimationFrame(() => input.focus({ preventScroll: true }));
+    }
+
+    function handleBack() {
+        if (state.step <= 1) return;
+        state.step -= 1;
+        updateUI();
+        scrollToEstimator();
+    }
+
+    function updateUI() {
+        steps.forEach((stepElement, index) => {
+            const stepNumber = index + 1;
+            const active = stepNumber === state.step;
+            stepElement.classList.toggle('active', active);
+            stepElement.hidden = !active;
+            stepElement.setAttribute('aria-hidden', String(!active));
+        });
+
+        progressSteps.forEach((element, index) => {
+            const stepNumber = index + 1;
+            const active = stepNumber === state.step;
+            const completed = stepNumber < state.step;
+            element.classList.toggle('active', active);
+            element.classList.toggle('completed', completed);
+            element.setAttribute('aria-current', active ? 'step' : 'false');
+        });
+
+        if (mobileProgressCount) mobileProgressCount.textContent = `STEP ${state.step} OF 4`;
+        if (mobileProgressLabel) mobileProgressLabel.textContent = STEP_LABELS[state.step - 1] || STEP_LABELS[0];
+
+        nextBtns.forEach(button => {
+            if (button.closest('#step-1')) button.disabled = !state.type;
+        });
+    }
+
+    function scrollToEstimator() {
+        const element = document.getElementById('project-estimator');
+        if (!element) return;
+
+        const navHeight = Number.parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--responsive-nav-height')) || 85;
+        const offset = Math.max(16, navHeight + 12);
+        const target = Math.max(0, element.getBoundingClientRect().top + window.scrollY - offset);
+        const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        window.scrollTo({
+            top: target,
+            behavior: reducedMotion ? 'auto' : 'smooth'
+        });
+    }
+
+    function resetEstimator() {
+        estimatorContainer.querySelectorAll('input[type="radio"], input[type="checkbox"]').forEach(input => {
+            input.checked = false;
+        });
+
+        estimatorContainer.querySelectorAll('input[type="text"], input[type="email"], input[type="tel"], textarea').forEach(input => {
+            input.value = '';
+        });
+
+        state = createInitialState();
+        clearValidation(step1Error);
+        clearValidation(step2Error);
+
+        if (resetButton) resetButton.blur();
+        calculateEstimate();
+        updateSummaryPanel();
+        updateFinalEstimateDisplay();
+        updateUI();
+        scrollToEstimator();
+    }
 
     function generateBrief(type) {
-        const clientName = briefName.value.trim() || '[Not provided]';
-        const clientEmail = briefEmail.value.trim() || '[Not provided]';
-        const clientBusiness = briefBusiness.value.trim() || '[Not provided]';
-        const clientPhone = briefPhone.value.trim() || '[Not provided]';
-        const notes = briefNotes.value.trim() || 'No additional notes.';
+        const clientName = briefName?.value.trim() || '[Not provided]';
+        const clientEmail = briefEmail?.value.trim() || '[Not provided]';
+        const clientBusiness = briefBusiness?.value.trim() || '[Not provided]';
+        const clientPhone = briefPhone?.value.trim() || '[Not provided]';
+        const notes = briefNotes?.value.trim() || 'No additional notes.';
 
-        const customPlus = (state.design === 'Fully Custom' && state.originalMax > 4000) ? '+' : '';
-        const originalPriceStr = `$${state.originalMin.toLocaleString()} – $${state.originalMax.toLocaleString()}${customPlus}`;
-        const discountedPriceStr = `$${state.estimatedMin.toLocaleString()} – $${state.estimatedMax.toLocaleString()}${customPlus}`;
+        const customPlus = shouldShowPlus() ? '+' : '';
+        const originalPrice = `$${state.originalMin.toLocaleString()} – $${state.originalMax.toLocaleString()}${customPlus}`;
+        const discountedPrice = `$${state.estimatedMin.toLocaleString()} – $${state.estimatedMax.toLocaleString()}${customPlus}`;
 
         const briefBody = `Hello BROBEX,
 
@@ -433,22 +471,22 @@ Phone / WhatsApp: ${clientPhone}
 
 TECHNICAL REQUIREMENTS
 --------------------------------------------------
-Website Type: ${state.type}
-Pages: ${state.pages}
-Design Level: ${state.design}
-Responsive Requirements: ${state.responsive}
-Selected Features: ${state.features.length > 0 ? state.features.join(', ') : 'None selected'}
+Website Type: ${state.type || 'Not specified'}
+Pages: ${state.pages || 'Not specified'}
+Design Level: ${state.design || 'Not specified'}
+Responsive Requirements: ${state.responsive || 'Not specified'}
+Selected Features: ${state.features.length ? state.features.join(', ') : 'None selected'}
 
 ASSETS & TIMELINE
 --------------------------------------------------
 Design Status: ${state.designStatus || 'Not specified'}
 Content Status: ${state.contentStatus || 'Not specified'}
-Timeline: ${state.timeline}
+Timeline: ${state.timeline || 'Not specified'}
 
 ESTIMATED PROJECT INVESTMENT
 --------------------------------------------------
-Original Estimate: ${originalPriceStr}
-30% Discounted Rate: ${discountedPriceStr}
+Original Estimate: ${originalPrice}
+30% Discounted Rate: ${discountedPrice}
 
 ADDITIONAL PROJECT NOTES
 --------------------------------------------------
@@ -461,17 +499,16 @@ ${clientName !== '[Not provided]' ? clientName : 'Potential Client'}`;
 
         if (type === 'email') {
             const subject = `BROBEX Website Project Inquiry — ${clientBusiness !== '[Not provided]' ? clientBusiness : clientName}`;
-            const mailtoUrl = `mailto:brobex.ffx@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(briefBody)}`;
-            window.location.href = mailtoUrl;
-        } 
-        else if (type === 'whatsapp') {
-            const whatsappNumber = '923709995042'; // Based on your codebase
+            window.location.href = `mailto:brobex.ffx@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(briefBody)}`;
+            return;
+        }
+
+        if (type === 'whatsapp') {
+            const whatsappNumber = '923709995042';
             const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(briefBody)}`;
-            window.open(whatsappUrl, '_blank');
+            window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
         }
     }
 
-    // Run init
     init();
-
 });
