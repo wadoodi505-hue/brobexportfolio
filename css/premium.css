@@ -82,7 +82,7 @@
     background: var(--theme-surface-raised, var(--bg-secondary));
     border: 1px solid var(--panel-border);
     border-radius: var(--panel-radius);
-    box-shadow: 0 30px 90px rgba(0, 0, 0, .55);
+    box-shadow: 0 20px 50px rgba(0, 0, .42);
     max-width: 620px;
     overflow: hidden;
     transform: translateY(-10px) scale(.98);
@@ -215,7 +215,7 @@
     background: var(--theme-surface-raised, var(--bg-secondary));
     border: 1px solid var(--panel-border);
     border-radius: var(--panel-radius);
-    box-shadow: 0 30px 90px rgba(0, 0, 0, .55);
+    box-shadow: 0 20px 50px rgba(0, 0, .42);
     max-width: 500px;
     padding: 1.5rem;
     width: min(100%, 500px);
@@ -388,7 +388,6 @@
     .project-card,
     .pipeline-step {
         box-shadow: 0 12px 28px var(--theme-shadow, rgba(0, 0, 0, .2));
-        will-change: auto;
     }
 
     .reveal.blur-in {

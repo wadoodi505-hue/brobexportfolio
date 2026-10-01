@@ -102,7 +102,6 @@ textarea:focus-visible {
 .project-card:hover,
 .interactive-card:hover,
 .hud-panel:hover {
-    will-change: transform;
 }
 
 .project-media img {

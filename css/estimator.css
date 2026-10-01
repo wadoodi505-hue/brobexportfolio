@@ -629,10 +629,8 @@
     border: 1px solid var(--estimator-border);
     border-radius: 14px;
     background: var(--estimator-panel);
-    box-shadow: 0 18px 42px var(--theme-shadow, rgba(0, 0, 0, .22));
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-}
+    box-shadow: 0 14px 30px var(--theme-shadow, rgba(0, 0, 0, .22));
+    }
 
 .summary-title {
     margin: 0 0 1rem;

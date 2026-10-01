@@ -78,13 +78,13 @@ body {
 .project-card,
 .pipeline-step,
 .contact-icon {
-    box-shadow: 0 20px 45px var(--theme-shadow);
+    box-shadow: 0 12px 28px var(--theme-shadow);
 }
 
 .hud-panel:hover,
 .interactive-card:hover,
 .project-card:hover {
-    box-shadow: 0 25px 55px var(--theme-shadow), inset 0 0 25px var(--accent-green-glow);
+    box-shadow: 0 16px 34px var(--theme-shadow);
 }
 
 .huge-headline {

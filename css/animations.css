@@ -8,8 +8,8 @@
 }
 
 @keyframes fadeIn {
-    from { opacity: 0; filter: blur(10px); }
-    to { opacity: 1; filter: blur(0); }
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
 
 /* Background Scanlines */
@@ -20,13 +20,12 @@
     background-size: 100% 4px;
     z-index: 9999;
     pointer-events: none;
-    opacity: 0.3;
+    opacity: 0.12;
 }
 
 /* Scroll Animations Base Classes (Triggered by IntersectionObserver in JS) */
 .animate-on-scroll {
     opacity: 0;
-    will-change: transform, opacity;
 }
 
 .slide-up.is-visible {
@@ -85,7 +84,7 @@
 
 /* Character Float */
 .hero-character-img {
-    animation: float 6s ease-in-out infinite;
+    animation: none;
 }
 @keyframes float {
     0% { transform: translateY(0px); }
