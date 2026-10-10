@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/((?!legacy/|css/|js/|images/|responsive/|.*\\..*).*)",
+      "destination": "/index.html"
+    }
+  ]
+}

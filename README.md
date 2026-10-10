@@ -1,31 +1,40 @@
-# BROBEX Portfolio — Premium Estimator & Motion Refinement
+# BROBEX React + TypeScript + Vite migration
 
-This update preserves the existing HTML, CSS, and vanilla JavaScript architecture and current page URLs.
+## Important migration note
+This package is a compatibility-first migration of the supplied archive. It adds a React + TypeScript + Vite application, React Router routes, strict TypeScript configuration, reduced-motion-aware Motion page transitions, and production build setup while preserving each supplied page's original markup, CSS, assets, estimator code, and existing interactions under `public/`. This deliberately avoids silently rewriting business logic that has not yet been independently validated. The page bodies are still legacy HTML rendered inside React, so this is a migration bridge—not yet a full component-by-component React rewrite.
 
-## Changes in this package
+## Requirements
+Node.js 20.19+ or 22.12+ recommended for Vite 7.
 
-- Reworked `js/estimator.js` around configurable USD and GBP pricing tables.
-- Removed the blanket 30% discount so displayed estimates are not artificially reduced.
-- Added region selection with separately configurable USD and GBP assumptions (not currency conversion).
-- Updated website types to focus on realistic small-business project scopes.
-- Added feature filtering based on the selected website type.
-- Improved estimate summary and brief consistency, including the selected currency and scope.
-- Added safe, best-effort persistence for project selections. Contact details are intentionally not saved in localStorage.
-- Added graceful handling for malformed/inaccessible saved state, reduced-motion-aware step scrolling, reset confirmation, and accessible focus styling.
-- Improved email and WhatsApp brief text and URL encoding. Email links open a draft; they do not send automatically.
-- Added `css/motion-refinement.css` to all six pages for consistent, restrained transitions and reduced-motion support.
-- Added estimator currency-selector styling in `css/estimator.css`.
+## Commands
+```bash
+npm install
+npm run dev
+npm run typecheck
+npm run build
+npm run preview
+```
 
-## Pricing notes
+## Routes
+`/`, `/about`, `/services`, `/experience`, `/projects`, `/contact` and their `.html` aliases are configured. Configure your hosting provider to serve `index.html` for application routes while keeping `/legacy/*`, `/css/*`, `/js/*`, `/images/*`, `/responsive/*`, `/project.css`, `/robots.txt` and `/sitemap.xml` as static assets.
 
-The USD and GBP figures are editable in the `CONFIG` object at the top of `js/estimator.js`. They are initial planning assumptions, not verified market averages or guaranteed quotes. Confirm delivery costs and competitive positioning before publishing them as official prices. Domain, hosting, paid services, transaction fees, photography, extensive copywriting, product entry, and ongoing maintenance are noted as potentially separate.
+## Existing functionality
+The supplied HTML body markup, CSS, images, estimator JS, projects registry and legacy scripts are copied into `public/`. The runtime loads the corresponding page markup and scripts. Since some original scripts may rely on full-document navigation or DOMContentLoaded timing, test the complete site in a browser before production release.
 
-## Validation performed
+## Reviews backend
+No secure reviews backend was included in the supplied archive. The React app does not pretend reviews are persisted or provide insecure client-only ownership. To add reviews, configure a server API plus database, authentication/ownership verification, rate limiting, and server-side validation. No secrets belong in `VITE_*` variables.
 
-- `node --check` passed for all 9 JavaScript files in the package.
-- Local asset references in the six HTML pages were checked; no missing local references were found.
-- The estimator script was reviewed against the existing four-step HTML structure.
+## Dependencies
+- React / React DOM: UI runtime
+- React Router DOM: client-side routes
+- TypeScript: strict static typing
+- Vite / React plugin: development and production build
+- Motion: restrained page transitions
+- GSAP / @gsap/react: available for future scoped scroll sequences; not yet wired into legacy page markup
+- Lucide React: consistent icons for future component migration
+- Vitest, Testing Library, Playwright: test tooling dependencies; browser tests need explicit test cases and Playwright browser installation
 
-## Not yet verified in a real browser
-
-A full interactive browser test, accessibility audit, Lighthouse run, and real email/WhatsApp handoff were not performed in this environment. Please test these before deploying. In particular, test the estimator on mobile and verify that the user's browser allows opening WhatsApp or an email application.
+## Known limitations
+- The current ZIP contained only six HTML pages and their frontend assets; no reviews backend or authentication system was supplied.
+- This is not a completed rewrite of every legacy HTML section into typed React components. The compatibility layer is intentional to preserve the estimator and interactions during the first migration stage.
+- A production build and real browser tests must be run after installing dependencies; no passing test results are claimed in this README.
