@@ -1,7 +1,7 @@
 {
   "rewrites": [
     {
-      "source": "/((?!legacy/|css/|js/|images/|responsive/|.*\\..*).*)",
+      "source": "/(.*)",
       "destination": "/index.html"
     }
   ]
