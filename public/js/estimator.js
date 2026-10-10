@@ -4,7 +4,8 @@ document.addEventListener('DOMContentLoaded', () => {
   if (!root || root.dataset.estimatorReady === 'true') return;
   root.dataset.estimatorReady = 'true';
 
-  const STORAGE_KEY = 'brobex-estimator-v2';
+  // In-memory only: survives client-side route changes, but naturally clears on document reload.
+  const MEMORY_KEY = '__BROBEX_ESTIMATOR_STATE__';
   const CONFIG = {
     discount: 0.40,
     currency: {
@@ -88,22 +89,22 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   function save(){
     try {
-      const copy={...state};
-      // Keep contact information in memory only; persist project configuration, not personal details.
-      delete copy.name; delete copy.email; delete copy.business; delete copy.phone; delete copy.notes;
-      localStorage.setItem(STORAGE_KEY,JSON.stringify(copy));
+      // This store lives only on the current document's window. Do not use localStorage
+      // or sessionStorage: refreshing must always begin with a clean estimator.
+      window[MEMORY_KEY] = { ...state, features: [...state.features] };
     } catch {}
   }
   function load(){
     try{
-      const raw=localStorage.getItem(STORAGE_KEY); if(!raw)return;
-      const parsed=JSON.parse(raw);
-      if(!parsed || typeof parsed!=='object')return;
-      ['type','pages','design','responsive','designStatus','contentStatus','timeline'].forEach(k=>{if(typeof parsed[k]==='string')state[k]=parsed[k];});
-      if(Array.isArray(parsed.features))state.features=parsed.features.filter(x=>CONFIG.features.some(f=>f.label===x));
-      if(Object.prototype.hasOwnProperty.call(CONFIG.currency,parsed.currency))state.currency=parsed.currency;
-      state.step=1;
-    }catch{ try{localStorage.removeItem(STORAGE_KEY)}catch{} }
+      const parsed = window[MEMORY_KEY];
+      if(!parsed || typeof parsed !== 'object') return;
+      ['type','pages','design','responsive','designStatus','contentStatus','timeline','name','email','business','phone','notes'].forEach(k=>{
+        if(typeof parsed[k] === 'string') state[k] = parsed[k];
+      });
+      if(Array.isArray(parsed.features)) state.features = parsed.features.filter(x=>CONFIG.features.some(f=>f.label===x));
+      if(Object.prototype.hasOwnProperty.call(CONFIG.currency,parsed.currency)) state.currency=parsed.currency;
+      if(Number.isInteger(parsed.step) && parsed.step >= 1 && parsed.step <= 4) state.step=parsed.step;
+    } catch {}
   }
   function estimate(){
     const type=CONFIG.types.find(t=>t.id===state.type);
@@ -141,13 +142,14 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   function error(which,msg){if(errors[which])errors[which].textContent=msg;}
   function go(step){
-    state.step=step;showStep();summary();
+    state.step=step;save();showStep();summary();
     if(step===4)syncBrief();
     const target=document.getElementById('project-estimator');
     if(target){const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;target.scrollIntoView({behavior:reduced?'auto':'smooth',block:'start'});}
   }
   function syncBrief(){
     [['briefName','name'],['briefEmail','email'],['briefBusiness','business'],['briefPhone','phone'],['briefNotes','notes']].forEach(([id,key])=>{const el=document.getElementById(id);if(el)state[key]=el.value;});
+    save();
   }
   function briefText(){
     syncBrief();const e=estimate(), type=CONFIG.types.find(t=>t.id===state.type);
@@ -173,14 +175,16 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
   function reset(){
-    if(!window.confirm('Reset your website estimate and clear the saved project selections?'))return;
+    if(!window.confirm('Reset your current website estimate and clear all project selections?'))return;
     Object.assign(state,JSON.parse(initial));root.querySelectorAll('input[type=radio],input[type=checkbox]').forEach(i=>i.checked=false);
     [['briefName','name'],['briefEmail','email'],['briefBusiness','business'],['briefPhone','phone'],['briefNotes','notes']].forEach(([id])=>{const el=document.getElementById(id);if(el)el.value='';});
-    try{localStorage.removeItem(STORAGE_KEY)}catch{}
-    renderFeatures();showStep();summary();errors.forEach(el=>{if(el)el.textContent='';});
+    try{delete window[MEMORY_KEY]}catch{}
+    const currencyControl=$('#estimatorCurrency');if(currencyControl)currencyControl.value='US';
+    renderFeatures();showStep();summary();errors.forEach(el=>{if(el)el.textContent='';});save();
   }
 
-  load();renderTypes();renderFeatures();restoreForm();showStep();summary();
+  try { localStorage.removeItem('brobex-estimator-v2'); } catch {}
+  load();renderTypes();renderFeatures();restoreForm();showStep();summary();save();
   root.addEventListener('change',e=>{
     const t=e.target;if(!(t instanceof HTMLInputElement))return;
     if(t.name==='websiteType'){state.type=t.value;state.features=[];renderFeatures();}
@@ -188,7 +192,7 @@ document.addEventListener('DOMContentLoaded', () => {
     else if(['pages','design','responsive','designStatus','content','timeline'].includes(t.name))state[t.name==='content'?'contentStatus':t.name]=t.value;
     summary();save();showStep();errors.forEach(el=>{if(el)el.textContent='';});
   });
-  root.addEventListener('input',e=>{const t=e.target;if(t.id==='briefName')state.name=t.value;if(t.id==='briefEmail')state.email=t.value;if(t.id==='briefBusiness')state.business=t.value;if(t.id==='briefPhone')state.phone=t.value;if(t.id==='briefNotes')state.notes=t.value;});
+  root.addEventListener('input',e=>{const t=e.target;if(t.id==='briefName')state.name=t.value;if(t.id==='briefEmail')state.email=t.value;if(t.id==='briefBusiness')state.business=t.value;if(t.id==='briefPhone')state.phone=t.value;if(t.id==='briefNotes')state.notes=t.value;save();});
   $$('.btn-next').forEach(btn=>btn.addEventListener('click',()=>{
     if(state.step===1&&!state.type){error(0,'Choose a website type to continue.');return;}
     if(state.step===2){

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
+import { Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import { PageTransition } from './components/PageTransition';
 import { ReactBitsEnhancements } from './components/ReactBitsEnhancements';
 import { routePages, type PageKey } from './data/routes';
@@ -14,6 +14,7 @@ const legacyScripts: Partial<Record<PageKey, string[]>> = {
 };
 
 function LegacyPage({ page }: { page: PageKey }) {
+  const navigate = useNavigate();
   const [markup, setMarkup] = useState('');
   const [error, setError] = useState(false);
   useEffect(() => {
@@ -44,6 +45,36 @@ function LegacyPage({ page }: { page: PageKey }) {
     void run();
     return () => { cancelled = true; added.forEach((script) => script.remove()); };
   }, [markup, page]);
+
+  // The legacy HTML uses ordinary .html links. Intercept only same-origin portfolio
+  // routes so navigation stays inside React Router and in-memory estimator progress survives.
+  useEffect(() => {
+    const root = document.querySelector('.legacy-page');
+    if (!root) return;
+    const internalPaths = new Set([
+      '/', '/index.html',
+      '/about', '/about.html',
+      '/services', '/services.html',
+      '/experience', '/experience.html',
+      '/projects', '/projects.html',
+      '/contact', '/contact.html',
+    ]);
+    const onClick = (event: MouseEvent) => {
+      if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+      const target = event.target;
+      if (!(target instanceof Element)) return;
+      const link = target.closest<HTMLAnchorElement>('a[href]');
+      if (!link || link.target === '_blank' || link.hasAttribute('download')) return;
+      let url: URL;
+      try { url = new URL(link.href, window.location.href); } catch { return; }
+      if (url.origin !== window.location.origin || !internalPaths.has(url.pathname)) return;
+      if (url.pathname === window.location.pathname && url.hash) return;
+      event.preventDefault();
+      navigate(`${url.pathname}${url.search}${url.hash}`);
+    };
+    root.addEventListener('click', onClick);
+    return () => root.removeEventListener('click', onClick);
+  }, [markup, page, navigate]);
 
   useEffect(() => { document.title = routePages[page].title; window.scrollTo({ top: 0, behavior: 'auto' }); }, [page]);
   if (error) return <main className="migration-error"><h1>Unable to load this page</h1><p>Please refresh the page. If the problem continues, check the deployed legacy assets.</p></main>;
