@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
 import { PageTransition } from './components/PageTransition';
+import { ReactBitsEnhancements } from './components/ReactBitsEnhancements';
 import { routePages, type PageKey } from './data/routes';
 
 const legacyScripts: Partial<Record<PageKey, string[]>> = {
@@ -47,7 +48,7 @@ function LegacyPage({ page }: { page: PageKey }) {
   useEffect(() => { document.title = routePages[page].title; window.scrollTo({ top: 0, behavior: 'auto' }); }, [page]);
   if (error) return <main className="migration-error"><h1>Unable to load this page</h1><p>Please refresh the page. If the problem continues, check the deployed legacy assets.</p></main>;
   if (!markup) return <div className="app-loading" role="status">Loading {routePages[page].label}…</div>;
-  return <PageTransition><div className="legacy-page" dangerouslySetInnerHTML={{ __html: markup }} /></PageTransition>;
+  return <PageTransition><ReactBitsEnhancements page={page}><div className="legacy-page" dangerouslySetInnerHTML={{ __html: markup }} /></ReactBitsEnhancements></PageTransition>;
 }
 
 export default function App() {
