@@ -295,3 +295,6 @@
         animation: none;
     }
 }
+
+/* Editorial introductions used by page sections */
+.section-intro{max-width:760px;margin:1rem auto 0;color:var(--text-secondary,rgba(255,255,255,.72));font-size:1rem;line-height:1.8;text-wrap:pretty}

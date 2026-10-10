@@ -1073,3 +1073,16 @@
 .type-card-label:focus-within .type-card,.radio-chip:focus-within,.feature-check:focus-within{outline:2px solid var(--gold,#c5a059);outline-offset:3px}
 .estimator-step[hidden]{display:none!important}
 @media(prefers-reduced-motion:reduce){.estimator-step,.type-card,.feature-check,.radio-chip{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+
+
+/* Regional market pricing comparison */
+.estimator-region-control{margin:1rem 0 1.25rem;padding:1rem 1.1rem;border:1px solid rgba(201,166,87,.28);border-radius:14px;background:rgba(201,166,87,.045)}
+.estimator-region-control label{display:block;margin-bottom:.55rem;font-weight:600}
+.estimator-region-control select{width:100%;max-width:100%;padding:.85rem 1rem;border:1px solid rgba(201,166,87,.4);border-radius:9px;background:var(--surface, #111);color:inherit;font:inherit}
+.estimator-region-control p{margin:.65rem 0 0;font-size:.82rem;line-height:1.55;opacity:.76}
+.regional-original,.regional-savings{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:.45rem;margin:.65rem 0;font-size:.92rem}
+.regional-original{opacity:.78}
+.regional-original del{text-decoration-thickness:1px}
+.regional-savings strong{color:#c9a657}
+.estimate-discounted-range{margin-top:.8rem}
+.estimate-disclaimer{display:block;margin-top:.7rem;line-height:1.55}
