@@ -76,7 +76,43 @@ function LegacyPage({ page }: { page: PageKey }) {
     return () => root.removeEventListener('click', onClick);
   }, [markup, page, navigate]);
 
-  useEffect(() => { document.title = routePages[page].title; window.scrollTo({ top: 0, behavior: 'auto' }); }, [page]);
+  useEffect(() => {
+    const pageMeta: Record<PageKey, string> = {
+      home: 'Brobex is a freelance web developer creating responsive websites, refined interfaces, and interactive digital experiences for modern brands.',
+      about: 'Learn about Brobex, a freelance web developer focused on responsive web experiences, thoughtful UI, and clean front-end implementation.',
+      services: 'Explore Brobex web development services, including responsive websites, frontend development, UI implementation, redesigns, and performance improvements.',
+      experience: 'Explore the Brobex development journey, workflow, and approach to building thoughtful, responsive web experiences.',
+      projects: 'Explore selected Brobex web development projects, including business websites, interactive experiences, and game-related builds.',
+      contact: 'Contact Brobex to discuss a website, frontend development, redesign, or interactive web project.',
+    };
+    const canonicalUrl = page === 'home'
+      ? 'https://brobexportfolio.vercel.app/'
+      : `https://brobexportfolio.vercel.app/${routePages[page].file}.html`;
+    const setMeta = (attribute: 'name' | 'property', key: string, value: string) => {
+      let element = document.head.querySelector<HTMLMetaElement>(`meta[${attribute}="${key}"]`);
+      if (!element) {
+        element = document.createElement('meta');
+        element.setAttribute(attribute, key);
+        document.head.appendChild(element);
+      }
+      element.content = value;
+    };
+    document.title = routePages[page].title;
+    setMeta('name', 'description', pageMeta[page]);
+    setMeta('property', 'og:title', routePages[page].title);
+    setMeta('property', 'og:description', pageMeta[page]);
+    setMeta('property', 'og:url', canonicalUrl);
+    setMeta('name', 'twitter:title', routePages[page].title);
+    setMeta('name', 'twitter:description', pageMeta[page]);
+    let canonical = document.head.querySelector<HTMLLinkElement>('link[rel="canonical"]');
+    if (!canonical) {
+      canonical = document.createElement('link');
+      canonical.rel = 'canonical';
+      document.head.appendChild(canonical);
+    }
+    canonical.href = canonicalUrl;
+    window.scrollTo({ top: 0, behavior: 'auto' });
+  }, [page]);
   if (error) return <main className="migration-error"><h1>Unable to load this page</h1><p>Please refresh the page. If the problem continues, check the deployed legacy assets.</p></main>;
   if (!markup) return <div className="app-loading" role="status">Loading {routePages[page].label}…</div>;
   return <PageTransition><ReactBitsEnhancements page={page}><div className="legacy-page" dangerouslySetInnerHTML={{ __html: markup }} /></ReactBitsEnhancements></PageTransition>;

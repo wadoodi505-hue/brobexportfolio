@@ -6,29 +6,6 @@
  */
 
 @media (min-width: 993px) and (hover: hover) and (pointer: fine) {
-    .desktop-cursor-glow {
-        --glow-x: 0px;
-        --glow-y: 0px;
-        position: fixed;
-        z-index: 2;
-        width: 24rem;
-        height: 24rem;
-        border-radius: 50%;
-        pointer-events: none;
-        opacity: 0;
-        background: radial-gradient(
-            circle,
-            rgba(126, 211, 33, .13) 0%,
-            rgba(212, 175, 55, .055) 28%,
-            rgba(2, 8, 4, 0) 68%
-        );
-        transform: translate3d(calc(var(--glow-x) - 50%), calc(var(--glow-y) - 50%), 0);
-        transition: opacity .7s ease;
-    }
-
-    body.desktop-motion-enabled .desktop-cursor-glow {
-        opacity: 1;
-    }
 
     body.desktop-motion-enabled .top-nav {
         animation: brobex-nav-enter .8s cubic-bezier(.16, 1, .3, 1) both;
@@ -43,14 +20,8 @@
         animation: brobex-line-draw 1.1s .25s cubic-bezier(.16, 1, .3, 1) both;
     }
 
-    body.desktop-motion-enabled
-        :is(.interactive-card, .service-card, .experience-card, .project-card,
-            .pipeline-step, .hud-panel, .contact-method) {
-    }
-
     body.desktop-motion-enabled .desktop-tilt.is-pointer-active {
-        transform:
-            translate3d(0, -5px, 0);
+        transform: perspective(900px) rotateX(var(--tilt-y, 0deg)) rotateY(var(--tilt-x, 0deg)) translate3d(0, -3px, 0);
         transition-duration: .18s;
     }
 
@@ -59,6 +30,8 @@
         --pointer-y: 50%;
         position: relative;
         isolation: isolate;
+        transform: perspective(900px) rotateX(var(--tilt-y, 0deg)) rotateY(var(--tilt-x, 0deg));
+        transform-style: preserve-3d;
         transition: transform .35s cubic-bezier(.16, 1, .3, 1), border-color .25s ease, box-shadow .25s ease;
     }
 
@@ -135,9 +108,6 @@
 
 
 @media (prefers-reduced-motion: reduce) {
-    .desktop-cursor-glow {
-        display: none !important;
-    }
 }
 @media (prefers-reduced-motion: reduce) {
     .desktop-tilt,

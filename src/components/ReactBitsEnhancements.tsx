@@ -13,11 +13,11 @@ export function ReactBitsEnhancements({ page, children }: Props) {
     const root = rootRef.current;
     if (!root) return;
 
-    const headings = root.querySelectorAll<HTMLElement>('main h1, .hero h1, h1');
+    const headings = root.querySelectorAll<HTMLElement>('main h1, .hero h1, .page-hero h1, h1');
     headings.forEach((heading) => heading.classList.add('rb-text-reveal'));
 
     const revealTargets = root.querySelectorAll<HTMLElement>(
-      'main h2, section h2, .service-card, .project-card, .editorial-card, .skill-card, .timeline-item'
+      'main h2, section h2, .section-header, .service-card, .project-card, .editorial-card, .skill-card, .timeline-item, .experience-card, .contact-method'
     );
     revealTargets.forEach((element, index) => {
       element.classList.add('rb-scroll-reveal');
@@ -25,19 +25,22 @@ export function ReactBitsEnhancements({ page, children }: Props) {
     });
 
     const cleanupHandlers: Array<() => void> = [];
+    const canHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
     const cards = root.querySelectorAll<HTMLElement>(
-      '.project-card, .service-card, .editorial-card, .skill-card'
+      '.project-card, .service-card, .editorial-card, .skill-card, .experience-card, .contact-method'
     );
-    cards.forEach((card) => {
-      card.classList.add('rb-spotlight-card');
-      const onPointerMove = (event: PointerEvent) => {
-        const rect = card.getBoundingClientRect();
-        card.style.setProperty('--rb-pointer-x', `${event.clientX - rect.left}px`);
-        card.style.setProperty('--rb-pointer-y', `${event.clientY - rect.top}px`);
-      };
-      card.addEventListener('pointermove', onPointerMove, { passive: true });
-      cleanupHandlers.push(() => card.removeEventListener('pointermove', onPointerMove));
-    });
+    if (canHover) {
+      cards.forEach((card) => {
+        card.classList.add('rb-spotlight-card');
+        const onPointerMove = (event: PointerEvent) => {
+          const rect = card.getBoundingClientRect();
+          card.style.setProperty('--rb-pointer-x', `${event.clientX - rect.left}px`);
+          card.style.setProperty('--rb-pointer-y', `${event.clientY - rect.top}px`);
+        };
+        card.addEventListener('pointermove', onPointerMove, { passive: true });
+        cleanupHandlers.push(() => card.removeEventListener('pointermove', onPointerMove));
+      });
+    }
 
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (!reducedMotion && 'IntersectionObserver' in window) {
