@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Brobex | Digital Architect & Frontend Developer</title>
+    <meta name="description" content="Discover the methodology, history, and technical arsenal behind Brobex. Custom website development and premium frontend engineering.">
+    <meta name="theme-color" content="#020804">
+    <script>
+        (() => {
+            try {
+                const saved = localStorage.getItem('brobex-theme');
+                const theme = saved || (matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+                document.documentElement.dataset.theme = theme;
+            } catch {}
+        })();
+    </script>
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="About BROBEX | Frontend Developer & UI/UX Designer">
+    <meta property="og:description" content="The frontend, UI/UX, and responsive engineering principles behind BROBEX.">
+    <meta property="og:url" content="https://brobexportfolio.vercel.app/about.html">
+    <meta property="og:image" content="https://brobexportfolio.vercel.app/images/brobex-logo.webp">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="About BROBEX | Frontend Developer & UI/UX Designer">
+    <meta name="twitter:image" content="https://brobexportfolio.vercel.app/images/brobex-logo.webp">
+    <link rel="canonical" href="https://brobexportfolio.vercel.app/about.html">
+    <!-- Premium Luxury Fonts: Playfair Display & Montserrat -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="icon" href="images/favicon.png" type="image/png">
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/enhancements.css">
+    <link rel="stylesheet" href="responsive/responsive.css">
+    <link rel="stylesheet" href="css/desktop-enhancements.css">
+    <link rel="stylesheet" href="css/theme.css">
+    <link rel="stylesheet" href="css/premium.css">
+    <link rel="stylesheet" href="css/motion-refinement.css">
+    <!-- Estimator Feature Styles -->
+    <link rel="stylesheet" href="css/estimator.css">
+</head>
+<body class="theme-dark">
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <!-- SCROLL PROGRESS INDICATOR -->
+    <div id="scroll-progress" class="scroll-progress-bar" aria-hidden="true"></div>
+
+    <!-- PURE CSS 8K LUXURY WALLPAPER ATMOSPHERE -->
+    <div class="bg-luxury-wallpaper" aria-hidden="true"></div>
+    <div class="cinematic-grain" aria-hidden="true"></div>
+
+    <!-- TOP NAVIGATION -->
+    <header class="top-nav">
+        <a href="index.html" class="brand" aria-label="BROBEX Homepage">
+            <img src="images/brobex-logo.webp" alt="BROBEX" class="brand-logo" width="58" height="58">
+        </a>
+
+        <nav class="top-nav-links desktop-only" aria-label="Primary Navigation">
+            <a href="index.html" class="nav-link">HOME</a>
+            <a href="about.html" class="nav-link active">ABOUT</a>
+            <a href="services.html" class="nav-link">SERVICES</a>
+            <a href="experience.html" class="nav-link">EXPERIENCE</a>
+            <a href="projects.html" class="nav-link">PROJECTS</a>
+            <a href="contact.html" class="nav-link">CONTACT</a>
+        </nav>
+
+        <div class="top-nav-actions">
+            <div class="right-logo-container desktop-only">
+                <img src="images/brobex-logo.webp" alt="BROBEX logo" class="right-circular-logo" width="50" height="50">
+            </div>
+            <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch to light theme" aria-pressed="false">
+                <i class="fas fa-sun" aria-hidden="true"></i><span class="theme-toggle-label">LIGHT</span>
+            </button>
+            
+            <a href="contact.html" class="btn-talk desktop-only">
+                <span>LET'S TALK</span>
+                <i class="fas fa-arrow-right"></i>
+            </a>
+            <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-nav-overlay">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- MOBILE MENU OVERLAY -->
+    <div class="mobile-nav-overlay" id="mobile-nav-overlay" role="dialog" aria-modal="true" aria-label="Mobile navigation">
+        <div class="mobile-nav-header">
+            <img src="images/brobex-logo.webp" alt="BROBEX" class="brand-logo" width="64" height="64">
+            <img src="images/brobex-logo.webp" alt="BROBEX logo" class="mobile-overlay-logo" width="45" height="45">
+            <button class="mobile-close-btn" id="mobile-close-btn" aria-label="Close Mobile Menu"><i class="fas fa-times"></i></button>
+        </div>
+        <nav class="mobile-nav-links">
+            <a href="index.html" class="mobile-link">HOME</a>
+            <a href="about.html" class="mobile-link active">ABOUT</a>
+            <a href="services.html" class="mobile-link">SERVICES</a>
+            <a href="experience.html" class="mobile-link">EXPERIENCE</a>
+            <a href="projects.html" class="mobile-link">PROJECTS</a>
+            <a href="contact.html" class="mobile-link">CONTACT</a>
+        </nav>
+        <div class="mobile-nav-footer">
+            <a href="contact.html" class="btn-primary full-width">START A PROJECT <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </div>
+
+    <!-- LEFT NAVIGATION RAIL -->
+    <aside class="left-rail" aria-label="Rail Navigation">
+        <img src="images/brobex-logo.webp" alt="BROBEX" class="rail-logo" width="44" height="44">
+        <nav class="rail-links">
+            <a href="index.html" class="rail-item" title="Home" aria-label="Home"><i class="fas fa-home" aria-hidden="true"></i></a>
+            <a href="about.html" class="rail-item active" title="About" aria-label="About"><i class="fas fa-user-astronaut" aria-hidden="true"></i></a>
+            <a href="services.html" class="rail-item" title="Services" aria-label="Services"><i class="fas fa-microchip" aria-hidden="true"></i></a>
+            <a href="experience.html" class="rail-item" title="Experience" aria-label="Experience"><i class="fas fa-project-diagram" aria-hidden="true"></i></a>
+            <a href="projects.html" class="rail-item" title="Projects" aria-label="Projects"><i class="fas fa-table-cells" aria-hidden="true"></i></a>
+            <a href="contact.html" class="rail-item" title="Contact" aria-label="Contact"><i class="fas fa-envelope" aria-hidden="true"></i></a>
+        </nav>
+        <div class="rail-bottom">
+            <div class="scroll-indicator">
+                <span class="scroll-text">SCROLL DOWN</span>
+                <div class="scroll-line"></div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- RIGHT CONTACT RAIL (Desktop) -->
+    <aside class="right-contact-rail" aria-label="Direct Contact Links">
+        <a href="https://wa.me/923709995042" target="_blank" rel="noopener noreferrer" class="contact-icon" data-tooltip="WhatsApp Direct">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+        <a href="tel:03709995042" class="contact-icon" data-tooltip="Call 03709995042">
+            <i class="fas fa-phone-alt"></i>
+        </a>
+        <a href="mailto:brobex.ffx@gmail.com" class="contact-icon" data-tooltip="Email Me Directly">
+            <i class="fas fa-envelope"></i>
+        </a>
+        <a href="https://www.instagram.com/codewithbrobex/" target="_blank" rel="noopener noreferrer" class="contact-icon" data-tooltip="Instagram Profile">
+            <i class="fab fa-instagram"></i>
+        </a>
+    </aside>
+
+    <!-- MOBILE FLOATING CONTACT BUTTONS -->
+    <a href="mailto:brobex.ffx@gmail.com" class="mobile-float-btn float-left" aria-label="Email Me">
+        <i class="fas fa-envelope"></i>
+    </a>
+    <a href="tel:03709995042" class="mobile-float-btn float-right" aria-label="Call Me">
+        <i class="fas fa-phone-alt"></i>
+    </a>
+
+    <!-- SCROLL TO TOP BUTTON -->
+    <button id="scrollToTopBtn" aria-label="Scroll to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- MAIN PAGE CONTENT -->
+    <main class="page-content" id="main-content">
+
+        <!-- HERO SECTION -->
+        <section class="hero-section" id="hero">
+            <div class="hero-content split-hero">
+                <!-- TEXT ON LEFT -->
+                <div class="hero-text-block reveal slide-right">
+                    <h1 class="huge-headline">
+                        BEHIND<br>
+                        <span class="highlight-text">BROBEX</span>
+                    </h1>
+                    <p class="hero-intro">
+                        I am a digital architect focused on transforming complex logic into robust, visually refined interfaces. I write code that stands the test of time, prioritizing clean architecture, deep precision, and high-performance execution since October 2025.
+                    </p>
+                    <div class="hero-cta-group">
+                        <a href="#story" class="btn-primary">
+                            <span>READ MY STORY</span>
+                            <i class="fas fa-arrow-down arrow"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- PROFILE ON RIGHT -->
+                <div class="hero-profile-block reveal slide-left" data-delay="200">
+                    <div class="profile-showcase" id="profile-showcase">
+                        <div class="profile-glow-ring"></div>
+                        <div class="profile-image-wrap">
+                              <img src="images/brobex-logo.webp" alt="BROBEX logo" class="profile-image" width="400" height="400" fetchpriority="high">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ORIGIN / MY STORY SECTION -->
+        <section class="section-padding" id="story">
+            <div class="container">
+                <div class="hud-panel reveal fade-up">
+                    <span class="eyebrow">// ORIGIN</span>
+                    <h2 class="section-title" style="margin-bottom: 2rem;">MY STORY</h2>
+                    
+                    <p class="card-text" style="font-size: 1.15rem; max-width: 900px;">
+                        My professional journey in website development began in <strong>October 2025</strong>. Since then, I have dedicated myself entirely to the pursuit of modern frontend excellence. I approach the DOM not merely as markup, but as a rigid structural foundation requiring absolute discipline. 
+                    </p>
+                    <p class="card-text" style="font-size: 1.15rem; max-width: 900px;">
+                        I built my resilience by diving directly into single-page bug-fixing and architectural overhauls on freelance networks, diagnosing rendering bottlenecks and logic faults under strict deadlines. That crucible forged my philosophy: web interfaces must possess both a luxurious aesthetic and an unbreakable underlying logic. This standard is evident in the offline, SVG-driven mathematical precision of web games like <em>Teen Tani</em>, and the seamless local dependencies I orchestrate within custom 3D digital book editors.
+                    </p>
+                    <p class="card-text" style="font-size: 1.15rem; max-width: 900px; margin-bottom: 0;">
+                        My eye for motion aesthetics predates my code. Years of producing, color-grading, and rendering 4K gaming montages taught me that timing and visual hierarchy are everything. Today, I translate that kinetic energy from video frames into scroll-driven animations, leveraging Vite and React Three Fiber to ensure the browser responds to the user with the same immediacy and impact.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- TECHNICAL ARSENAL / LANGUAGES SECTION -->
+        <section class="section-padding">
+            <div class="container">
+                <div class="section-header reveal fade-up">
+                    <span class="eyebrow">// TECHNICAL ARSENAL</span>
+                    <h2 class="section-title">CORE LANGUAGES</h2>
+                    <div class="section-line"></div>
+                </div>
+
+                <div class="capabilities-grid progression-track">
+                    
+                    <div class="interactive-card reveal blur-in" data-delay="100">
+                        <div class="card-icon"><i class="fab fa-html5"></i></div>
+                        <h3 class="card-title">HTML5 / DOM Architecture</h3>
+                        <p class="card-desc">
+                            The bedrock of the web. I construct semantic, highly accessible, and rigidly structured document object models that search engines and browsers parse with maximum efficiency.
+                        </p>
+                    </div>
+
+                    <div class="interactive-card reveal blur-in" data-delay="200">
+                        <div class="card-icon"><i class="fab fa-css3-alt"></i></div>
+                        <h3 class="card-title">CSS3 / Spatial Styling</h3>
+                        <p class="card-desc">
+                            Translating raw data into premium aesthetics. Fluent in complex Grid/Flexbox layouts, fluid typography, and hardware-accelerated animations that establish a definitive luxury feel.
+                        </p>
+                    </div>
+
+                    <div class="interactive-card reveal blur-in" data-delay="300">
+                        <div class="card-icon"><i class="fab fa-js"></i></div>
+                        <h3 class="card-title">JavaScript (ES6+)</h3>
+                        <p class="card-desc">
+                            The engine of interaction. Writing clean, vanilla logic for state management, intersection observers, and offline-capable service workers without relying on unnecessary dependencies.
+                        </p>
+                    </div>
+
+                    <div class="interactive-card reveal blur-in" data-delay="400">
+                        <div class="card-icon"><i class="fab fa-react"></i></div>
+                        <h3 class="card-title">React & Three Fiber</h3>
+                        <p class="card-desc">
+                            Engineering complex, component-based UIs and interactive 3D workspaces. Optimizing rendering cycles and mitigating frame-rate lag in deeply nested digital environments.
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================================= -->
+        <!-- NEW FEATURE: BROBEX WEBSITE ESTIMATOR & BRIEF BUILDER     -->
+        <!-- ========================================================= -->
+        <section class="section-padding" id="project-estimator">
+            <div class="container">
+                <div class="hud-panel reveal fade-up">
+                    <div class="section-header">
+                        <span class="eyebrow">// PROJECT ARCHITECTURE</span>
+                        <h2 class="section-title">PLAN YOUR BROBEX WEBSITE</h2>
+                        <p class="card-text" style="font-size: 1.15rem; max-width: 800px; margin-top: 1rem;">
+                            Tell BROBEX what you want to build. Choose the market that best fits your project, configure the scope, review an indicative local estimate with a clearly itemized 40% discount, and generate a ready-to-send project brief. Prices are planning ranges—not a fixed quote—and the final proposal depends on the agreed requirements.
+                        </p>
+                        <div class="section-line" style="margin-top: 1.5rem;"></div>
+                    </div>
+
+                    <div class="brobex-estimator" id="brobexEstimator">
+                        
+                        <!-- Progress Indicator -->
+                        <div class="estimator-progress" role="list" aria-label="Estimator progress">
+                            <div class="progress-step active" role="listitem" data-step="1" aria-current="step">01<span class="step-label">WEBSITE</span></div>
+                            <div class="progress-line"></div>
+                            <div class="progress-step" role="listitem" data-step="2" aria-current="false">02<span class="step-label">REQUIREMENTS</span></div>
+                            <div class="progress-line"></div>
+                            <div class="progress-step" role="listitem" data-step="3" aria-current="false">03<span class="step-label">ESTIMATE</span></div>
+                            <div class="progress-line"></div>
+                            <div class="progress-step" role="listitem" data-step="4" aria-current="false">04<span class="step-label">BRIEF</span></div>
+                        </div>
+
+                        <div class="estimator-mobile-progress" aria-live="polite" aria-atomic="true">
+                            <span class="mobile-progress-count" id="mobileProgressCount">STEP 1 OF 4</span>
+                            <span class="mobile-progress-label" id="mobileProgressLabel">WEBSITE TYPE</span>
+                        </div>
+
+                        <div class="estimator-layout">
+                            <!-- Left Column: Interactive Steps -->
+                            <div class="estimator-content">
+                                
+                                <!-- STEP 1: WEBSITE TYPE -->
+                                <div class="estimator-step active" id="step-1">
+                                    <h3 class="step-heading">What type of website are you looking to build?</h3>
+                                    <div class="estimator-grid" id="websiteTypeGrid">
+                                        <!-- Handled via accessible radio inputs masked as cards -->
+                                    </div>
+                                    <div class="estimator-actions">
+                                        <button class="btn-primary btn-next" type="button" disabled><span>CONTINUE</span> <i class="fas fa-arrow-right"></i></button>
+                                    </div>
+                                    <p class="validation-message" id="step1-error" role="alert" aria-live="polite" aria-atomic="true"></p>
+                                </div>
+
+                                <!-- STEP 2: PROJECT REQUIREMENTS -->
+                                <div class="estimator-step" id="step-2">
+                                    <h3 class="step-heading">Configure your project requirements</h3>
+                                    
+                                    <div class="requirement-group">
+                                        <h4 class="req-title">Number of Pages</h4>
+                                        <div class="radio-chips" id="req-pages">
+                                            <label class="radio-chip"><input type="radio" name="pages" value="1-3" class="sr-only"><span>1–3</span></label>
+                                            <label class="radio-chip"><input type="radio" name="pages" value="4-6" class="sr-only"><span>4–6</span></label>
+                                            <label class="radio-chip"><input type="radio" name="pages" value="7-10" class="sr-only"><span>7–10</span></label>
+                                            <label class="radio-chip"><input type="radio" name="pages" value="10+" class="sr-only"><span>10+</span></label>
+                                        </div>
+                                    </div>
+
+                                    <div class="requirement-group">
+                                        <h4 class="req-title">Design Level</h4>
+                                        <div class="radio-chips" id="req-design">
+                                            <label class="radio-chip"><input type="radio" name="design" value="Clean & Professional" class="sr-only"><span>Clean & Professional</span></label>
+                                            <label class="radio-chip"><input type="radio" name="design" value="Premium" class="sr-only"><span>Premium</span></label>
+                                            <label class="radio-chip"><input type="radio" name="design" value="Luxury / High-End" class="sr-only"><span>Luxury / High-End</span></label>
+                                            <label class="radio-chip"><input type="radio" name="design" value="Fully Custom" class="sr-only"><span>Fully Custom</span></label>
+                                        </div>
+                                    </div>
+
+                                    <div class="requirement-group">
+                                        <h4 class="req-title">Responsive Design</h4>
+                                        <div class="radio-chips" id="req-responsive">
+                                            <label class="radio-chip"><input type="radio" name="responsive" value="Desktop + Mobile" class="sr-only"><span>Desktop + Mobile</span></label>
+                                            <label class="radio-chip"><input type="radio" name="responsive" value="Desktop + Tablet + Mobile" class="sr-only"><span>Desktop + Tablet + Mobile</span></label>
+                                        </div>
+                                    </div>
+
+                                    <div class="requirement-group">
+                                        <h4 class="req-title">Features & Integrations (Select multiple)</h4>
+                                        <div class="checkbox-grid" id="req-features">
+                                            <!-- Injected by JS -->
+                                        </div>
+                                    </div>
+
+                                    <div class="requirement-group">
+                                        <h4 class="req-title">Do you already have a design?</h4>
+                                        <div class="radio-chips" id="req-designStatus">
+                                            <label class="radio-chip"><input type="radio" name="designStatus" value="Yes, I have a design" class="sr-only"><span>Yes, I have a design</span></label>
+                                            <label class="radio-chip"><input type="radio" name="designStatus" value="I have inspiration/references" class="sr-only"><span>I have inspiration/references</span></label>
+                                            <label class="radio-chip"><input type="radio" name="designStatus" value="No, create the design for me" class="sr-only"><span>No, create the design for me</span></label>
+                                        </div>
+                                    </div>
+
+                                    <div class="requirement-group">
+                                        <h4 class="req-title">Content (Text & Images)</h4>
+                                        <div class="radio-chips" id="req-content">
+                                            <label class="radio-chip"><input type="radio" name="content" value="I have all content" class="sr-only"><span>I have all content</span></label>
+                                            <label class="radio-chip"><input type="radio" name="content" value="I have some content" class="sr-only"><span>I have some content</span></label>
+                                            <label class="radio-chip"><input type="radio" name="content" value="I need help with content" class="sr-only"><span>I need help with content</span></label>
+                                        </div>
+                                    </div>
+
+                                    <div class="requirement-group">
+                                        <h4 class="req-title">Timeline</h4>
+                                        <div class="radio-chips" id="req-timeline">
+                                            <label class="radio-chip"><input type="radio" name="timeline" value="Flexible" class="sr-only"><span>Flexible</span></label>
+                                            <label class="radio-chip"><input type="radio" name="timeline" value="1–2 weeks" class="sr-only"><span>1–2 weeks</span></label>
+                                            <label class="radio-chip"><input type="radio" name="timeline" value="2–4 weeks" class="sr-only"><span>2–4 weeks</span></label>
+                                            <label class="radio-chip"><input type="radio" name="timeline" value="1–2 months" class="sr-only"><span>1–2 months</span></label>
+                                            <label class="radio-chip"><input type="radio" name="timeline" value="Discuss with BROBEX" class="sr-only"><span>Discuss with BROBEX</span></label>
+                                        </div>
+                                    </div>
+
+                                    <div class="estimator-actions split">
+                                        <button class="btn-secondary btn-back" type="button"><i class="fas fa-arrow-left"></i> <span>BACK</span></button>
+                                        <button class="btn-primary btn-next" type="button"><span>CALCULATE ESTIMATE</span> <i class="fas fa-arrow-right"></i></button>
+                                    </div>
+                                    <p class="validation-message" id="step2-error" role="alert" aria-live="polite" aria-atomic="true"></p>
+                                </div>
+
+                                <!-- STEP 3: ESTIMATE -->
+                                <div class="estimator-step" id="step-3">
+                                    <div class="estimate-reveal-container">
+                                        <span class="eyebrow">// ANALYSIS COMPLETE</span>
+                                        <h3 class="step-heading">Estimated Project Investment</h3>
+                                        <div class="price-range-display" id="finalPriceDisplay">
+                                            <span class="price-val">$0</span>
+                                            <span class="price-sep">–</span>
+                                            <span class="price-val">$0</span>
+                                        </div>
+                                        <p class="estimate-disclaimer">
+                                            <i class="fas fa-info-circle"></i> Final pricing depends on the confirmed scope, functionality, content, integrations, and project requirements.
+                                        </p>
+                                    </div>
+                                    
+                                    <div class="estimator-actions split">
+                                        <button class="btn-secondary btn-back" type="button"><i class="fas fa-arrow-left"></i> <span>EDIT REQUIREMENTS</span></button>
+                                        <button class="btn-primary btn-next" type="button"><span>BUILD PROJECT BRIEF</span> <i class="fas fa-arrow-right"></i></button>
+                                    </div>
+                                </div>
+
+                                <!-- STEP 4: PROJECT BRIEF -->
+                                <div class="estimator-step" id="step-4">
+                                    <h3 class="step-heading">Your Project Brief</h3>
+                                    <p class="card-desc">Review your configured requirements and add your contact details to open a direct channel with BROBEX.</p>
+                                    
+                                    <div class="brief-form-grid">
+                                        <div class="brief-form-group">
+                                            <label for="briefName">Full Name</label>
+                                            <input type="text" id="briefName" name="name" autocomplete="name" placeholder="John Doe">
+                                        </div>
+                                        <div class="brief-form-group">
+                                            <label for="briefEmail">Email Address</label>
+                                            <input type="email" id="briefEmail" name="email" autocomplete="email" inputmode="email" placeholder="john@example.com">
+                                        </div>
+                                        <div class="brief-form-group">
+                                            <label for="briefBusiness">Business / Brand Name</label>
+                                            <input type="text" id="briefBusiness" name="organization" autocomplete="organization" placeholder="Your Brand Ltd.">
+                                        </div>
+                                        <div class="brief-form-group">
+                                            <label for="briefPhone">Phone / WhatsApp</label>
+                                            <input type="tel" id="briefPhone" name="phone" autocomplete="tel" inputmode="tel" placeholder="+1 234 567 8900">
+                                        </div>
+                                        <div class="brief-form-group full-span">
+                                            <label for="briefNotes">Optional Project Notes</label>
+                                            <textarea id="briefNotes" name="notes" rows="4" placeholder="Any specific details, links, or questions..."></textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class="estimator-actions column-actions">
+                                        <a href="#" class="btn-primary full-width" id="btnEmailBrief">
+                                            <i class="fas fa-envelope"></i> <span>EMAIL MY PROJECT BRIEF</span>
+                                        </a>
+                                        <a href="#" target="_blank" rel="noopener noreferrer" class="btn-secondary full-width" id="btnWhatsappBrief">
+                                            <i class="fab fa-whatsapp"></i> <span>DISCUSS ON WHATSAPP</span>
+                                        </a>
+                                    </div>
+                                    <div class="reset-container">
+                                        <button class="btn-reset" type="button" id="btnResetEstimator">
+                                            <i class="fas fa-redo"></i> RESET PROJECT
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Right Column: Sticky Summary Panel -->
+                            <div class="estimator-sidebar">
+                                <div class="summary-panel">
+                                    <h4 class="summary-title">LIVE SUMMARY</h4>
+                                    <div class="summary-list" id="summaryList">
+                                        <div class="summary-item empty-state">Select a website type to begin your estimate.</div>
+                                    </div>
+                                    <div class="summary-total">
+                                        <span class="total-label">ESTIMATED RANGE</span>
+                                        <span class="total-value" id="summaryPrice">$0 – $0</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="futuristic-footer">
+        <div class="footer-container">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <img src="images/brobex-logo.webp" alt="BROBEX" class="footer-logo" width="96" height="96">
+                    <p class="brand-tagline">BUILDING DIGITAL EXPERIENCES FOR THE NEXT DIMENSION.</p>
+                </div>
+                
+                <div class="footer-nav">
+                    <div class="footer-col">
+                        <span class="col-title">NAVIGATION</span>
+                        <a href="index.html">Home</a>
+                        <a href="about.html">About</a>
+                        <a href="services.html">Services</a>
+                    </div>
+                    <div class="footer-col">
+                        <span class="col-title">EXPLORE</span>
+                        <a href="experience.html">Experience</a>
+                        <a href="projects.html">Projects</a>
+                        <a href="contact.html">Contact</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="sys-status">
+                    <span class="status-dot"></span>
+                    <span class="status-text">SYSTEM STATUS: ALL MODULES ONLINE</span>
+                </div>
+                <div class="copyright">
+                    &copy; 2026 BROBEX. ALL RIGHTS RESERVED.
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript Files -->
+    <script src="js/site.js" defer></script>
+    <script src="js/about.js" defer></script>
+    <script src="responsive/responsive.js" defer></script>
+    <script src="js/desktop-enhancements.js" defer></script>
+    <script src="js/theme.js" defer></script>
+    <script src="js/premium.js" defer></script>
+<script src="js/motion-refinement.js" defer></script>
+    <!-- Estimator Engine -->
+    <script src="js/estimator.js" defer></script>
+</body>
+</html>
