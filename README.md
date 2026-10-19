@@ -29,3 +29,7 @@ The USD and GBP figures are editable in the `CONFIG` object at the top of `js/es
 ## Not yet verified in a real browser
 
 A full interactive browser test, accessibility audit, Lighthouse run, and real email/WhatsApp handoff were not performed in this environment. Please test these before deploying. In particular, test the estimator on mobile and verify that the user's browser allows opening WhatsApp or an email application.
+
+## Latest integrated HUD upgrade
+
+See `UPGRADE-NOTES.md` for the complete integration summary and validation instructions. The current bundle includes `public/css/hud-glass.css`, `src/components/PortfolioMotion.tsx`, responsive WebP project image variants, and expanded case-study content in the existing project archive.

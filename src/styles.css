@@ -26,3 +26,8 @@
 @media(max-width:760px){.brobex-editorial .editorial-grid{grid-template-columns:1fr}.brobex-editorial .editorial-card{padding:1.25rem}.brobex-editorial .editorial-index{margin-bottom:1rem}.brobex-editorial .editorial-note{grid-template-columns:1fr;gap:.75rem}.brobex-editorial .container{width:min(100% - 1.5rem,1180px)}}
 @media(hover:none){.brobex-editorial .editorial-card:hover{transform:none}}
 @media(prefers-reduced-motion:reduce){.rb-text-reveal{animation:none}.rb-scroll-reveal{opacity:1;transform:none;transition:none}.brobex-editorial .editorial-card{transition:none}}
+
+/* HUD navbar motion: transform-only for compositor-friendly hide/reveal. */
+.legacy-page .top-nav { transition: transform 260ms cubic-bezier(.2,.75,.25,1), background-color .25s ease; }
+.legacy-page .top-nav.hud-nav-hidden { transform: translateY(-110%); }
+@media (prefers-reduced-motion: reduce) { .legacy-page .top-nav { transition: none; } .legacy-page .top-nav.hud-nav-hidden { transform: none; } }

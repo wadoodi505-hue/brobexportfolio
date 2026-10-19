@@ -1,0 +1,56 @@
+/* BROBEX HUD Glass layer — loaded after existing theme styles. */
+:root {
+  --hud-void: #07090d;
+  --hud-panel: rgba(13, 17, 24, .72);
+  --hud-panel-strong: rgba(13, 17, 24, .92);
+  --hud-line: rgba(202, 216, 231, .13);
+  --hud-line-hot: rgba(0, 255, 136, .38);
+  --hud-text: #eef3f7;
+  --hud-muted: #aab5c2;
+  --hud-accent: #00ff88;
+  --hud-accent-soft: rgba(0, 255, 136, .12);
+  --hud-radius-sm: 12px;
+  --hud-radius-lg: 20px;
+  --hud-blur-light: 8px;
+  --hud-blur-medium: 14px;
+  --hud-shadow: 0 18px 48px rgba(0, 0, 0, .24);
+  --hud-ease: cubic-bezier(.2, .75, .25, 1);
+}
+:root[data-theme="light"] {
+  --hud-panel: rgba(255, 255, 255, .82);
+  --hud-panel-strong: rgba(250, 251, 252, .96);
+  --hud-line: rgba(25, 39, 50, .14);
+  --hud-line-hot: rgba(55, 130, 92, .48);
+  --hud-text: #17211e;
+  --hud-muted: #4e5e58;
+  --hud-accent: #26764f;
+  --hud-accent-soft: rgba(38, 118, 79, .09);
+  --hud-shadow: 0 18px 48px rgba(20, 35, 28, .12);
+}
+.hud-glass { position:relative; isolation:isolate; background:var(--hud-panel-strong); border:1px solid var(--hud-line); box-shadow:var(--hud-shadow); }
+@supports ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))) {
+  .hud-glass { background:var(--hud-panel); -webkit-backdrop-filter:blur(var(--hud-blur-light)) saturate(125%); backdrop-filter:blur(var(--hud-blur-light)) saturate(125%); }
+  .hud-glass--medium { -webkit-backdrop-filter:blur(var(--hud-blur-medium)) saturate(130%); backdrop-filter:blur(var(--hud-blur-medium)) saturate(130%); }
+}
+.hud-glass--strong { background:var(--hud-panel-strong); }
+.hud-border-glow { border:1px solid transparent; background:linear-gradient(var(--hud-panel-strong),var(--hud-panel-strong)) padding-box,linear-gradient(135deg,rgba(0,255,136,.58),rgba(202,216,231,.13) 45%,rgba(0,255,136,.20)) border-box; }
+.hud-border-glow::after { content:""; position:absolute; inset:0; border-radius:inherit; pointer-events:none; opacity:0; box-shadow:inset 0 0 0 1px rgba(0,255,136,.10),0 0 22px rgba(0,255,136,.07); transition:opacity 240ms var(--hud-ease); }
+.hud-border-glow:hover::after,.hud-border-glow:focus-within::after { opacity:1; }
+.hud-interactive { transition:transform 240ms var(--hud-ease),border-color 240ms ease,background-color 240ms ease,box-shadow 240ms ease; }
+@media (hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference) { .hud-interactive:hover { transform:translateY(-3px); border-color:var(--hud-line-hot); box-shadow:0 20px 48px rgba(0,0,0,.28),0 0 24px rgba(0,255,136,.045); } }
+.hud-interactive:focus-visible,.hud-glass a:focus-visible,.hud-glass button:focus-visible { outline:2px solid var(--hud-accent); outline-offset:3px; }
+.hud-kicker { color:var(--hud-accent); font:700 .7rem/1.4 ui-monospace,SFMono-Regular,Consolas,monospace; letter-spacing:.16em; text-transform:uppercase; }
+.hud-muted { color:var(--hud-muted); }
+/* Apply effects only to selected existing components; avoid full-page blur. */
+.legacy-page .project-card,.legacy-page .featured-project,.legacy-page .contact-method,.legacy-page .service-card,.legacy-page .editorial-card { border-color:var(--hud-line); }
+.legacy-page .project-card,.legacy-page .featured-project,.legacy-page .contact-method { position:relative; isolation:isolate; }
+.legacy-page .project-card:hover,.legacy-page .featured-project:hover,.legacy-page .contact-method:hover { border-color:var(--hud-line-hot); }
+.legacy-page .project-tags span,.legacy-page .card-tech-tags span { border-radius:999px; }
+@media (max-width:700px) { .hud-glass,.hud-glass--medium { -webkit-backdrop-filter:none; backdrop-filter:none; background:var(--hud-panel-strong); } }
+@media (prefers-reduced-motion:reduce) { .hud-interactive,.hud-border-glow::after { transition:none; } .hud-interactive:hover { transform:none; } }
+.project-case-study { margin:1.5rem 0; padding:1.2rem; border:1px solid var(--hud-line); border-radius:var(--hud-radius-sm); background:var(--hud-panel-strong); }
+.project-case-study .hud-kicker { margin:0 0 1rem; }
+.project-case-study dl { display:grid; grid-template-columns:minmax(5.5rem,.32fr) 1fr; gap:.7rem 1rem; margin:0; }
+.project-case-study dt { color:var(--hud-text); font-size:.82rem; font-weight:700; }
+.project-case-study dd { margin:0; color:var(--hud-muted); font-size:.9rem; line-height:1.65; }
+@media(max-width:560px) { .project-case-study { padding:1rem; } .project-case-study dl { grid-template-columns:1fr; gap:.25rem; } .project-case-study dd { margin-bottom:.7rem; } }
