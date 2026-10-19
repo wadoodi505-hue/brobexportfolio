@@ -8,3 +8,11 @@ test-results
 !.env.example
 
 .vite/
+
+.vite/
+.git-backup-before-repair/
+index.html.before-html-fix.bak
+
+.vite/
+.git-backup-before-repair/
+index.html.before-html-fix.bak
