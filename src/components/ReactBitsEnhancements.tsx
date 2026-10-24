@@ -14,7 +14,31 @@ export function ReactBitsEnhancements({ page, children }: Props) {
     if (!root) return;
 
     const headings = root.querySelectorAll<HTMLElement>('main h1, .hero h1, .page-hero h1, h1');
-    headings.forEach((heading) => heading.classList.add('rb-text-reveal'));
+    headings.forEach((heading, index) => {
+      heading.classList.add('rb-text-reveal');
+      heading.style.animationDelay = `${Math.min(index, 2) * 90}ms`;
+    });
+
+    // Keep the active route indicator correct when legacy markup is rendered inside React.
+    const routeForPage: Record<string, string> = {
+      home: '/', about: '/about', services: '/services',
+      experience: '/experience', projects: '/projects', contact: '/contact',
+    };
+    root.querySelectorAll<HTMLAnchorElement>('.top-nav-links a, .mobile-nav-overlay a, #mobile-nav-overlay a')
+      .forEach((link) => {
+        let pathname = '';
+        try { pathname = new URL(link.href, window.location.href).pathname.replace(/\/$/, '') || '/'; } catch { return; }
+        const normalized = pathname.replace(/\.html$/, '') || '/';
+        const expected = (routeForPage[page] ?? '/').replace(/\.html$/, '') || '/';
+        const isCurrent = normalized === expected || (page === 'home' && normalized === '/index');
+        if (isCurrent) {
+          link.classList.add('active');
+          link.setAttribute('aria-current', 'page');
+        } else {
+          link.classList.remove('active');
+          link.removeAttribute('aria-current');
+        }
+      });
 
     const revealTargets = root.querySelectorAll<HTMLElement>(
       'main h2, section h2, .section-header, .service-card, .project-card, .editorial-card, .skill-card, .timeline-item, .experience-card, .contact-method'
