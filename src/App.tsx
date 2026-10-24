@@ -1,8 +1,7 @@
-import { useEffect, useState } from 'react';
+﻿import { useEffect, useState } from 'react';
 import { Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import { PageTransition } from './components/PageTransition';
 import { ReactBitsEnhancements } from './components/ReactBitsEnhancements';
-import { PortfolioMotion } from './components/PortfolioMotion';
 import { routePages, type PageKey } from './data/routes';
 
 const legacyScripts: Partial<Record<PageKey, string[]>> = {
@@ -50,7 +49,7 @@ function LegacyPage({ page }: { page: PageKey }) {
   // The legacy HTML uses ordinary .html links. Intercept only same-origin portfolio
   // routes so navigation stays inside React Router and in-memory estimator progress survives.
   useEffect(() => {
-    const root = document.querySelector('.legacy-page');
+    const root = document.querySelector<HTMLElement>('.legacy-page');
     if (!root) return;
     const internalPaths = new Set([
       '/', '/index.html',
@@ -115,8 +114,8 @@ function LegacyPage({ page }: { page: PageKey }) {
     window.scrollTo({ top: 0, behavior: 'auto' });
   }, [page]);
   if (error) return <main className="migration-error"><h1>Unable to load this page</h1><p>Please refresh the page. If the problem continues, check the deployed legacy assets.</p></main>;
-  if (!markup) return <div className="app-loading" role="status">Loading {routePages[page].label}…</div>;
-  return <PageTransition><ReactBitsEnhancements page={page}><div className="legacy-page" dangerouslySetInnerHTML={{ __html: markup }} /></ReactBitsEnhancements><PortfolioMotion routeKey={page} /></PageTransition>;
+  if (!markup) return <div className="app-loading" role="status">Loading {routePages[page].label}â€¦</div>;
+  return <PageTransition><ReactBitsEnhancements page={page}><div className="legacy-page" dangerouslySetInnerHTML={{ __html: markup }} /></ReactBitsEnhancements></PageTransition>;
 }
 
 export default function App() {
