@@ -13,6 +13,8 @@ export function ReactBitsEnhancements({ page, children }: Props) {
     const root = rootRef.current;
     if (!root) return;
 
+    root.querySelectorAll('.command-trigger, .command-palette-trigger, [aria-label*="COMMAND"], [title*="⌘K"]').forEach((node) => node.remove());
+
     const headings = root.querySelectorAll<HTMLElement>('main h1, .hero h1, .page-hero h1, h1');
     headings.forEach((heading, index) => {
       heading.classList.add('rb-text-reveal');

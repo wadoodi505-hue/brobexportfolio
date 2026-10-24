@@ -120,8 +120,30 @@ function LegacyPage({ page }: { page: PageKey }) {
 
 export default function App() {
   const location = useLocation();
-  useEffect(() => { document.documentElement.dataset.route = location.pathname; }, [location.pathname]);
-  return <Routes>
+  const [showFirstLoader, setShowFirstLoader] = useState(false);
+  useEffect(() => {
+    document.documentElement.dataset.route = location.pathname;
+    if (location.pathname !== '/') return;
+    try {
+      if (window.localStorage.getItem('brobex-first-visit-loader-v1') === 'shown') return;
+      window.localStorage.setItem('brobex-first-visit-loader-v1', 'shown');
+      setShowFirstLoader(true);
+      const startedAt = window.setTimeout(() => setShowFirstLoader(false), 1450);
+      return () => window.clearTimeout(startedAt);
+    } catch {
+      // Storage may be unavailable; avoid blocking the portfolio.
+      setShowFirstLoader(false);
+    }
+  }, [location.pathname]);
+  return <>
+    {showFirstLoader && location.pathname === '/' && <div className="bx-first-loader" role="status" aria-label="Loading BROBEX portfolio">
+      <div className="bx-loader-inner">
+        <img className="bx-loader-mark" src="/images/brobex-logo.webp" alt="" />
+        <span className="bx-loader-word">BROBEX</span>
+        <span className="bx-loader-track" aria-hidden="true" />
+      </div>
+    </div>}
+    <Routes>
     <Route path="/" element={<LegacyPage page="home" />} />
     <Route path="/index.html" element={<Navigate to="/" replace />} />
     <Route path="/about" element={<LegacyPage page="about" />} />
@@ -147,5 +169,6 @@ export default function App() {
         <p className="not-found-footnote">BROBEX · DIGITAL EXPERIENCES, BUILT WITH INTENTION</p>
       </main>
     } />
-  </Routes>;
+  </Routes>
+  </>;
 }
