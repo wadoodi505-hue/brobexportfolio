@@ -102,3 +102,31 @@ body{overflow-x:clip}
   .rb-text-reveal{animation:none!important;filter:none!important}
   .legacy-page *{scroll-behavior:auto!important}
 }
+
+
+/* Ensure the premium 404 layout wins over legacy baseline styles in every build mode. */
+#root .not-found {
+  max-width: none;
+  width: min(100% - 40px, 900px);
+  margin: 0 auto;
+  padding: clamp(96px, 14vh, 150px) 0 38px;
+}
+
+#root .not-found h1 {
+  max-width: 760px;
+  margin: 0;
+  font-size: clamp(2.8rem, 7vw, 6.2rem);
+  line-height: .98;
+  letter-spacing: -.065em;
+}
+
+@media (max-width: 640px) {
+  #root .not-found {
+    width: calc(100% - 36px);
+    padding-top: 112px;
+    padding-bottom: 28px;
+  }
+  #root .not-found h1 {
+    font-size: clamp(2.6rem, 13vw, 4.2rem);
+  }
+}

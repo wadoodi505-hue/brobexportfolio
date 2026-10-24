@@ -1,5 +1,5 @@
-﻿import { useEffect, useState } from 'react';
-import { Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { Link, Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import { PageTransition } from './components/PageTransition';
 import { ReactBitsEnhancements } from './components/ReactBitsEnhancements';
 import { routePages, type PageKey } from './data/routes';
@@ -134,6 +134,18 @@ export default function App() {
     <Route path="/projects.html" element={<LegacyPage page="projects" />} />
     <Route path="/contact" element={<LegacyPage page="contact" />} />
     <Route path="/contact.html" element={<LegacyPage page="contact" />} />
-    <Route path="*" element={<main className="not-found"><p className="eyebrow">BROBEX / 404</p><h1>This route doesn't exist.</h1><a href="/">Return home</a></main>} />
+    <Route path="*" element={
+      <main className="not-found" aria-labelledby="not-found-title">
+        <div className="not-found-orbit" aria-hidden="true"><span>404</span></div>
+        <p className="not-found-eyebrow"><span className="not-found-status-dot" /> BROBEX / PAGE NOT FOUND</p>
+        <h1 id="not-found-title">This page took a different route.</h1>
+        <p className="not-found-copy">The link may be outdated, or the page may have moved. Let’s get you back to something useful.</p>
+        <div className="not-found-actions">
+          <Link className="not-found-primary" to="/">Return to homepage <span aria-hidden="true">↗</span></Link>
+          <button className="not-found-secondary" type="button" onClick={() => window.history.back()}>Go back</button>
+        </div>
+        <p className="not-found-footnote">BROBEX · DIGITAL EXPERIENCES, BUILT WITH INTENTION</p>
+      </main>
+    } />
   </Routes>;
 }

@@ -285,11 +285,10 @@
     };
 
     const init = () => {
-        createCommandTrigger();
+        // The command palette has been intentionally removed from the public UI.
+        // Keep the independent view settings and project archive enhancements.
         createSettings();
-        createCommandLayer();
-        const settingsLayer = setupSettings();
-        setupCommandMenu(settingsLayer);
+        setupSettings();
         setupProjectArchive();
     };
 
