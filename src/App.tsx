@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+﻿import { useEffect, useState } from 'react';
 import { Link, Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import { ReactBitsEnhancements } from './components/ReactBitsEnhancements';
 import { routePages, type PageKey } from './data/routes';
@@ -141,14 +141,15 @@ export default function App() {
         <div className="not-found-orbit" aria-hidden="true"><span>404</span></div>
         <p className="not-found-eyebrow"><span className="not-found-status-dot" /> BROBEX / PAGE NOT FOUND</p>
         <h1 id="not-found-title">This page took a different route.</h1>
-        <p className="not-found-copy">The link may be outdated, or the page may have moved. Let’s get you back to something useful.</p>
+        <p className="not-found-copy">The link may be outdated, or the page may have moved. Letâ€™s get you back to something useful.</p>
         <div className="not-found-actions">
-          <Link className="not-found-primary" to="/">Return to homepage <span aria-hidden="true">↗</span></Link>
+          <Link className="not-found-primary" to="/">Return to homepage <span aria-hidden="true">â†—</span></Link>
           <button className="not-found-secondary" type="button" onClick={() => window.history.back()}>Go back</button>
         </div>
-        <p className="not-found-footnote">BROBEX · DIGITAL EXPERIENCES, BUILT WITH INTENTION</p>
+        <p className="not-found-footnote">BROBEX Â· DIGITAL EXPERIENCES, BUILT WITH INTENTION</p>
       </main>
     } />
   </Routes>
   </>;
 }
+
