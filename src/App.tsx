@@ -1,6 +1,5 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link, Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
-import { PageTransition } from './components/PageTransition';
 import { ReactBitsEnhancements } from './components/ReactBitsEnhancements';
 import { routePages, type PageKey } from './data/routes';
 
@@ -115,28 +114,36 @@ function LegacyPage({ page }: { page: PageKey }) {
   }, [page]);
   if (error) return <main className="migration-error"><h1>Unable to load this page</h1><p>Please refresh the page. If the problem continues, check the deployed legacy assets.</p></main>;
   if (!markup) return <div className="app-loading" role="status">Loading {routePages[page].label}â€¦</div>;
-  return <PageTransition><ReactBitsEnhancements page={page}><div className="legacy-page" dangerouslySetInnerHTML={{ __html: markup }} /></ReactBitsEnhancements></PageTransition>;
+  return <ReactBitsEnhancements page={page}><div className="legacy-page" dangerouslySetInnerHTML={{ __html: markup }} /></ReactBitsEnhancements>;
 }
 
 export default function App() {
   const location = useLocation();
   const [showFirstLoader, setShowFirstLoader] = useState(false);
+  const loaderSetupRef = useRef(false);
   useEffect(() => {
     document.documentElement.dataset.route = location.pathname;
-    if (location.pathname !== '/') return;
-    try {
-      if (window.localStorage.getItem('brobex-first-visit-loader-v1') === 'shown') return;
-      window.localStorage.setItem('brobex-first-visit-loader-v1', 'shown');
-      setShowFirstLoader(true);
-      const startedAt = window.setTimeout(() => setShowFirstLoader(false), 1450);
-      return () => window.clearTimeout(startedAt);
-    } catch {
-      // Storage may be unavailable; avoid blocking the portfolio.
-      setShowFirstLoader(false);
-    }
   }, [location.pathname]);
+  useEffect(() => {
+    // React StrictMode replays effects in development; guard that replay explicitly.
+    if (loaderSetupRef.current) return;
+    loaderSetupRef.current = true;
+    // One entrance per tab session, regardless of the first route visited.
+    // sessionStorage survives refreshes but resets for a new independent tab session.
+    try {
+      if (window.sessionStorage.getItem('brobex-entrance-seen-v2') === '1') return;
+      window.sessionStorage.setItem('brobex-entrance-seen-v2', '1');
+    } catch {
+      // If storage is blocked, show the animation once for this mounted app only.
+    }
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    setShowFirstLoader(true);
+    // Intentionally do not cancel on StrictMode's simulated cleanup; the timer is short
+    // and guarantees the overlay cannot become stuck during the development replay.
+    window.setTimeout(() => setShowFirstLoader(false), 1050);
+  }, []);
   return <>
-    {showFirstLoader && location.pathname === '/' && <div className="bx-first-loader" role="status" aria-label="Loading BROBEX portfolio">
+    {showFirstLoader && <div className="bx-first-loader" role="status" aria-label="BROBEX portfolio is loading" aria-live="polite">
       <div className="bx-loader-inner">
         <img className="bx-loader-mark" src="/images/brobex-logo.webp" alt="" />
         <span className="bx-loader-word">BROBEX</span>

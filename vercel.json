@@ -1,7 +1,43 @@
 {
   "rewrites": [
     {
-      "source": "/((?!legacy/|css/|js/|images/|responsive/|.*\\..*).*)",
+      "source": "/about.html",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/services.html",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/experience.html",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/projects.html",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/contact.html",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/about",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/services",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/experience",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/projects",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/contact",
       "destination": "/index.html"
     }
   ]
