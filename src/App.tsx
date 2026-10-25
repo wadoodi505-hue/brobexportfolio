@@ -125,22 +125,13 @@ export default function App() {
     document.documentElement.dataset.route = location.pathname;
   }, [location.pathname]);
   useEffect(() => {
-    // React StrictMode replays effects in development; guard that replay explicitly.
+    // Show a short premium entrance on each full page load/direct entry or refresh.
+    // React Router navigation stays instant and never replays this overlay.
     if (loaderSetupRef.current) return;
     loaderSetupRef.current = true;
-    // One entrance per tab session, regardless of the first route visited.
-    // sessionStorage survives refreshes but resets for a new independent tab session.
-    try {
-      if (window.sessionStorage.getItem('brobex-entrance-seen-v2') === '1') return;
-      window.sessionStorage.setItem('brobex-entrance-seen-v2', '1');
-    } catch {
-      // If storage is blocked, show the animation once for this mounted app only.
-    }
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     setShowFirstLoader(true);
-    // Intentionally do not cancel on StrictMode's simulated cleanup; the timer is short
-    // and guarantees the overlay cannot become stuck during the development replay.
-    window.setTimeout(() => setShowFirstLoader(false), 1050);
+    window.setTimeout(() => setShowFirstLoader(false), 820);
   }, []);
   return <>
     {showFirstLoader && <div className="bx-first-loader" role="status" aria-label="BROBEX portfolio is loading" aria-live="polite">

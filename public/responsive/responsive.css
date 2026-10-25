@@ -443,6 +443,8 @@ a {
     }
 
     .brand-logo {
+        
+    border-radius: 32pc;
         width: 52px;
         height: 52px;
     }
@@ -762,6 +764,8 @@ textarea,
     }
 
     .brand-logo {
+        
+    border-radius: 32pc;
         flex: 0 0 auto;
         max-width: 54px;
         object-fit: contain;
@@ -830,6 +834,8 @@ textarea,
     }
 
     .brand-logo {
+        
+    border-radius: 32pc;
         width: 44px;
         height: 44px;
     }

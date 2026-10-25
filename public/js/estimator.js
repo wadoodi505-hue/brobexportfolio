@@ -115,7 +115,8 @@ document.addEventListener('DOMContentLoaded', () => {
     add(CONFIG.pages[state.pages]); add(CONFIG.design[state.design]);
     state.features.forEach(label=>{const f=CONFIG.features.find(x=>x.label===label);if(f)add(f.cost);});
     const roundForMarket=n=>{const code=CONFIG.currency[state.currency].code;const step=['PKR','INR'].includes(code)?100:code==='SAR'||code==='AED'?10:10;return Math.round(n/step)*step;};
-    return {min:roundForMarket(min),max:roundForMarket(max)};
+    // Apply a 20% baseline reduction before the clearly stated 40% BROBEX offer.
+    return {min:roundForMarket(min*0.80),max:roundForMarket(max*0.80)};
   }
   function summary(){
     const list=$('#summaryList'), price=$('#summaryPrice');
@@ -128,8 +129,8 @@ document.addEventListener('DOMContentLoaded', () => {
     if(price)price.textContent=state.type?range(finalMin,finalMax):range(0,0);
     const display=$('#finalPriceDisplay');
     if(display)display.innerHTML=state.type?`<div class="estimate-price-stack">
-      <div class="regional-original"><span>Original estimate</span><del>${range(originalMin,originalMax)}</del></div>
-      <div class="regional-savings"><span>40% BROBEX discount</span><strong>Save ${range(originalMin-finalMin,originalMax-finalMax)}</strong></div>
+      <div class="regional-original"><span>Reduced baseline estimate</span><del>${range(originalMin,originalMax)}</del></div>
+      <div class="regional-savings"><span> BROBEX offer · Save 40%</span><strong>Save ${range(originalMin-finalMin,originalMax-finalMax)}</strong></div>
       <div class="estimate-discounted-range"><span class="price-val">${money(finalMin)}</span><span class="price-sep">–</span><span class="price-val">${money(finalMax)}</span></div>
       <span class="estimate-disclaimer">Indicative local-market estimate · ${CONFIG.currency[state.currency].label}. Final pricing depends on agreed scope.</span></div>`:`<span class="price-val">${money(0)}</span><span class="price-sep">–</span><span class="price-val">${money(0)}</span>`;
   }
@@ -158,7 +159,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'I would like to discuss a website project. Here is my preliminary brief.','',
       'PROJECT CONTACT',`Name: ${safe(state.name)||'Not provided'}`,`Email: ${safe(state.email)||'Not provided'}`,`Business: ${safe(state.business)||'Not provided'}`,`Phone / WhatsApp: ${safe(state.phone)||'Not provided'}`,'',
       'PROJECT SCOPE',`Website type: ${type?.title||'Not specified'}`,`Business goal: ${type?.desc||'To be discussed'}`,`Pages: ${state.pages||'Not specified'}`,`Design direction: ${state.design||'Not specified'}`,`Responsive layout: ${state.responsive||'Not specified'}`,`Features: ${state.features.join(', ')||'No optional features selected'}`,`Design status: ${state.designStatus||'Not specified'}`,`Content readiness: ${state.contentStatus||'Not specified'}`,`Preferred timeline: ${state.timeline||'Flexible / to be discussed'}`,'',
-      'PRELIMINARY INVESTMENT',`Market: ${CONFIG.currency[state.currency].label}`,`Currency: ${CONFIG.currency[state.currency].code}`,`Original local estimate: ${range(e.min,e.max)}`,`BROBEX discount: 40%`, `Estimated savings: ${range(e.min-Math.round(e.min*0.6),e.max-Math.round(e.max*0.6))}`,`Estimated BROBEX price after discount: ${range(Math.round(e.min*0.6),Math.round(e.max*0.6))}`,'These figures are indicative local-market estimates, not a fixed quotation. Final pricing depends on the agreed project scope.','',
+      'PRELIMINARY INVESTMENT',`Market: ${CONFIG.currency[state.currency].label}`,`Currency: ${CONFIG.currency[state.currency].code}`,`Reduced baseline estimate (20% lower): ${range(e.min,e.max)}`,`BROBEX offer: save 40% against this indicative estimate`, `Estimated savings: ${range(e.min-Math.round(e.min*0.6),e.max-Math.round(e.max*0.6))}`,`Estimated BROBEX price after 40% offer: ${range(Math.round(e.min*0.6),Math.round(e.max*0.6))}`,'These figures are indicative local-market estimates, not a fixed quotation. Final pricing depends on the agreed project scope.','',
       'POTENTIAL ADDITIONAL COSTS','Domain, hosting, paid software, payment processor fees, photography, extensive copywriting, product entry, and ongoing maintenance are separate unless agreed in writing.','',
       'ADDITIONAL NOTES',safe(state.notes)||'No additional notes provided.','','I would be happy to discuss the scope and next steps.',`Regards, ${safe(state.name)||'Potential Client'}`
     ];

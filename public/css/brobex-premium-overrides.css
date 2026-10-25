@@ -75,6 +75,8 @@ body {
 .top-nav .brand-logo {
   width: 50px;
   height: 50px;
+  
+    border-radius: 32pc;
 }
 
 .top-nav-links {
@@ -220,6 +222,8 @@ img {
   .top-nav .brand-logo {
     width: 45px;
     height: 45px;
+    
+    border-radius: 32pc;
   }
   .top-nav .top-nav-actions {
     gap: .55rem;
@@ -246,6 +250,8 @@ img {
   .top-nav .brand-logo {
     width: 40px;
     height: 40px;
+    
+    border-radius: 32pc;
   }
   .top-nav .top-nav-actions {
     gap: .4rem;
@@ -322,6 +328,8 @@ img {
   object-fit: cover;
   border: 1px solid rgba(114, 239, 69, .35);
   box-shadow: 0 0 0 3px rgba(114, 239, 69, .055);
+  
+    border-radius: 32pc;
 }
 
 .legacy-page .top-nav .right-logo-container {
@@ -467,6 +475,8 @@ html[data-theme="light"] .legacy-page .top-nav .nav-link.active {
   .legacy-page .top-nav .brand-logo {
     width: 38px;
     height: 38px;
+    
+    border-radius: 32pc;
   }
   .legacy-page .top-nav .top-nav-actions {
     margin-left: auto;
@@ -486,6 +496,8 @@ html[data-theme="light"] .legacy-page .top-nav .nav-link.active {
   .legacy-page .top-nav .brand-logo {
     width: 34px;
     height: 34px;
+    
+    border-radius: 32pc;
   }
   .legacy-page .top-nav .theme-toggle,
   .legacy-page .top-nav .mobile-menu-btn {
