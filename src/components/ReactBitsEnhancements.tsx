@@ -1,4 +1,6 @@
 import { useEffect, useRef, type ReactNode } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 type Props = { page: string; children: ReactNode };
 
@@ -12,6 +14,7 @@ export function ReactBitsEnhancements({ page, children }: Props) {
   useEffect(() => {
     const root = rootRef.current;
     if (!root) return;
+    gsap.registerPlugin(ScrollTrigger);
 
     root.querySelectorAll('.command-trigger, .command-palette-trigger, [aria-label*="COMMAND"], [title*="⌘K"]').forEach((node) => node.remove());
 
@@ -50,6 +53,30 @@ export function ReactBitsEnhancements({ page, children }: Props) {
       element.style.setProperty('--rb-reveal-delay', `${Math.min(index % 4, 3) * 70}ms`);
     });
 
+    // GSAP ScrollTrigger adds restrained scroll-linked depth without replacing native
+    // scrolling, so touch, keyboard navigation, and browser scrollbars remain reliable.
+    const motionContext = gsap.context(() => {
+      if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        root.querySelectorAll<HTMLElement>('.page-hero, .hero-section, .split-hero, .contact-form, .contact-methods').forEach((element) => {
+          gsap.fromTo(element,
+            { y: 22, autoAlpha: 0.82 },
+            {
+              y: 0,
+              autoAlpha: 1,
+              ease: 'none',
+              scrollTrigger: {
+                trigger: element,
+                start: 'top 92%',
+                end: 'top 48%',
+                scrub: 0.65,
+                invalidateOnRefresh: true,
+              },
+            }
+          );
+        });
+      }
+    }, root);
+
     const cleanupHandlers: Array<() => void> = [];
     const canHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
     const cards = root.querySelectorAll<HTMLElement>(
@@ -81,12 +108,12 @@ export function ReactBitsEnhancements({ page, children }: Props) {
       revealTargets.forEach((element) => observer.observe(element));
       headings.forEach((element) => observer.observe(element));
 
-      return () => { observer.disconnect(); cleanupHandlers.forEach((cleanup) => cleanup()); };
+      return () => { observer.disconnect(); cleanupHandlers.forEach((cleanup) => cleanup()); motionContext.revert(); };
     }
 
     revealTargets.forEach((element) => element.classList.add('rb-is-visible'));
     headings.forEach((element) => element.classList.add('rb-is-visible'));
-    return () => cleanupHandlers.forEach((cleanup) => cleanup());
+    return () => { cleanupHandlers.forEach((cleanup) => cleanup()); motionContext.revert(); };
   }, [page]);
 
   return <div ref={rootRef} className="rb-enhancement-layer" data-enhanced-page={page}>{children}</div>;
