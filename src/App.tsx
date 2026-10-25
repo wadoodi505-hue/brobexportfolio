@@ -1,4 +1,4 @@
-﻿import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link, Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import { ReactBitsEnhancements } from './components/ReactBitsEnhancements';
 import { routePages, type PageKey } from './data/routes';
@@ -113,16 +113,43 @@ function LegacyPage({ page }: { page: PageKey }) {
     window.scrollTo({ top: 0, behavior: 'auto' });
   }, [page]);
   if (error) return <main className="migration-error"><h1>Unable to load this page</h1><p>Please refresh the page. If the problem continues, check the deployed legacy assets.</p></main>;
-  if (!markup) return <div className="app-loading" aria-hidden="true" />;
+  if (!markup) return <div className="app-loading" role="status">Loading {routePages[page].label}â€¦</div>;
   return <ReactBitsEnhancements page={page}><div className="legacy-page" dangerouslySetInnerHTML={{ __html: markup }} /></ReactBitsEnhancements>;
 }
 
 export default function App() {
   const location = useLocation();
+  const [showFirstLoader, setShowFirstLoader] = useState(false);
+  const loaderSetupRef = useRef(false);
   useEffect(() => {
     document.documentElement.dataset.route = location.pathname;
   }, [location.pathname]);
+  useEffect(() => {
+    // React StrictMode replays effects in development; guard that replay explicitly.
+    if (loaderSetupRef.current) return;
+    loaderSetupRef.current = true;
+    // One entrance per tab session, regardless of the first route visited.
+    // sessionStorage survives refreshes but resets for a new independent tab session.
+    try {
+      if (window.sessionStorage.getItem('brobex-entrance-seen-v2') === '1') return;
+      window.sessionStorage.setItem('brobex-entrance-seen-v2', '1');
+    } catch {
+      // If storage is blocked, show the animation once for this mounted app only.
+    }
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    setShowFirstLoader(true);
+    // Intentionally do not cancel on StrictMode's simulated cleanup; the timer is short
+    // and guarantees the overlay cannot become stuck during the development replay.
+    window.setTimeout(() => setShowFirstLoader(false), 1050);
+  }, []);
   return <>
+    {showFirstLoader && <div className="bx-first-loader" role="status" aria-label="BROBEX portfolio is loading" aria-live="polite">
+      <div className="bx-loader-inner">
+        <img className="bx-loader-mark" src="/images/brobex-logo.webp" alt="" />
+        <span className="bx-loader-word">BROBEX</span>
+        <span className="bx-loader-track" aria-hidden="true" />
+      </div>
+    </div>}
     <Routes>
     <Route path="/" element={<LegacyPage page="home" />} />
     <Route path="/index.html" element={<Navigate to="/" replace />} />
@@ -141,15 +168,14 @@ export default function App() {
         <div className="not-found-orbit" aria-hidden="true"><span>404</span></div>
         <p className="not-found-eyebrow"><span className="not-found-status-dot" /> BROBEX / PAGE NOT FOUND</p>
         <h1 id="not-found-title">This page took a different route.</h1>
-        <p className="not-found-copy">The link may be outdated, or the page may have moved. Letâ€™s get you back to something useful.</p>
+        <p className="not-found-copy">The link may be outdated, or the page may have moved. Let’s get you back to something useful.</p>
         <div className="not-found-actions">
-          <Link className="not-found-primary" to="/">Return to homepage <span aria-hidden="true">â†—</span></Link>
+          <Link className="not-found-primary" to="/">Return to homepage <span aria-hidden="true">↗</span></Link>
           <button className="not-found-secondary" type="button" onClick={() => window.history.back()}>Go back</button>
         </div>
-        <p className="not-found-footnote">BROBEX Â· DIGITAL EXPERIENCES, BUILT WITH INTENTION</p>
+        <p className="not-found-footnote">BROBEX · DIGITAL EXPERIENCES, BUILT WITH INTENTION</p>
       </main>
     } />
   </Routes>
   </>;
 }
-
