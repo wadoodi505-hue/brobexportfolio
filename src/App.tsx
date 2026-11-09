@@ -89,7 +89,7 @@ function LegacyPage({ page }: { page: PageKey }) {
       }
       element.content = value;
     };
-
+  
     document.title = metadata.title;
     setMeta('name', 'description', metadata.description);
     setMeta('name', 'robots', 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1');
