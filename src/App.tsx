@@ -99,7 +99,12 @@ function LegacyPage({ page }: { page: PageKey }) {
     setMeta('property', 'og:description', metadata.description);
     setMeta('property', 'og:url', canonicalUrl);
     setMeta('property', 'og:image', imageUrl);
+    setMeta('property', 'og:image:secure_url', imageUrl);
+    setMeta('property', 'og:image:type', 'image/jpeg');
+    setMeta('property', 'og:image:width', '1254');
+    setMeta('property', 'og:image:height', '1254');
     setMeta('property', 'og:image:alt', 'BROBEX website developer portfolio preview');
+    setMeta('property', 'og:locale', 'en_US');
     setMeta('name', 'twitter:card', 'summary_large_image');
     setMeta('name', 'twitter:title', metadata.title);
     setMeta('name', 'twitter:description', metadata.description);
@@ -125,6 +130,13 @@ function LegacyPage({ page }: { page: PageKey }) {
           image: imageUrl,
           jobTitle: 'Website Developer',
           email: 'brobex.ffx@gmail.com',
+          address: { '@type': 'Country', name: 'Pakistan' },
+          contactPoint: {
+            '@type': 'ContactPoint',
+            contactType: 'business inquiries',
+            email: 'brobex.ffx@gmail.com',
+            availableLanguage: ['English'],
+          },
           description: 'BROBEX is a website developer based in Pakistan, focused on modern frontend development and responsive web experiences.',
           knowsAbout: ['React.js', 'TypeScript', 'JavaScript', 'Tailwind CSS', 'HTML5', 'Vite', 'Responsive Website Development', 'Frontend Engineering', 'UI Implementation'],
           sameAs: ['https://www.instagram.com/codewithbrobex/', 'https://www.youtube.com/@BrobexCode'],
