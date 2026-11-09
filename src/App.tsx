@@ -76,17 +76,10 @@ function LegacyPage({ page }: { page: PageKey }) {
   }, [markup, page, navigate]);
 
   useEffect(() => {
-    const pageMeta: Record<PageKey, string> = {
-      home: 'Brobex is a freelance web developer creating responsive websites, refined interfaces, and interactive digital experiences for modern brands.',
-      about: 'Learn about Brobex, a freelance web developer focused on responsive web experiences, thoughtful UI, and clean front-end implementation.',
-      services: 'Explore Brobex web development services, including responsive websites, frontend development, UI implementation, redesigns, and performance improvements.',
-      experience: 'Explore the Brobex development journey, workflow, and approach to building thoughtful, responsive web experiences.',
-      projects: 'Explore selected Brobex web development projects, including business websites, interactive experiences, and game-related builds.',
-      contact: 'Contact Brobex to discuss a website, frontend development, redesign, or interactive web project.',
-    };
-    const canonicalUrl = page === 'home'
-      ? 'https://brobexportfolio.vercel.app/'
-      : `https://brobexportfolio.vercel.app/${routePages[page].file}.html`;
+    const metadata = routePages[page];
+    const canonicalUrl = `https://brobexportfolio.vercel.app${metadata.canonicalPath}`;
+    const imageUrl = 'https://brobexportfolio.vercel.app/images/brobexcardimage.jpeg';
+
     const setMeta = (attribute: 'name' | 'property', key: string, value: string) => {
       let element = document.head.querySelector<HTMLMetaElement>(`meta[${attribute}="${key}"]`);
       if (!element) {
@@ -96,13 +89,23 @@ function LegacyPage({ page }: { page: PageKey }) {
       }
       element.content = value;
     };
-    document.title = routePages[page].title;
-    setMeta('name', 'description', pageMeta[page]);
-    setMeta('property', 'og:title', routePages[page].title);
-    setMeta('property', 'og:description', pageMeta[page]);
+
+    document.title = metadata.title;
+    setMeta('name', 'description', metadata.description);
+    setMeta('name', 'robots', 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1');
+    setMeta('property', 'og:type', 'website');
+    setMeta('property', 'og:site_name', 'BROBEX Portfolio');
+    setMeta('property', 'og:title', metadata.title);
+    setMeta('property', 'og:description', metadata.description);
     setMeta('property', 'og:url', canonicalUrl);
-    setMeta('name', 'twitter:title', routePages[page].title);
-    setMeta('name', 'twitter:description', pageMeta[page]);
+    setMeta('property', 'og:image', imageUrl);
+    setMeta('property', 'og:image:alt', 'BROBEX website developer portfolio preview');
+    setMeta('name', 'twitter:card', 'summary_large_image');
+    setMeta('name', 'twitter:title', metadata.title);
+    setMeta('name', 'twitter:description', metadata.description);
+    setMeta('name', 'twitter:image', imageUrl);
+    setMeta('name', 'twitter:image:alt', 'BROBEX website developer portfolio preview');
+
     let canonical = document.head.querySelector<HTMLLinkElement>('link[rel="canonical"]');
     if (!canonical) {
       canonical = document.createElement('link');
@@ -110,6 +113,66 @@ function LegacyPage({ page }: { page: PageKey }) {
       document.head.appendChild(canonical);
     }
     canonical.href = canonicalUrl;
+
+    const structuredData = {
+      '@context': 'https://schema.org',
+      '@graph': [
+        {
+          '@type': 'Person',
+          '@id': 'https://brobexportfolio.vercel.app/#person',
+          name: 'BROBEX',
+          url: 'https://brobexportfolio.vercel.app/',
+          image: imageUrl,
+          jobTitle: 'Website Developer',
+          email: 'brobex.ffx@gmail.com',
+          description: 'BROBEX is a website developer based in Pakistan, focused on modern frontend development and responsive web experiences.',
+          knowsAbout: ['React.js', 'TypeScript', 'JavaScript', 'Tailwind CSS', 'HTML5', 'Vite', 'Responsive Website Development', 'Frontend Engineering', 'UI Implementation'],
+          sameAs: ['https://www.instagram.com/codewithbrobex/', 'https://www.youtube.com/@BrobexCode'],
+        },
+        {
+          '@type': 'WebSite',
+          '@id': 'https://brobexportfolio.vercel.app/#website',
+          url: 'https://brobexportfolio.vercel.app/',
+          name: 'BROBEX Portfolio',
+          publisher: { '@id': 'https://brobexportfolio.vercel.app/#person' },
+          inLanguage: 'en',
+        },
+        {
+          '@type': 'ProfilePage',
+          '@id': `${canonicalUrl}#webpage`,
+          url: canonicalUrl,
+          name: metadata.title,
+          description: metadata.description,
+          isPartOf: { '@id': 'https://brobexportfolio.vercel.app/#website' },
+          about: { '@id': 'https://brobexportfolio.vercel.app/#person' },
+          inLanguage: 'en',
+        },
+        ...(page === 'services' ? [{
+          '@type': 'Service',
+          '@id': 'https://brobexportfolio.vercel.app/services#web-development',
+          name: 'Website and Frontend Development',
+          provider: { '@id': 'https://brobexportfolio.vercel.app/#person' },
+          serviceType: ['Responsive Website Development', 'React Frontend Development', 'Frontend UI Implementation'],
+          areaServed: 'Worldwide',
+        }] : []),
+        ...(page !== 'home' ? [{
+          '@type': 'BreadcrumbList',
+          itemListElement: [
+            { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://brobexportfolio.vercel.app/' },
+            { '@type': 'ListItem', position: 2, name: metadata.label, item: canonicalUrl },
+          ],
+        }] : []),
+      ],
+    };
+
+    let schema = document.getElementById('brobex-page-schema') as HTMLScriptElement | null;
+    if (!schema) {
+      schema = document.createElement('script');
+      schema.id = 'brobex-page-schema';
+      schema.type = 'application/ld+json';
+      document.head.appendChild(schema);
+    }
+    schema.textContent = JSON.stringify(structuredData);
     window.scrollTo({ top: 0, behavior: 'auto' });
   }, [page]);
   if (error) return <main className="migration-error"><h1>Unable to load this page</h1><p>Please refresh the page. If the problem continues, check the deployed legacy assets.</p></main>;
